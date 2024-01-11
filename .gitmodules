@@ -1,0 +1,3 @@
+[submodule "test_folder/reveal.js"]
+	path = test_folder/reveal.js
+	url = https://github.com/EiffL/reveal.js.git
