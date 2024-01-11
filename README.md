@@ -6,7 +6,7 @@ Creating a new Presentation:
   - Create a new branch, make a copy of `template`(with MAC the command is: cp -a), and `cd` there
   - git submodule current version of reveal.js
     ```
-    $ git submodule add https://github.com/EiffL/reveal.js.git
+    $ git submodule add https://github.com/denise-lanzieri-csl/reveal.js.git
     $ cd reveal.js
     $ git submodule update --init --recursive
     ```
