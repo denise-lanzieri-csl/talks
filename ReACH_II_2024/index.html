@@ -1,0 +1,675 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>ReACH II workshop</title>
+		<meta name="description" content="Presentation for ReACH II workshop">
+		<meta name="author" content="Denise Lanzieri">
+
+		<link rel="stylesheet" href="reveal.js/dist/reset.css">
+		<link rel="stylesheet" href="reveal.js/dist/reveal.css">
+		<link rel="stylesheet" href="reveal.js/dist/theme/brightenergy.css" id="theme">
+		<link rel="stylesheet" href="reveal.js/plugin/highlight/monokai.css" id="highlight-theme">
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<!-- ################################################################################################################################################### -->
+				<section data-background-iframe="background.html">
+					<div class="container">
+						<div class="title" style="border-radius: 20px; background-color:#e6e6e6;">
+							<h2>The Eternal Movement of the Boundless (Artificial) Mind - Part 2</h2>
+							<h4>ReACH II - HRLS Stuttgart, September 2024
+							</h4>
+						</div>
+					</div>
+					<hr>
+					<div style="border-radius: 20px; background-color:rgba(0, 0, 0, 0);">
+						<div class="container">
+							<div class="col">
+								<div align="left" style="margin-left: 20px;">
+									<h2>Denise Lanzieri</h2>
+									<br>
+									<br>
+									<br>
+									<br>
+									<img src="assets/sonylogo.png" class="plain"  width="300"></img>
+									<br>
+								</div>
+							</div>
+							<div class="col">
+								<br>
+								<br>
+								<br>
+								<br>
+								<br>
+								<br>
+								<img src="assets/logocref.jpeg" class="plain" height="200" ></img>
+							</div>
+						</div>
+						<!-- <div> slides at <a href="https://eiffl.github.io/talks/Split2024">eiffl.github.io/talks/Split2024</a> </div> -->
+					</div>
+				</section>
+				<!-- ################################################################################################################################################### -->
+				<section>
+					<h2 class="slide-title" style="position:absolute;top:100;" ><p style="color:#336488" >First LMM application and proof of concept </h2></p>
+					<br> <br>
+					<br> <br>
+					<br> <br>
+						<ul>
+							<li class="fragment grow"> How can technology benefit dancers' creative practices?</li>
+								
+								<br> <br>
+								<br> <br>
+				
+							<li class="fragment grow"> Can we leverage deep learning to develop a movement suggestion system for dancers?</li>
+						</ul>
+				</section>
+				<!-- ################################################################################################################################################### -->
+				<section>
+					<h2 class='slide-title'><p style="color:#336488" >Why Dance ? </h2></p>
+					<h3>
+						Dance movement is a rich, complex data source
+					</h3>
+					<div class="image-grid">
+						<img src="assets/dance1.jpg" alt="Image 1">
+						<img src="assets/dance2.jpg" alt="Image 2">
+						<img src="assets/dance3.jpg" alt="Image 3">
+						<img src="assets/dance4.jpg" alt="Image 4">
+						<img src="assets/dance5.jpg" alt="Image 5">
+						<img src="assets/dance6.jpg" alt="Image 6">
+					</div>
+				</section>
+				<!-- ################################################################################################################################################### -->
+				<section data-background="#000">
+					<h2>Research questions addressed in three main stages: </h2>
+					<br> <br>
+					<ul>
+						<li class="fragment"> 
+							Data Collection Pipeline
+						</li>
+						<br> <br>
+						<br> <br>
+						<li class="fragment"> 
+							Dance Generation Model
+						</li>
+						<br> <br>
+						<br> <br>
+						<li class="fragment"> 
+							Novelties exploration
+						</li>
+					</ul>
+				</section>
+				<!-- ################################################################################################################################################### -->
+				<section>
+					<h2> <b class="alert">Part I: </b> Data Collection Pipeline</h2>
+					<hr>
+					<div class="container">
+						<div class="col">
+							<div align="left" style="margin-left: 20px;">
+									<br>
+								<br>
+								<br>
+								$\Longrightarrow$ Customized workshop to bootstrap our <b class="alert"> LMM </b>
+								 <br>
+								 <br>
+								$\Longrightarrow$ Robust pipeline for collecting human motion capture data
+							</div>
+						</div>
+						<div class="col">  
+								<img src="assets/hl-49076392116.jpeg"  style="width: 60%; height: auto;  margin-bottom: -250px; ">
+								<img src="assets/lapiroettaws.png" style="width: 60%; height: auto; margin-top: 250px;">
+						</div>
+					</div>
+					<br>
+				</section> 
+				<!-- ################################################################################################################################################### -->
+				<section>
+					<h3 class='slide-title'><p style="color:#336488" > Data Collection Procedure for Dance Experiment </h3> </p>
+					<br>
+					<div class='container'>
+						<div class='col'>
+							<div class="block fragment" data-fragment-index="0">
+								<div class="block-title">
+									Setup and procedure
+								</div>
+								<div class="block-content">
+									<ul>
+										<li> Music Stimuli Selection
+											<ul>
+												<br>
+												<li>
+													3 levels of intensity: low, medium, high
+												</li>
+												<li>
+													3 musical styles: classical, rock, electronic
+												</li>
+												<li>
+													3 tempo/BPM categories: slow, medium, fast
+												</li>
+
+											</ul>
+										</li>
+										<br>
+										<li> Dancer Selection:
+											<ul>
+												<br>
+												<li>
+													Professional dancers
+												</li>
+												<li>
+													Semiprofessional dancers
+												</li>
+												<li>
+													Non-professional dancers
+												</li>
+
+											</ul>
+										</li>
+										<br>
+										<li> Experiment Design:
+											<br>
+											<ul>
+												<li>
+													Each music piece is danced at least 3 times to ensure consistency and data reliability.
+												</li>
+											</ul>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+						<div class='col'>
+							<div class="block fragment" data-fragment-index="1">
+								<div class="block-title">
+									Preparing the data set for deep learning
+								</div>
+								<div class="block-content">
+									<ul>
+										<li>Movement Data Collection:
+											<ul> 
+												<br>
+												<li>
+													Movements captured through <span style='color:#996699'>skeletonization</span>, tracking the position of body joints over time.
+												</li>
+											</ul>
+										</li>
+										<br>
+										<li> Audio Feature Extraction:
+											<ul>
+												<br>
+												<li>
+													Using  <span style='color:#996699'>Librosa</span> to extract key spectral and rhythm features
+												</li>
+											</ul>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+					<br>
+				</section>
+				<!-- ################################################################################################################################################### -->
+				<section>
+					<h3 class='slide-title'><p style="color:#336488" > Music Stimuli Selection </h3></p>
+					<iframe src="https://docs.google.com/spreadsheets/d/16E5KTxkRVE01leOuekVwnA-s9klon1iRBhqIBG9ZfR4/edit?usp=sharing" width="1900px"  height="1100px"  style=" position: relative; top: 0px;"></iframe>
+				</section>
+				<!-- ################################################################################################################################################### -->
+					<section data-background-video="assets/D5_M8_T1_Frontal.mp4" data-background-video-muted >
+					</section>	
+				<!-- ################################################################################################################################################### -->
+				<section>
+					<h3 class='slide-title'><p style="color:#336488" > Movement Data Collection: The limits of traditional motion capture devices  </h3></p>
+						<div class='container'>
+							<div class='col'>
+								<ul>
+									<li>  <b class="alert">High Cost:</b> Requires expensive specialized  equipment and software
+									</li>
+									<br>
+									<li> <b class="alert"> Limited Accessibility:</b> Often confined to professional studios or labs
+									</li>
+									<br>
+									<li>  <b class="alert">Complex Setup:</b> Involves intricate setup, calibration, and maintenance
+									</li>
+									<br>
+									<li>  <b class="alert">Fixed Installation:</b> Typically requires a dedicated, fixed space for setup
+									</li>
+									<br>
+									<li>  <b class="alert">Intrusiveness:</b> Users need to wear special suits or markers
+									</li>
+									<br>
+									<li>  <b class="alert">Limited Portability:</b> Difficult to transport and use in different environments
+									</li>
+									<br>
+								</ul>
+							</div>
+							<div  class='col'>
+								<img  data-src="assets/mocap.png"  />
+							</div>
+						</div>
+				</section>
+				<!-- ################################################################################################################################################### -->
+				<section>
+					<h3 class='slide-title'><p style="color:#336488" > How to overcome motion capture limitations? </h3></p>
+						<div class='container'>
+							<div class='col'>
+								<ul>
+									<li>Approaches based on <span style='color:#996699'>deep learning</span> to estimate human pose
+									</li>
+									<br>
+									<li> <span style='color:#669900'>Mediapipe</span>: Designed to identify and track human body poses in real-time. 
+									</li>
+									<br>
+										<ul>
+											<li> It works by detecting key points or landmarks on the human body, such as joints and other anatomical features.
+											</li>
+											<br>
+											<li> These landmarks are then used to estimate the overall body pose, including the positions and orientations of body parts.
+											</li>
+											<br>
+											<li> Affordable,  accessible, simple setup, flexible, non-Intrusive, portable
+											</li>
+											<br>
+										</ul>
+								</ul>
+							</div>
+							<div  class='col'>
+								<img  data-src="assets/example_medipipe.png" class='plain' style="height: 530px; width:380px;"  />
+								<img data-src="assets/medipipelogo.png" class="plain" style="height:69px" />
+							</div>
+						</div>
+				</section>
+				<!-- ################################################################################################################################################### -->
+				<section>
+					<h3 class='slide-title'><p style="color:#336488" >Main Challenges of Pose Detection </h3></p>
+					<div class='container'>
+						<div class='col'>
+							<div style="position:relative; width:500px; height:400px; margin:0 auto;">
+								<img class="fragment current-visible plain" data-src="assets/Illustration_of_depth_ambiguity-of-3D-HPE.jpg" style="position:absolute;top:0;left:0;" data-fragment-index="0" />
+								<img class="fragment  plain" data-src="assets/self_occlusions.jpg" style="position:absolute;top:0;left:0;" data-fragment-index="1" />
+							</div>
+							<div class="fragment current-visible plain" data-fragment-index="0" style="float:right; font-size: 18px">
+								(Illustration of the depth ambiguity (Li and Lee, 2019))
+							</div>
+							<div class="fragment" data-fragment-index="1" style="float:right; font-size: 18px">
+								(Erroneous predictions due to self-occlusion (Shin and Halilaj, 2020))
+							</div>
+						</div>
+						<div class='col'>
+							<ul>
+								<li class="fragment" data-fragment-index="0"> 
+									<b class="alert">3D poses </b> $\Longrightarrow$  Using 2D joints to recover a 3D pose becomes an ill-defined problem as one 2D skeleton may correspond to many varied 3D poses.
+								 </li>
+								<br>
+								<br>
+								<li class="fragment" data-fragment-index="1"> 
+									<b class="alert"> Self-occlusion and dependence on the camera’s viewing: </b> Might fail when visualizing a person in a pose where parts of their body obscure other parts
+								 </li>
+							</ul>
+						</div>
+					</div>
+					<br>
+					<div class="block fragment">
+						<div class="block-title">
+						</div>
+						<div class="block-content">
+							<li>
+								We need to evaluate the efficacy of video-based position extraction and identify systematic errors improving the reliability of the capturing system.
+							</li>
+						</div>
+					</div>
+				</section>
+				<!-- ################################################################################################################################################### -->
+				<section  data-background-image="assets/Data-recording_scheme.png" data-background-size="1050px" >
+					<h3 class='slide-title' style="position:absolute;top:100;"><p style="color:#336488" > Towards a robust pipeline: </h3></p>
+					<br> <br>
+					<div class="container">
+						<div class="col" style="flex: 0 0 40em;">
+						</div>
+						<div class="col">
+						</div>
+					</div>
+					<br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br>  <br> <br> <br> <br> <br>
+				</section>
+				<!-- ################################################################################################################################################### -->
+				<section  class="inverted" data-background="#000" >  
+					<h2> <span style="color:#c99f7d">Part II:</span> Dance Generation Model</h2>
+					<hr>
+					<div class="container">
+						<div class="col">
+							<div align="left" style="margin-left: 20px;">
+									<br>
+								<br>
+								<br>
+								$\Longrightarrow$ Selecting an appropriate deep neural network architecture to generate dance movements 
+							</div>
+						</div>
+						<div class="col">
+							<pre class="python" ><code data-trim data-noescape>
+								import tensorflow as tf
+								import keras
+								# Define the loss function for the model 
+								loss = 'mean_squared_error'
+								# Set the batch size 
+								batch_size = 8								
+								# Set the number of epochs
+								epochs = 2000								
+								# Set the learning rate to 0.01
+								lr = 0.01								
+								# Define the number of units (neurons) in each LSTM layer
+								n_units = 1000															
+								# Create a new Sequential model
+								model = Sequential()								
+								# Add the first LSTM layer to the model:
+								model.add(LSTM(units=n_units, input_shape=(predictors_train.shape[1],
+								moves_vocab_size), return_sequences=True, activation=activations.tanh))								
+								# Add the second LSTM layer with similar parameters
+								model.add(LSTM(units=n_units, return_sequences=True, 
+								activation=activations.tanh))							
+								# Add the third LSTM layer which outputs the last sequence
+								model.add(LSTM(n_units, activation=activations.tanh))								
+								# Add a Dense output layer that uses a sigmoid activation function
+								model.add(Dense(moves_vocab_size, activation='sigmoid'))								
+							</code></pre>
+						</div>
+					</div>
+					<br>
+				</section> 
+				<!-- ################################################################################################################################################### -->
+				<section >
+					<h3 class='slide-title'><p style="color:#336488" >Posture distribution at time <em>T</em></h3></p>
+					<video>
+						<source data-src="assets/D6_M14_T1_Frontal.mp4"data-background-video-muted; type="video/mp4" />
+					  </video>
+				</section>	
+				<!-- ################################################################################################################################################### -->	
+				<section>
+					<h3 class='slide-title'><p style="color:#336488" >Posture distribution at time <em>T+1</em></h3></p>
+						<video>
+							<source data-src="assets/video2.mp4" type="video/mp4" />
+						  </video>
+				</section>
+			<!-- ################################################################################################################################################### -->
+				<section >  
+					<h2> <b class="alert">Part III:</b> Novelties exploration</h2>
+					<hr>
+					<div class="container">
+						<div class="col">
+							<div align="left" style="margin-left: 20px;">
+								<br>
+								<br>
+								$\Longrightarrow$ Model an AI system to <b class="alert"> probabilistically</b> predict the next movement
+								<br>
+								<br>
+								$\Longrightarrow $ Model adapted to individual dancers: 
+								<ul>
+									symbiotic relationship with the performer, acting as an  <span style='color:#669900'>intelligent digital mirror</span>
+								</ul>
+							</div>
+						</div>
+						<div class="col">
+							<video muted style="width:450px;" controls>
+								<source data-src="assets/video_som_and_audio.mp4" type="video/mp4" />
+							</video>
+						</div>
+					</div>
+					<br>
+				</section> 
+				<!-- ################################################################################################################################################### -->
+				<section>
+					<h3 class='slide-title'><p style="color:#336488" > Vector Quantization (VQ) with Self-Organizing Maps (SOM):</h3></p>
+						<img class="plain" data-src="assets/lfi_sim.png" style="width:1000px;"/>
+
+							<div class="r-stack">
+
+									<div class="block fragment">
+										<div class="block-title">
+											Probabilistic model
+										</div>
+										<div class="block-content">
+											<ol>
+												<li>The models take as input movements from videos, captured as a sequence of body positions over time
+												</li>
+												<br>
+												<li class="fragment"> The model map each data point to a node whose vector is closest to the input vector	
+												</li>
+												<br>
+												<li class="fragment"> A finite set of neurons will represent all significant body positions (winning neurons).
+												</li>
+												<br>
+												<div class="fragment"> $\Longrightarrow$  The SOM can be visualized as a  <b class="alert">"vocabulary"</b> of human movements, where each neuron corresponds to a specific posture or movement pattern
+												</div>
+											</ol>
+										</div>
+									</div>
+								</div>
+				</section>
+				<!-- ################################################################################################################################################### -->
+				<section>
+					<h3 class='slide-title'><p style="color:#336488" >Vector Quantization with SOM:</h3>
+					<iframe src="http://127.0.0.1:8000" width="1000px"  height="850px" ></iframe>
+				</section>
+				<!-- ################################################################################################################################################### -->
+				<section>
+					<h3 class='slide-title'> <p style="color:#336488" >Integrating Novelties in Deep Learning Systems</h3></p>
+					<b>The idea:</b> Training algorithm inspired by Stuart Kauffman’s concept to explore new data spaces
+					<div class='container'>
+							<div class='col'style=" position: relative;bottom: 60px;">
+							<ul>
+								<li>The Dreaming Learning Algorithm:
+									<br>
+									<br>
+									<ul>
+										<li class="fragment" data-fragment-index="0">Initial training of a probabilistic LSTM network with Vector Quantization
+										</li>
+										<br>
+										<li class="fragment" data-fragment-index="1"> <span style="color:#336488" >Dreaming Learning </span> step: the network generates a new synthetic sequence sampled from the current output distributions
+										</li>
+										<br>
+										<li class='fragment'data-fragment-index="2"> The network is trained again using the synthetically generated sequences
+										</li>
+									</ul>
+								</li>
+							</ul>
+							</div>
+							<div style="position:relative; width:550px; height:550px; margin:0 auto;">
+								<img data-src="assets/LSTMCellSceneAll_ManimCE.png" style="position:absolute;top:0;left:0;" />
+							</div>
+					</div >
+					<div class="fragment"data-fragment-index="5" style=" position: relative;bottom: 60px;" > $\to$ Enhance human creativity through dynamic human-machine interaction, fostering an evolving artistic partnership during performances.
+					</div>
+				</section>
+				<!-- ################################################################################################################################################### -->	
+				<section>
+					<h3 class="slide-title"> <p style="color:#336488" >General Conclusion</h3></p>
+						<br> <br> 
+							<div class="block ">
+								<div class="block-title" >
+								Takeaway message: Create an AI model that enhances the creative process.
+								</div>
+								<div class="block-content">
+									<ul>
+										<li class="fragment">Innovative Dataset Creation: Unique dataset designed to capture the nuances of improvisation among dancers across various music genres
+										</li>
+										<br>
+										<li class="fragment"> <span style="color:#336488" >Large Movement Model (LMM) </span> Development: 
+											<ul>
+												<li> The LMM system, based on probabilistic language models, employs LSTM architecture to analyze full-body motion capture data
+												</li>
+												<li> Three training approaches:  <span style='color:#996699'>Classical</span>, <span style='color:#669900'>Probabilistic</span>, and <span style='color:#FFAA7F'>Dreaming learning </span> LSTM models—to uncover how AI can enhance creativity
+												</li>
+											</ul>
+										</li>
+										<br>
+										<li  class="fragment"> Philosophical Exploration: The work raises critical questions about art, human creativity, and technology's role
+										</li>  
+									</ul>
+								</div>
+							</div>
+						<br>
+				</section>
+				<!-- ################################################################################################################################################### -->	
+				<section>
+					<h3 class="slide-title"> Future prospects: <b class="alert"> Extensions to general applications </b> </h3></p>
+					<br>
+					<br>
+					<br>
+						<ul>
+							<li> Sport coaching and training</li>
+							<br>
+							<li>Physical rehabilitation	</li>
+							<br>
+							<li>Speech-language diseases related to facial expressions </li>
+							<br>
+							<li>Micro-expressions detection</li>
+							<br>
+							<li>Improving human-like motions in robotic systems (movement fine-tuning)</li>
+							<br>
+							<li>Human-computer interface based on gestures and movements</li>
+						</ul>
+				</section>
+				<!-- ################################################################################################################################################### -->
+				<section data-background-video="assets/D106_M1_T1_Frontal.mov" data-background-video-muted>
+				</section>	
+				<!-- ################################################################################################################################################### -->
+			</div>
+		</div>
+
+		<style>
+			
+			.reveal .image-grid {
+				display: grid;
+				grid-template-columns: repeat(3, 1fr);
+				grid-gap: 0px; /* Adjust spacing between images */
+				width: 100%;
+			}
+			
+			.reveal .image-grid img {
+				width: 100%;
+				/* height: auto; */
+    			height: 300px; /* Force same height */
+    			object-fit: cover; /* Crop the images to fit the height */
+
+			}
+
+
+			.reveal .block {
+				background-color: #191919;
+				margin-left: 20px;
+				margin-right: 20px;
+				text-align: left;
+				padding-bottom: 0.1em;
+			}
+	
+			.reveal .block-title {
+				background-color: #cccccc;
+				padding: 8px 35px 8px 14px;
+				color: #336488;
+				font-weight: bold;
+			}
+	
+			.reveal .block-content {
+				background-color: #e6e6e6;
+				padding: 8px 35px 8px 14px;
+			}
+	
+			.reveal .slide-title {
+				border-left: 5px solid black;
+				text-align: left;
+				margin-left: 20px;
+				padding-left: 20px;
+			}
+	
+			.reveal .alert {
+				color: #336488;
+				font-weight: bold;
+			}
+	
+			.reveal .inverted {
+				filter: invert(100%);
+			}
+	
+		</style>	
+		<script src="reveal.js/dist/reveal.js"></script>
+		<script src="reveal.js/plugin/notes/notes.js"></script>
+		<script src="reveal.js/plugin/markdown/markdown.js"></script>
+		<script src="reveal.js/plugin/highlight/highlight.js"></script>
+		<script src="reveal.js/plugin/math/math.js"></script>
+		<script>
+			// More info about initialization & config:
+			// - https://revealjs.com/initialization/
+			// - https://revealjs.com/config/
+			Reveal.initialize({
+				controls: true,
+	
+				//center: false,
+				hash: true,
+	
+				// Visibility rule for backwards navigation arrows; "faded", "hidden"
+				// or "visible"
+				controlsBackArrows: 'hidden',
+	
+				// Display a presentation progress bar
+				progress: true,
+	
+				// Display the page number of the current slide
+				slideNumber: true,
+	
+				transition: 'slide', // none/fade/slide/convex/concave/zoom
+	
+				// The "normal" size of the presentation, aspect ratio will be preserved
+				// when the presentation is scaled to fit different resolutions. Can be
+				// specified using percentage units.
+				width: 1280,
+				height: 720,
+	
+				// Factor of the display size that should remain empty around the content
+				margin: 0.1,
+	
+				// Bounds for smallest/largest possible scale to apply to content
+				minScale: 0.2,
+				maxScale: 1.5,
+	
+				autoPlayMedia: true,
+	
+				// Learn about plugins: https://revealjs.com/plugins/
+				plugins: [RevealMarkdown, RevealHighlight, RevealNotes,  RevealMath],
+	
+				dependencies: [{
+						src: 'reveal.js/plugin/markdown/marked.js'
+					},
+					{
+						src: 'reveal.js/plugin/markdown/markdown.js'
+					},
+					{
+						src: 'reveal.js/plugin/notes/notes.js',
+						async: true
+					},
+					{
+						src: 'reveal.js/plugin/math/math.js',
+						async: true
+					},
+					{
+						src: 'reveal.js/plugin/reveal.js-d3/reveald3.js'
+					},
+					{
+						src: 'reveal.js/plugin/reveal.js-plugins/chart/Chart.min.js'
+					},
+					{
+						src: 'reveal.js/plugin/reveal.js-plugins/chart/csv2chart.js'
+					},
+					{
+						src: 'reveal.js/plugin/highlight/highlight.js',
+						async: true
+					},
+				]
+	
+			});
+		</script>
+	</body>
+</html>
+
+
