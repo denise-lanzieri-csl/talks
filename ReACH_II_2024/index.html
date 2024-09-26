@@ -83,24 +83,16 @@
 					</div>
 				</section>
 				<!-- ################################################################################################################################################### -->
-				<section data-background="#000">
-					<h2>Research questions addressed in three main stages: </h2>
+				<section data-background-image="assets/Roadmap.png"    data-background-size="1500px" >
+					<h3 class='slide-title' style="position:absolute;top:100;"><p style="color:#336488" > Roadmap: </h3></p>
 					<br> <br>
-					<ul>
-						<li class="fragment"> 
-							Data Collection Pipeline
-						</li>
-						<br> <br>
-						<br> <br>
-						<li class="fragment"> 
-							Dance Generation Model
-						</li>
-						<br> <br>
-						<br> <br>
-						<li class="fragment"> 
-							Novelties exploration
-						</li>
-					</ul>
+					<div class="container">
+						<div class="col" style="flex: 0 0 40em;">
+						</div>
+						<div class="col">
+						</div>
+					</div>
+					<br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br>  <br> <br> <br> <br> <br>
 				</section>
 				<!-- ################################################################################################################################################### -->
 				<section>
@@ -283,48 +275,8 @@
 						</div>
 				</section>
 				<!-- ################################################################################################################################################### -->
-				<section>
-					<h3 class='slide-title'><p style="color:#336488" >Main Challenges of Pose Detection </h3></p>
-					<div class='container'>
-						<div class='col'>
-							<div style="position:relative; width:500px; height:400px; margin:0 auto;">
-								<img class="fragment current-visible plain" data-src="assets/Illustration_of_depth_ambiguity-of-3D-HPE.jpg" style="position:absolute;top:0;left:0;" data-fragment-index="0" />
-								<img class="fragment  plain" data-src="assets/self_occlusions.jpg" style="position:absolute;top:0;left:0;" data-fragment-index="1" />
-							</div>
-							<div class="fragment current-visible plain" data-fragment-index="0" style="float:right; font-size: 18px">
-								(Illustration of the depth ambiguity (Li and Lee, 2019))
-							</div>
-							<div class="fragment" data-fragment-index="1" style="float:right; font-size: 18px">
-								(Erroneous predictions due to self-occlusion (Shin and Halilaj, 2020))
-							</div>
-						</div>
-						<div class='col'>
-							<ul>
-								<li class="fragment" data-fragment-index="0"> 
-									<b class="alert">3D poses </b> $\Longrightarrow$  Using 2D joints to recover a 3D pose becomes an ill-defined problem as one 2D skeleton may correspond to many varied 3D poses.
-								 </li>
-								<br>
-								<br>
-								<li class="fragment" data-fragment-index="1"> 
-									<b class="alert"> Self-occlusion and dependence on the camera’s viewing: </b> Might fail when visualizing a person in a pose where parts of their body obscure other parts
-								 </li>
-							</ul>
-						</div>
-					</div>
-					<br>
-					<div class="block fragment">
-						<div class="block-title">
-						</div>
-						<div class="block-content">
-							<li>
-								We need to evaluate the efficacy of video-based position extraction and identify systematic errors improving the reliability of the capturing system.
-							</li>
-						</div>
-					</div>
-				</section>
-				<!-- ################################################################################################################################################### -->
-				<section  data-background-image="assets/Data-recording_scheme.png" data-background-size="1050px" >
-					<h3 class='slide-title' style="position:absolute;top:100;"><p style="color:#336488" > Towards a robust pipeline: </h3></p>
+				<section data-background-image="assets/Roadmap.png"    data-background-size="1200px" >
+					<h3 class='slide-title' style="position:absolute;top:100;"><p style="color:#336488" > Roadmap: </h3></p>
 					<br> <br>
 					<div class="container">
 						<div class="col" style="flex: 0 0 40em;">
@@ -336,7 +288,7 @@
 				</section>
 				<!-- ################################################################################################################################################### -->
 				<section  class="inverted" data-background="#000" >  
-					<h2> <span style="color:#c99f7d">Part II:</span> Dance Generation Model</h2>
+					<h2> <span style="color:#c99f7d">Part II:</span> Deterministic Dance Generation Model</h2>
 					<hr>
 					<div class="container">
 						<div class="col">
@@ -379,6 +331,37 @@
 					<br>
 				</section> 
 				<!-- ################################################################################################################################################### -->
+				<section>
+					<h3 class='slide-title'><p style="color:#336488" >Deterministic Baseline </h3></p>
+						<img class="plain" data-src="assets/LSTMTransformer.png" style="width:1200px;"/>
+
+							<div class="r-stack">
+
+									<div class="block">
+										<div class="block-title">
+											In our initial tuning and model-building phase, we adopt LSTM :
+										</div>
+										<div class="block-content">
+											<ul>
+												<li> The LSTM is designed to process:
+													<ul>
+													<br>
+														<li>Each frame’s human position</li>
+														<li>Frame’s acoustic features</li>
+													</ul>
+													<br>
+													$\Longrightarrow$ Outputs: Pose sequences
+												</li>
+												<br>
+												<li> 
+													We will also test other deterministic network, including Transformers, to evaluate performance and accuracy
+												</li>
+											</ul>
+										</div>
+									</div>
+								</div>
+				</section>
+				<!-- ################################################################################################################################################### -->
 				<section >
 					<h3 class='slide-title'><p style="color:#336488" >Posture distribution at time <em>T</em></h3></p>
 					<video>
@@ -388,9 +371,18 @@
 				<!-- ################################################################################################################################################### -->	
 				<section>
 					<h3 class='slide-title'><p style="color:#336488" >Posture distribution at time <em>T+1</em></h3></p>
-						<video>
-							<source data-src="assets/video2.mp4" type="video/mp4" />
-						  </video>
+					<div class="container">
+						<div class="col">
+							<video>
+								<source data-src="assets/D6_M14_T1_Frontal_original.mp4" type="video/mp4" style="width:500px;" />
+							</video>
+						</div>
+						<div class="col">
+							<video>
+								<source data-src="assets/predictions_D6_M14_T1_Frontal_epochs_1000_n_units_1000.mp4" type="video/mp4" style="width:500px;"  />
+							</video>
+						</div>
+					</div>
 				</section>
 			<!-- ################################################################################################################################################### -->
 				<section >  
@@ -404,10 +396,7 @@
 								$\Longrightarrow$ Model an AI system to <b class="alert"> probabilistically</b> predict the next movement
 								<br>
 								<br>
-								$\Longrightarrow $ Model adapted to individual dancers: 
-								<ul>
-									symbiotic relationship with the performer, acting as an  <span style='color:#669900'>intelligent digital mirror</span>
-								</ul>
+								$\Longrightarrow $ A model capable of proposing new and original movements based on the unique style of individual dancers
 							</div>
 						</div>
 						<div class="col">
@@ -421,7 +410,7 @@
 				<!-- ################################################################################################################################################### -->
 				<section>
 					<h3 class='slide-title'><p style="color:#336488" > Vector Quantization (VQ) with Self-Organizing Maps (SOM):</h3></p>
-						<img class="plain" data-src="assets/lfi_sim.png" style="width:1000px;"/>
+						<img class="plain" data-src="assets/som.png" style="width:800px;"/>
 
 							<div class="r-stack">
 
@@ -437,10 +426,10 @@
 												<li class="fragment"> The model map each data point to a node whose vector is closest to the input vector	
 												</li>
 												<br>
-												<li class="fragment"> A finite set of neurons will represent all significant body positions (winning neurons).
+												<li class="fragment"> A finite sequence of winning neurons will represent the body movement
 												</li>
 												<br>
-												<div class="fragment"> $\Longrightarrow$  The SOM can be visualized as a  <b class="alert">"vocabulary"</b> of human movements, where each neuron corresponds to a specific posture or movement pattern
+												<div class="fragment"> $\Longrightarrow$  The SOM can be visualized as a  <b class="alert">"vocabulary"</b> of human positions, where each neuron corresponds to a specific posture 
 												</div>
 											</ol>
 										</div>
@@ -463,10 +452,10 @@
 									<br>
 									<br>
 									<ul>
-										<li class="fragment" data-fragment-index="0">Initial training of a probabilistic LSTM network with Vector Quantization
+										<li class="fragment" data-fragment-index="0">Initial training of a probabilistic network with Vector Quantization
 										</li>
 										<br>
-										<li class="fragment" data-fragment-index="1"> <span style="color:#336488" >Dreaming Learning </span> step: the network generates a new synthetic sequence sampled from the current output distributions
+										<li class="fragment" data-fragment-index="1"> <span style="color:#336488" >Dreaming Learning </span> step: the network generates a new synthetic sequence
 										</li>
 										<br>
 										<li class='fragment'data-fragment-index="2"> The network is trained again using the synthetically generated sequences
@@ -492,24 +481,101 @@
 								</div>
 								<div class="block-content">
 									<ul>
-										<li class="fragment">Innovative Dataset Creation: Unique dataset designed to capture the nuances of improvisation among dancers across various music genres
+										<li class="fragment">Innovative Dataset Creation through customized Workshop
 										</li>
 										<br>
-										<li class="fragment"> <span style="color:#336488" >Large Movement Model (LMM) </span> Development: 
+										<li class="fragment"> <span style="color:#336488" > Dance Large Movement Model (LMM) </span> development: 
 											<ul>
-												<li> The LMM system, based on probabilistic language models, employs LSTM architecture to analyze full-body motion capture data
+												<li> Model an AI system on spatial position data and  temporal features of music capable of probabilistically predicting the next movement
 												</li>
-												<li> Three training approaches:  <span style='color:#996699'>Classical</span>, <span style='color:#669900'>Probabilistic</span>, and <span style='color:#FFAA7F'>Dreaming learning </span> LSTM models—to uncover how AI can enhance creativity
+												<li>
+													A model that can propose <span style='color:#996699'>new and original movements</span> and adapt them to individual dancers based on their unique style
 												</li>
 											</ul>
 										</li>
 										<br>
-										<li  class="fragment"> Philosophical Exploration: The work raises critical questions about art, human creativity, and technology's role
+										<li  class="fragment"> Enable the system to enter into a symbiotic relationship with the performer, acting as an <span style='color:#669900'>intelligent digital mirror</span>
 										</li>  
 									</ul>
 								</div>
 							</div>
 						<br>
+				</section>	
+				<!-- ################################################################################################################################################### -->
+				<!-- ################################################################################################################################################### -->
+				<!-- ################################################################################################################################################### -->
+				<!-- ################################################################################################################################################### -->
+				<!-- ################################################################################################################################################### -->
+				<!-- ################################################################################################################################################### -->
+				<!-- ################################################################################################################################################### -->
+				<!-- ################################################################################################################################################### -->
+				<!-- ################################################################################################################################################### -->
+				<!-- ################################################################################################################################################### -->
+							<!-- APPENDIX -->
+				<!-- ################################################################################################################################################### -->
+				<!-- ################################################################################################################################################### -->
+				<!-- ################################################################################################################################################### -->
+				<!-- ################################################################################################################################################### -->
+				<!-- ################################################################################################################################################### -->
+				<!-- ################################################################################################################################################### -->
+				<!-- ################################################################################################################################################### -->
+				<!-- ################################################################################################################################################### -->
+				<!-- ################################################################################################################################################### -->
+				<!-- ################################################################################################################################################### -->
+				<section  data-background="#000">
+					<h2>APPENDIX</h2>
+				</section>
+				<!-- ################################################################################################################################################### -->
+				<section>
+					<h3 class='slide-title'><p style="color:#336488" >Main Challenges of Pose Detection </h3></p>
+					<div class='container'>
+						<div class='col'>
+							<div style="position:relative; width:500px; height:400px; margin:0 auto;">
+								<img class="fragment current-visible plain" data-src="assets/Illustration_of_depth_ambiguity-of-3D-HPE.jpg" style="position:absolute;top:0;left:0;" data-fragment-index="0" />
+								<img class="fragment  plain" data-src="assets/self_occlusions.jpg" style="position:absolute;top:0;left:0;" data-fragment-index="1" />
+							</div>
+							<div class="fragment current-visible plain" data-fragment-index="0" style="float:right; font-size: 18px">
+								(Illustration of the depth ambiguity (Li and Lee, 2019))
+							</div>
+							<div class="fragment" data-fragment-index="1" style="float:right; font-size: 18px">
+								(Erroneous predictions due to self-occlusion (Shin and Halilaj, 2020))
+							</div>
+						</div>
+						<div class='col'>
+							<ul>
+								<li class="fragment" data-fragment-index="0"> 
+									<b class="alert">3D poses </b> $\Longrightarrow$  Using 2D joints to recover a 3D pose becomes an ill-defined problem as one 2D skeleton may correspond to many varied 3D poses.
+									</li>
+								<br>
+								<br>
+								<li class="fragment" data-fragment-index="1"> 
+									<b class="alert"> Self-occlusion and dependence on the camera’s viewing: </b> Might fail when visualizing a person in a pose where parts of their body obscure other parts
+									</li>
+							</ul>
+						</div>
+					</div>
+					<br>
+					<div class="block fragment">
+						<div class="block-title">
+						</div>
+						<div class="block-content">
+							<li>
+								We need to evaluate the efficacy of video-based position extraction and identify systematic errors improving the reliability of the capturing system.
+							</li>
+						</div>
+					</div>
+				</section>
+                <!-- ################################################################################################################################################### -->
+				<section  data-background-image="assets/Data-recording_scheme.png" data-background-size="1050px" >
+					<h3 class='slide-title' style="position:absolute;top:100;"><p style="color:#336488" > Towards a robust pipeline: </h3></p>
+					<br> <br>
+					<div class="container">
+						<div class="col" style="flex: 0 0 40em;">
+						</div>
+						<div class="col">
+						</div>
+					</div>
+					<br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br>  <br> <br> <br> <br> <br>
 				</section>
 				<!-- ################################################################################################################################################### -->	
 				<section>
@@ -550,7 +616,7 @@
 			.reveal .image-grid img {
 				width: 100%;
 				/* height: auto; */
-    			height: 300px; /* Force same height */
+    			height: 250px; /* Force same height */
     			object-fit: cover; /* Crop the images to fit the height */
 
 			}
