@@ -1,0 +1,3 @@
+[submodule "ReACH_II_2024/reveal.js"]
+	path = ReACH_II_2024/reveal.js
+	url = https://github.com/denise-lanzieri-csl/reveal.js.git
