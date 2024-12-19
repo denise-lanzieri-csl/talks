@@ -1,0 +1,1625 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>Machine Learning and Innovation</title>
+		<meta name="description" content="Lezione corso sistemi complessi">
+		<meta name="author" content="Denise Lanzieri">
+
+		<link rel="stylesheet" href="reveal.js/dist/reset.css">
+		<link rel="stylesheet" href="reveal.js/dist/reveal.css">
+		<link rel="stylesheet" href="reveal.js/dist/theme/brightenergy.css" id="theme">
+		<link rel="stylesheet" href="reveal.js/plugin/highlight/monokai.css" id="highlight-theme">
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<!-- ################################################################################################################################################### -->
+				<section data-background-iframe="background.html">
+					<div class="container">
+						<div class="title" style="border-radius: 20px; background-color:#e6e6e6;">
+							<h3 class="slide-title">Introduction to Generative Models</h3>
+						</div>
+					</div>
+					<hr>
+					<div style="border-radius: 20px; background-color:rgba(0, 0, 0, 0);">
+						<div class="container">
+							<div class="col">
+								<div align="left" style="margin-left: 20px;">
+									<h3 class="slide-title">Denise Lanzieri</h3>
+									<br>
+									<br>
+									<br>
+									<br>
+									<img src="assets/sonylogo.png" class="plain"  width="300"></img>
+									<br>
+								</div>
+							</div>
+						</div>
+						<div> slides at <a style="color:#336488"; href="https://denise-lanzieri-csl.github.io/talks/lecture_cs_2024/">denise-lanzieri-csl.github.io/lecture_cs_2024/</a> </div>
+					</div>
+				</section>
+				<!-- ################################################################################################################################################### -->
+				<section>
+					<h3 class='slide-title'>Disclaimer</h3>
+					<ul>
+						If some mathematical symbols or equations are not displayed correctly in this presentation:
+					
+					<ol>
+						<br>
+						<li>
+							Please use <strong>Firefox</strong> for the best compatibility.
+						</li>
+						<br>
+						<li>
+							Alternatively, you can adjust the math rendering settings in your browser. <br>
+							For example, in browsers supporting MathJax, you can follow these steps:
+							<ul>
+								<li>Right-click on any mathematical expression.</li>
+								<li>Navigate to <strong>Math Settings &gt; Math Renderer</strong>.</li>
+								<li>Select a different rendering option  (<strong>COMMON HTML</strong>).</li>
+							</ul>
+						</li>
+					</ol>
+					<p> <b class="alert">The image below</b> demonstrates how to adjust these settings:</p>
+					</ul>
+					<img src="assets/tutorial.png" alt="Math Settings Example">
+				</section>
+				<!-- ################################################################################################################################################### -->	
+				<section>
+					<h3 class='slide-title'>Supervised vs Unsupervised</h3> 
+					<br>
+					<div class='container'>
+						<div class='col'>
+							<div class="block fragment" data-fragment-index="0">
+								<div class="block-title">
+									Supervised Learning
+								</div>
+								<div class="block-content">
+									<ul>
+										<li><b class="alert">Data:</b> $(x, y)$ with $x$ as data and $y$ as labels</li>
+										<br>
+										<li><b class="alert">Goal:</b> Learn the <span style='color:#6699CC'>function $f$</span> that maps $x \to y$</li>
+										<br>
+										<li><b class="alert">Applications:</b> Classification, regression, object detection, etc.</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+						<div class='col'>
+							<div class="block fragment" data-fragment-index="1">
+								<div class="block-title">
+									Unsupervised Learning
+								</div>
+								<div class="block-content">
+									<ul>
+										<li><b class="alert">Data:</b> $x$ only, no labels</li>
+										<br>
+										<li><b class="alert">Goal:</b> Learn the <span style='color:#6699CC'>underlying</span> structure of the data</li>
+										<br>
+										<li><b class="alert">Applications:</b> Clustering, dimensionality reduction, feature learning, density estimation, etc.</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+					<br>
+					<div class="fragment" data-fragment-index="2">
+						<ul>
+							<h4>Unsupervised learning is a vast and very exciting area of research for two reasons:</h4>
+							<li> It is relatively cost-effective since it doesn’t require labels. 
+								$\rightarrow$ This allows us to learn from a large amount of data at once, using much more data than if we had to annotate or label it manually.
+							</li>    
+							<br>
+							<li>
+								Although unsupervised learning is still a relatively unsolved area of research with many open problems remaining, it holds immense potential.
+								$\rightarrow$ By successfully learning and representing the underlying structure in data, it can significantly advance our understanding, bringing us closer to the ultimate goal of comprehending the structure of the visual world.
+							</li>
+						</ul>
+					</div>
+				</section>
+			    <!-- ################################################################################################################################################### -->		
+				<section>
+					<h3 class="slide-title">Generative Models</h3>
+					<div >
+							<ul>
+								Generative modeling involves modeling data distributions $P_{model}(X)$:
+								<ul><br>
+									<li> 
+										We get examples $X$ distributed according to some unknown distribution $P_{data}(X)$
+									</li>
+									<br>
+									<li> 
+										Goal: Learn a model  $P_{model}(X)$ which we can sample from, such that  $P_{model}(X)$ is as similar as possible to $P_{data}(X)$
+									</li>
+								</ul>
+							</ul>
+					</div>
+					<div >
+					<br>
+						Example: We have a massive collection of images of galaxies from telescopes. Can the network learn to generate new galaxies? i.e. Generate new samples from the distribution of galaxy images
+						<img class="plain" data-src="assets/galaxies.png" style="width:1000px;"/>
+					</div>
+				</section>
+				<!-- ################################################################################################################################################### -->
+				<!-- <section>
+					<h3 class="slide-title">Generative Models</h3>
+					<div>
+						<ul>
+							Given training data, generative models can produce new samples from the same distribution.  
+							They address density estimation, a core problem in unsupervised learning.  
+							There are several approaches to this:  
+							<br>
+							<br>
+							<ul>
+								<li class="fragment" data-fragment-index="0">
+									<em>Explicit Density Estimation</em>: We have examples \( X \) distributed according to some unknown distribution \( P_{data}(X) \). The goal is to learn a model that explicitly estimates \( P_{data}(X) \).
+								</li>
+								<br>
+								<li class="fragment" data-fragment-index="1">
+									<em>Implicit Density Estimation</em>: We learn a model \( P_{model}(X) \) that allows us to sample from the distribution without explicitly defining it.
+								</li>
+							</ul>
+						</ul>
+					</div>
+					<div style="position:relative; width:1000px; height:1000px; margin:0 auto;">
+						<img class="fragment current-visible plain" data-src="assets/dens_est.png" style="position:absolute;top:0;left:0;" data-fragment-index="0" style="width:1000px;"/>
+						<img class="fragment"  data-src="assets/sample_gen.png"style="position:absolute;top:0;left:0;" data-fragment-index="1" style="width:1000px;"/>	
+					</div>
+					<div class="fragment" data-fragment-index="0" style="position:absolute; bottom:600px; right:10px; font-size: 16px">(<b>Godfellow</b>, 2016)</div>
+				</section>			 -->
+				<!-- ################################################################################################################################################### -->
+				<section>
+					<h3 class="slide-title">Why Study Generative Models?</h3>
+					<div>
+						<ul>					
+							<li>
+								They test our ability to represent and manipulate high-dimensional probability distributions. 
+							</li>
+							<br>
+							<li> 
+								They can be incorporated into reinforcement learning in various ways.
+							</li>
+							<br>
+							<li> 
+								They can be trained with missing data and provide predictions for inputs with missing information (e.g., the case of missing data in semi-supervised learning).
+							</li>
+							<br>
+							<li>
+								They handle multi-modal outputs effectively. For many tasks, a single input may correspond to several different correct answers, each of which is acceptable.
+							</li>
+							<br>
+							<li> 		
+								Some tasks intrinsically require realistic generation of samples from a specific distribution: Single image super-resolution, Tasks aimed at creating art, Image-to-image translation applications, etc.
+							</li>
+						</ul>
+					</div>
+					<div>
+						<img class="plain" data-src="assets/super_res.png" style="width:750px;"/>
+					</div>
+					<div style="position:absolute; bottom:40px; right:50px; font-size: 16px">(<b>Ledig</b>, et al., 2016)</div>
+				</section>	
+				<!-- ################################################################################################################################################### -->
+				<section data-background="#000">
+					<h2>Variational Autoencoders (VAEs)</h2>
+				</section>
+				<!-- ################################################################################################################################################### -->
+				<section >
+					<section>
+						<h3 class='slide-title'>Some Background First: Autoencoders</h3>
+						<div class='container'>
+							<div class='col'>
+								<div>
+									<ul>
+										<li >	
+										Specific type of a neural network designed to learn a lower-dimensional feature representation of unlabeled training data:	
+											<ol>
+												<br>
+												<li >
+													Encode the input $\mathbf{x}$ into a compressed and meaningful representation (smaller set of features $\mathbf{z}$) 
+												</li>
+												<br>
+												<li >
+													Decode it back such that the reconstructed input $\hat{\mathbf{x}}$ is similar as possible to the original one
+												</li>
+											</ol>
+										</li>
+										<br>
+										<li>
+											To reconstruct the input data, an $L_2$ loss function is often used. 
+											<br>
+											<ul>
+												e.g. the pixels of the reconstructed data match the pixels of the original input data $\Longrightarrow$ Autoencoders do not use labels for training.
+											</ul>
+										</li>
+									</ul>
+								</div>
+							</div>
+							<div class='col'>
+								<img data-src="assets/autoencoder_scheme.png" class='plain' />
+							</div>
+						</div>
+					</section>
+					<section >
+						<h3 class='slide-title'>Some background first: Autoencoders </h3>
+						<ul>
+							<li>
+								Autoencoders can reconstruct data and learn features to initialize a supervised model.
+							</li>
+							<br>
+							<li>
+								However, we can not generate new images from an autoencoder because we don't know the space of $z$.
+							</li>
+							<br>
+							<li>
+								How can we make an autoencoder a generative model?
+								<ul>
+									$\rightarrow$  By following <b class="alert">Variational Bayes (VB)</b>!
+									<br>
+									<br>
+									<li>
+										
+										VAE: Generative models that attempt to describe data generation through a probabilistic distribution.
+									</li>
+								</ul>
+							</li>
+							<div>
+								<img class="plain" data-src="assets/autoencoder.png" style="width:1000px;"/>	
+							</div>
+						</ul>
+					</section> 
+				</section>
+					<!-- ################################################################################################################################################### -->
+				<section>
+					<h3 class="slide-title">Latent Variables</h3>
+					<ul>
+						<li>Latent variables $z$: Hidden variables capturing underlying data characteristics.</li>
+						<br>
+						<li>Example: Generating digits
+							<ul>
+								<br>
+								<li>
+									$z$: Represents attributes such as digit identity, stroke width, orientation, abstract stylistic properties, etc. 
+									<br>
+									$\rightarrow$ Attributes may be correlated 
+								</li>
+								<br>
+								<li>
+									We won't determine what each dimension of $z$ encodes and explicitly defining the dependencies or latent structure between those dimensions.
+								</li>
+							</ul>
+						</li>
+				</section>
+				<!-- ################################################################################################################################################### -->	
+				<section>
+					<h3 class="slide-title">Generative process:</h3>
+					<ul>
+						<li>
+							Consider a vector of latent variables $z$ in a high-dimensional space $\mathcal{Z}$, which can be sampled according to a probability density function $P(z)$.
+						</li>
+						<br>
+						<li class="fragment" data-fragment-index="0">
+							Let $f(z; \theta)$ represent a set of deterministic functions parameterized by the vector $\theta$, defined over the space $\mathcal{\Theta}$, such that:
+							\begin{equation}
+							f:\mathcal{Z}\times \mathcal{\Theta} \rightarrow \mathcal{X}
+							\end{equation}
+						</li>
+						<br>
+						<li class="fragment" data-fragment-index="1">
+							<b class="alert">Goal</b>: Optimize $\theta$ such that when $z$ is sampled from $P(z)$, with high probability, $f(z; \theta)$ produces outputs similar to the $X$’s in our dataset.
+							<br>
+							<br>
+							<ul>
+								Example: $f(z; \theta)$ generates realistic digits based on $z$.
+							</ul>
+						</li>
+						<br>
+						<li class="fragment" data-fragment-index="2">
+						Formally, we aim to maximize the likelihood of training data:
+							\begin{equation}
+								P(X) = \int P(X|z; \theta)P(z) dz
+							\end{equation}
+						</li>
+					</ul>
+				</section>
+				<!-- ################################################################################################################################################### -->	
+				<section>
+					<h3 class="slide-title">Key Concepts of VAEs</h3>
+					<div >
+						\begin{equation}
+							P(X) = \int \underbrace{P(X|z; \theta)}_{\mathrm{ Gaussian} \\ \mathrm{distribution}}P(z) dz
+						\end{equation}
+					</div>
+					<div class="fragment" data-fragment-index="1">
+						\begin{equation}
+							P(X|z; \theta)=\mathcal{N}(X| \underbrace{f(z;\theta)}_{\mathrm{mean}}, \underbrace{ \sigma^2*I}_{\mathrm{covariance}})
+						\end{equation}
+					</div>
+					<div class="fragment" data-fragment-index="2">
+						$\rightarrow$ If we assume a Gaussian distribution, we can use gradient descent to increase $P(X)$  by adjusting $f(z; \theta)$ to get closer to $X$ for some $z$!
+					</div>
+					<br>
+					<div class="block fragment"  data-fragment-index="3" >
+						<div class="block-title">	
+							Two problems:					
+						</div>
+						<div class="block-content">
+							<ol>
+								<li>How to define the latent variables $z$? What information they rapresent?
+								</li>
+								<br>
+								<li>
+									How can we deal with the integral over $z$?
+								</li>
+							</ol>
+						</div>
+					</div>
+				</section>
+				<!-- ################################################################################################################################################### -->	
+				<section>
+					<h3 class="slide-title"> VAEs: How to define the latent variables $z$?</h3>
+					<ul>
+						<li> <b class="alert"> VAE approach </b>: Draw $z$ from a simple Normal distribution $\rightarrow$ $\mathcal{N}(0,I)$</li>
+						<blockquote>
+							Any distribution in $d$ dimensions can be generated by taking a set of $d$ variables that are normally distributed and mapping them through a sufficiently complicated function (ex: neural networks). 
+						</blockquote>
+						<li> Example: 
+							Remember that
+							\begin{equation}
+								P(X|z;\theta)=\mathcal{N}(X|f(z;\theta),\sigma^2*I)
+							\end{equation}
+							Let $f(z;\theta)$ be a neural network that uses its first $N$ layers to map the $z$ values sampled from the normal distribution to latent values with the desired distributions.
+						</li>
+					</ul>
+				</section>
+				<!-- ################################################################################################################################################### -->	
+				<section>
+					<h3 class="slide-title"> VAEs: How to deal with the integral over $z$?</h3>
+					<ul>
+					\begin{equation}
+						P(X) = \underbrace{ \int P(X|z; \theta)P(z) dz}_{\mathrm{\color{#6699CC}{Intractable} \ to \ compute} \\ \mathrm{for \ every } \ z}
+					\end{equation}
+					<div class="fragment" data-fragment-index="0">
+						\begin{equation}
+						P(X) \approx  \underbrace{\frac{1}{N}\sum_{i}P(Z|z_i)}_{N \ \mathrm{must \ be\  \color{#6699CC}{very} \ \color{#6699CC}{large}} \\ \mathrm{to \ estimate \ P(X) \ accurately}}
+					\end{equation}
+					</div>
+						<li class="fragment" data-fragment-index="1">
+							However, for most values of $ z$, $ P(X|z)$ will be nearly zero. 
+						</li>
+						<br>
+						<li class="fragment" data-fragment-index="2"> VAE's idea: Introduce a new function $ Q(z|X)$, from which we can sample values of $ z$ that are likely to have produced $ X$.
+							<ul>
+								$\Longrightarrow$ This allows us to compute $ \mathbb{E}_{z \sim Q} P(X|z)$ more easily!
+							</ul>
+						</li>
+					</ul>
+				</section>
+				<!-- ################################################################################################################################################### -->	
+				<section>
+					<section>
+						<h3 class="slide-title">  How $Q(z)$ can help to optimize  P(X)?</h3>
+						<ul>
+							<li>Some background first: Kullback-Leibler divergence
+								<ul>
+									$\rightarrow$ Kullback-Leibler divergence between $P(z|X)$ and an arbitrary $Q(z)$ is defined as:
+									\begin{equation}
+										\mathcal{D}_{KL}[Q(z)\|P(z|X)]= \mathbb{E}_{z \sim Q}[\log{Q(z)}-\log{P(z|X)}]
+									\end{equation}
+								</ul>
+							</li>
+							<li class="fragment" data-fragment-index="0">
+								By applying Bayes Teorem:
+								\begin{equation}
+									P(X|z)P(z)=P(z|X)P(X)
+								\end{equation}
+								<div class="fragment" data-fragment-index="1">
+									we obtain :
+									\begin{equation}
+										\mathcal{D}_{KL}[Q(z)\|P(z|X)]= \mathbb{E}_{z \sim Q}[\log{Q(z)}-\log{P(X|z)}-\log{P(z)}+\log{P(X)}]
+									\end{equation}
+								</div>
+							</li>
+							<li class="fragment" data-fragment-index="2">
+								$P(X)$ comes out of the expectation: 
+								\begin{equation}
+									\mathcal{D}_{KL}[Q(z)\|P(z|X)]= \mathbb{E}_{z \sim Q}[\log{Q(z)}-\log{P(X|z)}-\log{P(z)}]+\underbrace{\log{P(X)}}_{\mathrm{does \ not \ depend \ on \ } z}
+								\end{equation}
+							</li>
+						</ul>
+					</section>
+					<!-- ############ -->	
+					<section>
+						<h3 class="slide-title">  How $Q(z)$ can help to optimize  P(X)?</h3>
+						<ul>
+							<li >
+								$P(X)$ is factored out of the expectation: 
+								\begin{equation}
+									\mathcal{D}_{KL}[Q(z)\|P(z|X)]= \mathbb{E}_{z \sim Q}[\log{Q(z)}-\log{P(X|z)}-\log{P(z)}]+\underbrace{\log{P(X)}}_{\mathrm{does \ not \ depend \ on \ } z}
+								\end{equation}
+							</li>							
+							<li class="fragment" data-fragment-index="0">
+								Negating both sides and rearranging, we obtain:
+								\begin{equation}
+									\log{P(X)}-\mathcal{D}_{KL}[Q(z)\|P(z|X)]= \underbrace{\mathbb{E}_{z \sim Q}[-\log{Q(z)}+\log{P(X|z)}]}_{-\mathcal{D}_{KL}[Q(z)\|P(z)]}+\mathbb{E}_{z \sim Q}[\log{P(z)}]
+								\end{equation}
+							</li>
+							<li class="fragment" data-fragment-index="1" >
+							Since we are interested in inferring $ P(X)$, it makes sense to construct a distribution $ Q(z)$ that depends on $ X$ and minimizes the divergence $ \mathcal{D}_{KL}[Q(z) \| P(z|X)]$, leading to:
+							\begin{equation}
+								\log{P(X)}-\mathcal{D}_{KL}[Q(z|X)\|P(z|X)]= \mathbb{E}_{z \sim Q}[\log{P(X|z)}]- \mathcal{D}_{KL}[Q(z|X)\|P(z)]
+							\end{equation}
+							</li>
+							<ul>
+								<div class="fragment" data-fragment-index="1"> 
+									<h3> $\Longrightarrow$  VAE Objective Function</h3>
+								</div>
+							</ul>
+						</ul>
+					</section>
+				</section>
+				<!-- ################################################################################################################################################### -->	
+				<section>
+					<h3 class="slide-title">VAE Objective Function</h3>
+					<ul>
+						\begin{equation}
+						\underbrace{\log{P(X)}}_{\mathrm{quantity \ we \ want \ to \ maximize}} -\underbrace{\mathcal{D}_{KL}[Q(z|X)\|P(z|X)]}_{\mathrm{error \ term}}= \mathbb{E}_{z \sim Q}[\log{\color{#996699}{P(X|z)}}]- \mathbb{E}_{z \sim Q}\underbrace{\mathcal{D}_{KL}[\color{#6699CC}{Q(z|X)}\|P(z)]}_{\mathrm{make \ approximate \ posterior} \\ \mathrm{distribution \ close \ to \ prior}}
+						\end{equation}
+						<ul>
+
+							<li>Encoder-decoder structure:
+								<ul>
+									<br>
+									<li><span style='color:#6699CC'>Encoder</span> $\color{#6699CC}{Q(z|X)}$: Maps $X$ to $z$.</li>
+									<br>
+									<li><span style='color:#996699'>Decoder</span> $\color{#996699}{P(X|z)}$: Reconstructs the input data $X$ from $z$ .</li>
+								</ul>
+							</li>
+						</ul>
+					</ul>
+				</section>
+				<!-- ################################################################################################################################################### -->	
+				<section>
+					<section>
+						<h3 class="slide-title">Optimization</h3>
+						<ul>
+							<li>
+								How can we perform stochastic gradient descent on the right-hand side of:
+								\begin{equation}
+									\log{P(X)} - \mathcal{D}_{KL}[Q(z|X) \| P(z|X)] = \mathbb{E}_{z \sim Q}[\log{P(X|z)}] - \underbrace{\mathcal{D}_{KL}[Q(z|X) \| P(z)]}?
+								\end{equation}
+								<ul>
+									<li class="fragment" data-fragment-index="0">
+										We usually choose $ Q(z|X) = \mathcal{N}(z|\color{#6699CC}\mu(X;\theta), \color{#996699}\Sigma(X;\theta))$, where:
+										<ul>
+											<li>$ \color{#6699CC}\mu$ and $ \color{#996699}\Sigma$ are functions of parameters $ \theta$, which will be learned from data.</li>
+										</ul>
+									</li>
+									<br>
+									<li class="fragment" data-fragment-index="1">
+										$ \mathcal{D}_{KL}[Q(z|X) \| P(z)]$ becomes the KL-divergence between two multivariate Gaussian distributions:
+										\begin{equation}
+										\mathcal{D}_{KL}\left[\mathcal{N}(\mu_0, \Sigma_0) \| \mathcal{N}(\mu_1, \Sigma_1)\right] =
+											\frac{1}{2} \left(
+											\mathrm{tr}(\Sigma_1^{-1} \Sigma_0) +
+											(\mu_1 - \mu_0)^\top \Sigma_1^{-1} (\mu_1 - \mu_0) - k +
+											\log\frac{\det\Sigma_1}{\det\Sigma_0}
+											\right)
+										\end{equation}
+									</li>
+									<li class="fragment" data-fragment-index="1">
+										Remember that $ P(z) = \mathcal{N}(z|0, I)$, so we obtain:
+										\begin{equation}
+										\mathcal{D}_{KL}\left[\mathcal{N}(\mu(X), \Sigma(X)) \| \mathcal{N}(0, I)\right] =
+											\frac{1}{2} \left(
+											\mathrm{tr}(\Sigma(X)) + \mu(X)^\top \mu(X) - k - \log \det(\Sigma(X))
+											\right)
+										\end{equation}
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</section>
+					<!-- ############ -->	
+					<section>
+						<h3 class="slide-title">Optimization</h3>
+						<ul>
+							<li>
+								How can we perform stochastic gradient descent on the right handside of
+								\begin{equation}
+									\log{P(X)}-\mathcal{D}_{KL}[Q(z|X)\|P(z|X)]= \underbrace{\mathbb{E}_{z \sim Q}[\log{P(X|z)}]}- \mathcal{D}_{KL}[Q(z|X)\|P(z)] ?
+								\end{equation} 
+							
+							<li class="fragment" data-fragment-index="0">
+								To optimize the function, we will do stochastic gradient descent over different values of $X$ sampled from a dataset D:
+								\begin{equation}
+									\mathbb{E}_{X \sim D} \left[ \log P(X) - \mathcal{D}_{KL}\left[ Q(z|X) \| P(z|X) \right] \right] =
+									\mathbb{E}_{X \sim D} \left[ \mathbb{E}_{z \sim Q(z|X)} \left[ \log P(X|z) \right] - \mathcal{D}_{KL}\left[ Q(z|X) \| P(z) \right] \right]
+								\end{equation}
+							</li>
+							<li class="fragment" data-fragment-index="1"> 
+								Taking the gradient and moving the gradient symbol inside the expectation, we obtain:
+								\begin{equation}
+									\nabla \mathbb{E}_{X \sim D} \left[ \mathbb{E}_{z \sim Q(z|X)} \left[ \log P(X|z) \right] - \mathcal{D}_{KL}\left[ Q(z|X) \| P(z) \right] \right] =
+									\mathbb{E}_{X \sim D} \left[ \mathbb{E}_{z \sim Q(z|X)} \left[ \nabla \log P(X|z) \right] - \nabla \mathcal{D}_{KL}\left[ Q(z|X) \| P(z) \right] \right].							
+								\end{equation}
+							</li>
+							<li class="fragment" data-fragment-index="2"> 
+								Estimating $\mathbb{E}_{z \sim Q}[\log{P(X|z)}]$ through sampling is computationally expensive:
+								<ul>
+									<br>
+									$\rightarrow$ Instead, we approximate $\mathbb{E}_{z \sim Q}[\log{P(X|z)}]$ with $\log{P(X|z)}$.
+								</ul>
+							</li>
+							<br>
+							
+							</li>	
+							<li class="fragment" data-fragment-index="3"> 
+								The final gradient is:
+								\begin{equation}
+								\nabla \mathbb{E}_{X \sim D} \left[ \mathbb{E}_{z \sim Q(z|X)} \left[ \log P(X|z) \right] - \mathcal{D}_{KL}\left[ Q(z|X) \| P(z) \right] \right] = \log{P(X|z)-\mathcal{D}_{KL}[Q(z|X)\|P(z)]}						
+								\end{equation}
+								$\Longrightarrow$ We average the gradient of this function over arbitrarily many samples of $X$ and $z$, 
+								resulting in convergence to the gradient of the full equation.
+							</li>	
+						</ul>
+					</section>
+				</section>
+				<!-- ################################################################################################################################################### -->	
+				<section>
+					<h3 class="slide-title">Reparameterization Trick</h3>
+					<ul>
+						<li> Sampling $z$ from $Q(z|X)$ is a non-continuous operation:
+							<ul>
+								<br>
+								<li>
+								Sampling is non-differentiable $\Longrightarrow$ We can not backpropagating the error.
+								</li> 
+							</ul>
+						</li> 
+						<br>
+						<li class="fragment" data-fragment-index="0">  Solution: Reparameterize as:
+							\begin{equation}
+								\mathbb{E}_{X \sim D} \left[
+								\mathbb{E}_{\epsilon \sim \mathcal{N}(0, I)} \left[
+								\log P(X | z = \mu(X) + \Sigma^{1/2}(X) \cdot \epsilon)
+								\right] - \mathcal{D}_{KL}\left[ Q(z|X) \| P(z) \right]
+								\right].
+							\end{equation}
+						where $\mu(X)$ and $\Sigma(X)$ are the mean and covariance of $Q(z|X)$.
+						</li>
+							<ul>
+							<br>
+							<li class="fragment" data-fragment-index="1">  i.e. We sample from $\mathcal{N}(\mu(X), \Sigma(X))$  by
+								first sampling $\epsilon ∼ \mathcal{N}(0, I)$, then computing $ z = \mu(X) + \Sigma^{1/2}(X) \cdot \epsilon$
+								<br>
+								<br>
+								$\Longrightarrow$ Enables gradient-based optimization.
+							</li>
+						</ul>
+					</ul>
+				</section>				
+				<!-- ################################################################################################################################################### -->	
+				<section>
+					<h3 class="slide-title">Summary</h3>
+					<ul>
+						<li>
+							VAEs are powerful generative models that utilize a latent variable framework.
+						</li>
+						<li>
+							Practical applications include data synthesis, compression, and more.
+						</li>
+						<li>
+							VAEs can be viewed as autoencoders consisting of two neural networks.
+						</li>
+						<li>VAEs define two distributions:
+							<ul>
+								<li>
+									<b class="alert">Encoders:</b> $Q_{\theta}(z|X)$
+								</li>
+								<li>
+									<b class="alert">Decoders:</b> $P_{\varphi}(X|z)$
+								</li>
+							</ul>
+							<p>Here, $\theta$ and $\varphi$ are the parameters of the neural networks.</p>
+						</li>
+					</ul>
+					<div >
+						<img class="plain" data-src="assets/summ_autoenc.png" style="width:500px;"/>
+					</div>
+				</section>
+				<!-- ################################################################################################################################################### -->
+				<section data-background="#000">
+					<h2 >Generative Adversarial Nets (GANs)</h2>
+				</section>
+				<!-- ################################################################################################################################################### -->
+				<section>
+					<h3 class="slide-title">Generative Adversarial Networks (GANs)</h3>
+					<ul>
+						<li>
+							<b class="alert">Generative:</b> $\rightarrow$ Generative Models:
+							<br>
+							Learn the distribution from which the data originates, similar to Variational Autoencoders (VAEs).
+						</li>
+						<li>
+							<b class="alert">Adversarial:</b> $\rightarrow$ Adversarial Training:
+							<br>
+							GANs consist of two competing networks (adversaries) that try to outperform each other.
+						</li>
+						<li>
+							<b class="alert">Networks:</b> $\rightarrow$ Neural Networks:
+							<br>
+							GANs are composed of two neural networks whose goal is to generate data from an unlabeled distribution.
+						</li>
+					</ul>
+					<div >
+						<img class="plain" data-src="assets/Generator.png" style="width:900px;"/>
+					</div>
+				</section>							
+				<!-- ################################################################################################################################################### -->
+				<section>
+					<h3 class="slide-title">What can GANs do?</h3>
+					<ul>
+						<li>
+							Generate examples for image datasets
+						</li>
+						<li>
+							Perform image-to-image translation
+						</li>
+						<li>
+							Synthesize images from text descriptions
+						</li>
+						<li>
+							Single Image Super Resolution
+						</li>
+						<li>
+							Generate photographs of human faces
+						</li>
+						<li>
+							Create realistic photographs
+						</li>
+						<li>
+							Predict video sequences
+						</li>
+						<li>
+							Generate 3D objects
+						</li>
+						<li>
+							And much more... 
+							(Check out this <a href="https://machinelearningmastery.com/impressive-applications-of-generative-adversarial-networks/"> blog</a> for more papers and impressive applications.)
+						</li>
+					</ul>
+				</section>	
+				<!-- ################################################################################################################################################### -->
+				<section>
+					<h3 class="slide-title">Generate Examples for Image Datasets</h3>
+					<ul>
+						In the original paper <a href="https://www.cs.toronto.edu/~bonner/courses/2022s/csc2547/papers/adversarial/background/GANs,-goodfellow,-nips2014.pdf"> "Generative Adversarial Networks" </a> by Ian Goodfellow, GANs were used to generate new examples for:
+						<ul>
+							<li>
+								The MNIST handwritten digit dataset
+							</li>
+							<li>
+								The CIFAR-10 small object photograph dataset
+							</li>
+							<li>
+								The Toronto Face Database
+							</li>
+						</ul>
+					</ul>
+					<div >
+						<img class="plain" data-src="assets/gan_app.png" style="width:700px;"/>
+					</div>
+					<div style="position:absolute; bottom:40px; right:50px; font-size: 16px">(<b>Goodfellow</b>, et al. 2014)
+					</div>
+				</section>	
+				<!-- ################################################################################################################################################### -->
+				<section>
+					<h3 class="slide-title">Progress of GANs</h3>
+					<ul>
+						<li>
+							The 2018 report <a href="https://arxiv.org/pdf/1802.07228">“The Malicious Use of Artificial Intelligence: Forecasting, Prevention, and Mitigation”</a> described the rapid progress of GANs from 2014 to 2017. The images are sourced from papers by:
+							<br>
+							<ul><br>
+								<li>
+									<a href="https://arxiv.org/abs/1406.2661">Goodfellow et al. (2014)</a>
+								</li>
+								<li>
+									<a href="https://arxiv.org/abs/1511.06434">Radford et al. (2015)</a>
+								</li>
+								<li>
+									<a href="https://arxiv.org/abs/1606.07536">Liu and Tuzel (2016)</a>
+								</li>
+								<li>
+									<a href="https://arxiv.org/abs/1710.10196">Karras et al. (2017)</a>
+								</li>
+							</ul>
+						</li>
+					</ul>
+					<div>
+						<img class="plain" data-src="assets/progress_gans.png" style="width:700px;" alt="Progress of GANs over the years"/>
+					</div>
+					<div style="float:right; font-size: 16px;">
+						(<b>Brundage</b>, et al. 2020)
+					</div>
+				</section>								
+				<!-- ################################################################################################################################################### -->
+				<section>
+					<h3 class="slide-title">How to Train a GAN?</h3>
+					<br>
+					<div class='container'>
+						<div class='col'>
+						<ul>
+							<li>
+								Which network should we train first?
+								<ul>
+									<li class="fragment" data-fragment-index="1">
+										The Discriminator!
+									</li>
+								</ul>
+							</li>
+							<br>
+							<li class="fragment" data-fragment-index="2">
+								We can think of the Discriminator as a binary classifier with two classes: $\rightarrow$ <span style='color:#996699'>Real</span> and <span style='color:#669900'>Fake</span>.
+							</li>
+							<br>
+							<li class="fragment" data-fragment-index="3">
+								But what data do we use to train it?
+								<ul class="fragment" data-fragment-index="4">
+										- Real class data $\rightarrow$ <span style='color:#996699'>training dataset</span>.
+										<br>
+										- Fake class data  $\rightarrow$ <span style='color:#669900'>generated by the generator</span>	
+								</ul>
+							</li>
+							<br>
+							<li class="fragment" data-fragment-index="5">
+								What's next? Train the Generator!
+							</li>
+						</ul>
+						<br>
+						</div>
+						<div class="fragment" data-fragment-index="6">
+							<img class="plain" data-src="assets/gan_scheme.png" style="width:700px;" alt="GAN training scheme"/>
+						</div>
+					</div>
+					<br>
+					<div class="block fragment" data-fragment-index="6">
+						<div class="block-title">
+							But how?
+						</div>
+						<div class="block-content">
+							<ul>
+								<li>
+									<strong>Step 1:</strong> Train the Discriminator using the current output of the Generator.
+								</li>
+								<li>
+									<strong>Step 2:</strong> Train the Generator to fool the Discriminator.
+								</li>
+							</ul>
+						</div>
+					</div>
+					<div class="block fragment" data-fragment-index="7">
+						<div class="block-title">
+							What is our training objective?
+						</div>
+						<div class="block-content">
+							<ul>
+								<li>
+									We aim to generate images from the Generator that are incorrectly classified by the Discriminator!
+								</li>
+							</ul>
+						</div>
+					</div>
+				</section>		
+				<!-- ################################################################################################################################################### -->
+				<section>
+					<section>
+						<h3 class='slide-title'>What is our training objective?</h3>
+						<div class='container'>
+							<div class='col'>
+								<ul>
+									<li>
+										Let the discriminator be $D(\textbf{x}, \theta_d)$
+										<br>
+										$\rightarrow$ a neural network with parameters $\theta_d$ that outputs a single scalar.
+									</li>
+									<li>
+										Let the generator be $G(\textbf{z}, \theta_g)$
+										<br>
+										$\rightarrow$ a differentiable function represented by a neural network with parameters $\theta_g$.
+									</li>
+								</ul>
+							</div>
+							<div class='col'>
+								<ul>
+									<li>
+										$p_d$: actual data distribution
+									</li>
+									<li>
+										$p_g$: generator’s distribution
+									</li>
+									<li>
+										$p_z(\textbf{z})$: chosen prior in latent vector space
+									</li>
+									<li>
+										$D(\textbf{x})$: represents the probability
+										that $\textbf{x}$ came from the data rather than $p_g$
+									</li>
+									<br>
+								</ul>
+							</div>
+						</div>
+						<h3 class="fragment" data-fragment-index="0">What should the discriminator do?</h3>
+						<div class='container'>
+							<div class='col'>
+								<div class="block fragment" data-fragment-index="0">
+									<div class="block-content">
+										If $\textbf{x} \sim p_d$, what should happen to the value of $D(\textbf{x})$?
+										<br>
+										<ul>
+											<li>
+												$D(\textbf{x})$ should be maximized:
+												<br> $\rightarrow$ $\log{D(\textbf{x})}$ maximized
+												<br> $\rightarrow$  $\mathbb{E}_{\textbf{x} \sim p_d}[\log{D(\textbf{x})}]$ maximized
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+							<div class='col'>
+								<div class="block fragment" data-fragment-index="1">
+									<div class="block-content">
+										If $\textbf{x} = G(\textbf{z})$, so if $\textbf{x} \sim p_g$, what should happen to the value of $D(\textbf{x})$?
+										<ul>
+											<li>
+												$D(\textbf{x})$ should be minimized:
+												<br> $\rightarrow$ $\log{D(\textbf{x})}$ minimized
+												<br> $\rightarrow$ $\log{(1 - D(\textbf{x}))}$ maximized
+												<br>$\rightarrow$ $\mathbb{E}_{\textbf{x} \sim p_g}[\log{(1-D(\textbf{x}))}]$ maximized
+												<br> $\rightarrow$ $\mathbb{E}_{\textbf{z} \sim p_z}[\log{(1 - D(G(\textbf{z})))}]$ maximized
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+						</div>
+						<p class="fragment" data-fragment-index="2">
+							Overall, the discriminator wants this sum to be maximized:
+							\begin{equation}
+								V(D,G) = \mathbb{E}_{\textbf{x} \sim p_d}\underbrace{[\log(D(\textbf{x}))]}_{\text{chance of real data} \\ \text{ being called real}} + \mathbb{E}_{\textbf{z} \sim p_z}\underbrace{[\log(1 - D(G(\textbf{z})))]}_{\text{chance of fake data}\\ \text{being called fake}}
+							\end{equation}
+						</p>
+					</section>
+					<!-- ######################### -->		
+					<section>
+						<h3 class='slide-title'>What is our training objective?</h3>
+						<div class='container'>
+							<div class='col'>
+								<ul>
+									<li>
+										Let the discriminator be $D(\textbf{x}, \theta_d)$
+										<br>
+										$\rightarrow$ a neural network with parameters $\theta_d$ that outputs a single scalar.
+									</li>
+									<li>
+										Let the generator be $G(\textbf{z}, \theta_g)$
+										<br>
+										$\rightarrow$ a differentiable function represented by a neural network with parameters $\theta_g$.
+									</li>
+								</ul>
+							</div>
+							<div class='col'>
+								<ul>
+									<li>
+										$p_d$: actual data distribution
+									</li>
+									<li>
+										$p_g$: generator’s distribution
+									</li>
+									<li>
+										$p_z(\textbf{z})$: chosen prior in the latent vector space
+									</li>
+									<li>
+										$D(\textbf{x})$: represents the probability
+										that $\textbf{x}$ came from the data rather than $p_g$
+									</li>
+								</ul>
+							</div>
+						</div>
+						<h3 class="fragment" data-fragment-index="0">What should the generator do?</h3>
+						<div class='container'>
+							<div class='col'>
+								<div class="block fragment" data-fragment-index="1">
+									<div class="block-content">
+										If $\textbf{x} = G(\textbf{z})$, so $\textbf{x} \sim p_g$, what should happen to the value of $D(\textbf{x})$?
+										<ul>
+											<li>
+												$D(\textbf{x})$ should be maximized:
+												<br> $\rightarrow$ $\log{D(\textbf{x})}$ should be maximized
+												<br> $\rightarrow$ $\log{(1 - D(\textbf{x}))}$ should be minimized
+												<br>$\rightarrow$ $\mathbb{E}_{\textbf{x} \sim p_g}[\log{(1-D(\textbf{x}))}]$ should be minimized
+												<br> $\rightarrow$ $\mathbb{E}_{\textbf{z} \sim p_z}[\log{(1 - D(G(\textbf{z})))}]$ should be minimized
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+						</div>
+						<p class="fragment" data-fragment-index="2">
+							Since the generator has no control over $\mathbb{E}_{\textbf{x} \sim p_d}[\log(D(\textbf{x}))]$, overall, the generator wants this sum to be minimized:
+							\begin{equation}
+								V(D,G) = \mathbb{E}_{\textbf{x} \sim p_d}\underbrace{[\log(D(\textbf{x}))]}_{\text{chance of real data } \\ \text{being called real}} 
+								+ \mathbb{E}_{\textbf{z} \sim p_z}\underbrace{[\log(1-D(G(\textbf{z})))]}_{\text{chance of fake data} \\ \text{ being called fake}}
+							\end{equation}
+						</p>
+					</section>			
+					<!-- ######################### -->				
+					<section>
+						<h3 class="slide-title">What is our training objective?</h3>
+						<ul>
+							<li>
+							The discriminator maximizes the sum:
+							\begin{equation}
+								V(D, G) = \mathbb{E}_{\textbf{x} \sim P_D}\underbrace{[\log(D(\textbf{x}))]}_{\text{chance of real data } \\ \text{being called real}} 
+								+ \mathbb{E}_{\textbf{z} \sim P_z}\underbrace{[\log(1 - D(G(\textbf{z})))]}_{\text{chance of fake data} \\ \text{ being called fake}}
+							\end{equation}
+							</li>
+							<li class="fragment" data-fragment-index="0">
+							The generator minimizes the sum:
+							\begin{equation}
+								V(D, G) = \mathbb{E}_{\textbf{x} \sim P_D}\underbrace{[\log(D(\textbf{x}))]}_{\text{chance of real data } \\ \text{being called real}} 
+								+ \mathbb{E}_{\textbf{z} \sim P_z}\underbrace{[\log(1 - D(G(\textbf{z})))]}_{\text{chance of fake data} \\ \text{ being called fake}}
+							\end{equation}
+							</li>
+							<li class="fragment" data-fragment-index="1">
+							The original GAN formulation is a min-max game:
+							\begin{equation}
+								\min_{G}\max_{D}V(D, G) = \mathbb{E}_{\textbf{x} \sim P_D}[\log(D(\textbf{x}))] + \mathbb{E}_{\textbf{z} \sim P_z}[\log(1 - D(G(\textbf{z})))]
+							\end{equation}
+							</li>
+							<div class="fragment" data-fragment-index="3">
+								$\rightarrow$ The discriminator aims for $D(\textbf{x}) = 1$ (classifying real data as real) and $D(G(\textbf{z})) = 0$ (classifying fake data as fake).  <br>
+								$\rightarrow$ The generator aims for $D(G(\textbf{z})) = 1$ (making generated data indistinguishable from real data).
+							</div>
+						</ul>
+					</section>
+				</section>
+				<!-- ################################################################################################################################################### -->				
+				<section>
+					<h3 class="slide-title">What Does the Optimal Discriminator Look Like?</h3>
+					<ul>
+						<li>
+						<p class="alert">Objective:</p>
+					 	\begin{equation}
+						 	\min_{G}\max_{D}V(D, G) = \mathbb{E}_{\mathbf{x} \sim p_d}[\log(D(\textbf{x}))] + \mathbb{E}_{\mathbf{z} \sim p_z}[\log(1 - D(G(\textbf{z})))]
+						\end{equation}
+						</li>
+						<li class="fragment" data-fragment-index="0">
+							When $G$ is fixed, the optimal discriminator $D$ is obtained by maximizing this formula:
+							\begin{equation}
+								f := \int_X \left[ p_d(\textbf{x}) \log D(\textbf{x}) +p_g(\textbf{x})\log(1 - D(\textbf{x})) \right] dx
+							\end{equation}
+						</li>
+					</ul>
+					<div class='container'>
+						<div class='col'>
+							<div class="block fragment" data-fragment-index="1">
+								<div class="block-content">
+									To find the critical points, we take the derivative of $f$ with respect to $D(\textbf{x})$:	
+											\begin{align*}
+												\frac{\partial f}{\partial D(\textbf{x})} &= \frac{p_d(\textbf{x})}{D(\textbf{x})} - \frac{p_g(\textbf{x})}{1 - D(\textbf{x})} = 0 \\
+												\frac{p_d(\textbf{x})}{D(\textbf{x})} &= \frac{p_g(\textbf{x})}{1 - D(\textbf{x})} \\
+												(1 - D(\textbf{x})) p_d(\textbf{x}) &= D(\textbf{x})p_g(\textbf{x}) \\
+												D(\textbf{x}) &=  \frac{p_d(\textbf{x})}{p_g(\textbf{x}) + p_d(\textbf{x})}
+											\end{align*}
+								</div>
+							</div>
+						</div>
+						<div class='col'>
+							<div class="block fragment" data-fragment-index="2">
+								<div class="block-content">
+									We compute the second derivative of $ V(G, D)$ with respect to $ D(\textbf{x})$:
+									\begin{equation}
+										\frac{\partial^2 V}{\partial D(\textbf{x})^2} = -\underbrace{\frac{p_{\text{data}}(\textbf{x})}{D(\textbf{x})^2}}_{>0} - \underbrace{\frac{p_g(\textbf{x})}{(1 - D(\textbf{x}))^2}}_{>0}. \\
+										\frac{\partial^2 V}{\partial D(\textbf{x})^2} < 0.
+									\end{equation}
+									This confirms that $V(G, D)$ is $\textbf{concave}$ with respect to $D(\textbf{x})$. 
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>	
+				<!-- ################################################################################################################################################### -->
+				<section>
+					<section>
+						<h3 class="slide-title">What Does the Optimal Generator Look Like?</h3>
+						<ul>
+							<li>
+								<p class="alert">Objective:</p>
+								\begin{equation}
+									\min_{G}\max_{D}V(D, G) = \mathbb{E}_{\mathbf{x} \sim p_d}[\log(D(\textbf{x}))] + \mathbb{E}_{\mathbf{z} \sim p_z}[\log(1 - D(G(\textbf{z})))]
+								\end{equation}
+							</li>
+							<li class="fragment" data-fragment-index="0">
+								By substituting the optimal discriminator back into the objective function, the optimal generator $G$ is obtained by maximizing the following formula:
+								\begin{equation}
+									\mathbb{E}_{\mathbf{x} \sim p_d} \log D(\mathbf{x}) + \mathbb{E}_{\mathbf{x} \sim p_g} \log(1 - D(\mathbf{x})) =
+									\mathbb{E}_{\mathbf{x} \sim p_d} \left[ \log \frac{p_d(\mathbf{x})}{p_d(\mathbf{x}) + p_g(\mathbf{x})} \right] + \mathbb{E}_{\mathbf{x} \sim p_g} \left[ \log \frac{p_g(\mathbf{x})}{p_d(\mathbf{x}) + p_g(\mathbf{x})} \right]
+								\end{equation}
+							</li>
+							<li class="fragment" data-fragment-index="1">
+								We introduce a <em>mixture distribution</em> $p_m$ as the average of the real and generated data distributions:
+								\begin{equation}
+									p_m(\mathbf{x}) = \frac{1}{2} \left( p_d(\mathbf{x}) + p_g(\mathbf{x}) \right)
+								\end{equation}
+							</li>
+							<li class="fragment" data-fragment-index="2">
+								Now, the loss function can be expressed as:
+								\begin{equation}
+									\mathbb{E}_{\mathbf{x} \sim p_d} \left[ \log \frac{2p_d(\mathbf{x})}{p_m(\mathbf{x})} \right] + \mathbb{E}_{\mathbf{x} \sim p_g} \left[ \log \frac{2p_g(\mathbf{x})}{p_m(\mathbf{x})} \right]
+								\end{equation}
+							</li>
+						</ul>
+					</section>		
+					<!-- ######################### -->				
+					<section>
+							<h3 class="slide-title">Recognizing Jensen-Shannon Divergence</h3>
+							\begin{equation}
+								\mathbb{E}_{\mathbf{x} \sim p_d} \left[ \log \frac{2p_d(\mathbf{x})}{p_m(\mathbf{x})} \right] + \mathbb{E}_{\mathbf{x} \sim p_g} \left[ \log \frac{2p_g(\mathbf{x})}{p_m(\mathbf{x})} \right]
+							\end{equation}
+							<ul>
+								<li class="fragment" data-fragment-index="0">
+									Rembering that The Kullback-Leibler divergence between two distributions $ p$ and $ q$ is given by:
+									\begin{equation}
+									\mathcal{D}_{KL}(p \parallel q) = \mathbb{E}_{x \sim p} \left[ \log \frac{p(x)}{q(x)} \right]
+									\end{equation}
+								</li>
+								<li class="fragment" data-fragment-index="1">
+									The new form of the loss function:
+									\begin{equation}
+										\log{2}+ \mathbb{E}_{\mathbf{x} \sim p_d} \left[ \log \frac{p_d(\mathbf{x})}{p_m(\mathbf{x})} \right] +\log{2} + \mathbb{E}_{\mathbf{x} \sim p_g} \left[  \log \frac{p_g(\mathbf{x})}{p_m(\mathbf{x})} \right]=
+										2\log{2}+ \mathcal{D}_{KL}(p_d \parallel p_m) +  \mathcal{D}_{KL}(p_g \parallel p_m)
+									\end{equation}
+								</li>
+								<li class="fragment" data-fragment-index="2">
+								This expression closely resembles the definition of the <b class="alert">Jensen-Shannon Divergence </b> ($\mathcal{D}_{JS}$) between two probability distributions $ p_d$ and $ p_g$:
+									\begin{equation}
+										\mathcal{D}_{JS}(p_d \parallel p_g) = \frac{1}{2} \left( \mathcal{D}_{KL}(p_d \parallel p_m) + \mathcal{D}_{KL}(p_g \parallel p_m) \right)
+									\end{equation}
+								</li>
+								<li class="fragment" data-fragment-index="3">
+									The final expression becomes:
+									\begin{equation}
+										L = 2 \cdot \mathcal{D}_{JS}(p_d \parallel p_g) - \log 4
+									\end{equation}
+							</ul>
+					</section>
+					<!-- ######################### -->		
+					<section>
+						<h3 class="slide-title">What is the optimal generator?</h3>
+							<div style="margin-top: 10vh;">
+								<ul>
+									<li>										
+									The final expression becomes:
+										\begin{equation}
+										2 \cdot \mathcal{D}_{JS}(\color{#6699CC}{p_d} \parallel \color{#996699}{p_g}) - \log 4
+										\end{equation}
+									</li>
+									<br>
+									<br>
+									<li>
+										If we substitute the optimal discriminator we found back into the objective function, we see that the optimal generator minimizes the $\mathcal{D}_{JS}$ between the <span style='color:#6699CC'>real</span> and the <span style='color:#996699'>generated</span> distributions.
+										<br>
+										<br>
+										<br>
+										<ul>
+											<h3>$\rightarrow$ In other words, it tries to make the two distributions similar.</h3>
+										</ul>
+									</li>
+								</ul>
+							</div>
+					</section>
+				</section>
+				<!-- ################################################################################################################################################### -->
+				<section>
+					<h3 class="slide-title">Min-Max Optimization</h3>
+						<div style="margin-top: 10vh;">
+							<ul>
+								<li>
+								Both the discriminator and the generator need to be trained simultaneously.	
+								<br>	
+								<ul>
+									<br>
+									<li>
+										If the discriminator is undertrained, it provides suboptimal feedback to the generator.
+									</li>
+									<br>
+									<br>
+									<li>
+										If the discriminator is overtrained, there is no local feedback for marginal improvements.
+									</li>
+								</ul>
+								</li>
+							</ul>
+						</div>
+				  </section>	
+				 <!-- ################################################################################################################################################### -->	
+				 <section data-background="#000">
+					<h2>Diffusion models</h2>
+			 	 </section>	
+				  <!-- ################################################################################################################################################### -->	
+				  <section>
+					<h3 class="slide-title">Denoising Diffusion Probabilistic Models</h3>
+					<ul>
+						<li>
+							The original paper <a href="https://arxiv.org/abs/2006.11239f">"Denoising Diffusion Probabilistic Models"</a>,released by Jonathan Hoin the 2020s, have showcased the capabilities of diffusion models, achieving results comparable to GANs. 
+							<br>
+							<ul>
+								<br>
+								<li>
+								The first generation of denoising diffusion models achieved performance similar to what GANs could do, despite GANs benefiting from a decade of development. 
+								</li>
+								<br>
+								<li>
+								Diffusion models accomplished this with a relatively limited development timeline.
+								</li>
+							</ul>
+						</li>
+					</ul>
+					<div>
+						<img class="plain" data-src="assets/diff_models_in.png" style="width:700px;" />
+					</div>
+					<div style="float:right; font-size: 16px">
+						(<b>Ho</b>, et al. 2020)
+					</div>
+				</section>		
+			    <!-- ################################################################################################################################################### -->	
+				<section>
+					<h3 class="slide-title">Example</h3>
+					<div class="container" style="display: flex; flex-wrap: wrap;">
+						<div class="col" style="flex: 1;">
+							<b class="alert">Prompt:</b>
+							<blockquote>
+								 A stylish woman walks down a Tokyo street filled with warm glowing neon and animated city signage. She wears a black leather jacket, a long red dress, and black boots, and carries a black purse. She wears sunglasses and red lipstick. She walks confidently and casually. The street is damp and reflective, creating a mirror effect of the colorful lights. Many pedestrians walk about.
+							</blockquote>
+						</div>
+						<div class="col" style="flex: 1;">
+							<iframe 
+								src="https://www.youtube.com/embed/tRSdt5kmeW0" 
+								width="728" 
+								height="409" 
+								frameborder="0" 
+								allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+								allowfullscreen>
+							</iframe>
+						</div>
+					</div>
+				</section>		
+				<!-- ################################################################################################################################################### -->	
+				<section>
+					<section>
+						<h3 class='slide-title'>Diffusion models</h3>
+						<b>The idea</b>:Transforms simple noise distributions into complex data distributions
+						<div class='container'>
+								<div class='col'style=" position: relative;bottom: 60px;">
+								<ul>
+									<li>We take a picture:
+										<br>
+										<br>
+										<ul>
+											<li class="fragment" data-fragment-index="0"> Add a bit of Gaussian noise to it.
+											</li>
+											<br>
+											<li class="fragment" data-fragment-index="1">If we repeat this process...
+											</li>
+											<br>
+											<li class="fragment" data-fragment-index="2">And again...
+											</li>
+											<br>
+											<li class="fragment" data-fragment-index="3"> Eventually, we get an unrecognizable picture of pure noise.
+											</li>
+										</ul>
+									</li>
+								</ul>
+								</div>
+								<div style="position:relative; width:550px; height:550px; margin:0 auto;">
+									<img src="assets/dog.jpeg" style="position:absolute;top:0;left:0;" />
+									<img class="fragment current-visible plain" data-src="assets/dog1.jpeg" style="position:absolute;top:0;left:0;" data-fragment-index="0"  />
+									<img class="fragment current-visible plain"  data-src="assets/dog2.jpeg" style="position:absolute;top:0;left:0;" data-fragment-index="1" />
+									<img class="fragment current-visible plain"  data-src="assets/dog3.jpeg" style="position:absolute;top:0;left:0;" data-fragment-index="2" />
+									<img class="fragment current-visible plain"  data-src="assets/dog4.jpeg" style="position:absolute;top:0;left:0;" data-fragment-index="3" />
+								</div>
+						</div >
+					</section>
+					<!-- ######################### -->		
+					<section>
+						<h3 class="slide-title"> Diffusion Models</h3>
+						<br> 
+						<ul>
+						  What if we could figure out how to undo this process?
+						  <br> <br>
+						  <li class="fragment" data-fragment-index="0">
+							Start with a noisy image, gradually remove the noise, and end up with a coherent image.
+						  </li>
+						  <div style="position:relative; width:1500px; height:900px; margin:auto;">
+							<img  src="assets/dog_diff_.png" 
+								 style="position:absolute; top:15%; left:40%; transform:translate(-50%, -50%); width:1300px;" 
+								 />
+							<img class="fragment current-visible plain" data-src="assets/dog_diff.png" 
+								 style="position:absolute; top:15%; left:40%; transform:translate(-50%, -50%); width:1300px;" 
+								 data-fragment-index="0" />
+							<img class="fragment current-visible plain" data-src="assets/dog_diff.png" 
+								 style="position:absolute; top:15%; left:40%; transform:translate(-50%, -50%); width:1300px;" 
+								 data-fragment-index="2" />
+							<div class="fragment" data-fragment-index="0"  style="position:absolute; top:30%;">
+							  $\Longrightarrow$ This is the basic idea behind diffusion models
+							  <br>  <br> 
+							  <li class="fragment" data-fragment-index="1">
+								The training of the Diffusion Model can be divided in two steps:
+								<ol>   <br> 
+									<li class="fragment" data-fragment-index="1">
+									<b class="alert">Forward or Diffusion Process</b> (fixed) $\rightarrow$ Add noise to the image
+									</li>
+									<br> 
+									<li class="fragment" data-fragment-index="2">
+									<b class="alert">Reverse Diffusion Process</b> (generative) $\rightarrow$ Remove noise from the image
+									</li>
+								</ol>
+							  </li>
+							</div>
+						  </div>
+						</ul>
+					</section>
+				</section>				  
+				<!-- ################################################################################################################################################### -->
+				<section>
+					<section>
+						<h3 class="slide-title">Forward Diffusion Process</h3>
+						<ul>
+							<li>
+								We start by sampling from our target distribution (the training set) $ x_0$. The forward diffusion process gradually adds noise to the image over $ T$ time steps:
+								\begin{equation}
+									x_0 \to x_1 \to x_2 \to \dots \to x_T
+								\end{equation}
+							</li>
+							<li>
+								For continuous data, each transition is parameterized by a Gaussian conditional distribution:
+								\begin{equation}
+									q(\mathbf{x}_t | \mathbf{x}_{t-1}) = \mathcal{N}(\mathbf{x}_t; \sqrt{1 - \beta_t} \mathbf{x}_{t-1}, \beta_t \mathbf{I})
+								\end{equation}
+								where $ \sqrt{1 - \beta_t} \mathbf{x}_{t-1}$ is the mean and $ \beta_t \mathbf{I}$ is the covariance. Here, $ \mathbf{I}$ is the identity matrix and $ \beta_t \in (0, 1)$ is the noise level.
+							</li>
+							<li>
+								The $ \beta_t$ parameter increases over time:
+								\begin{equation}
+									\beta_1 < \beta_2 < \beta_3 < \dots < \beta_T
+								\end{equation}
+								As $ t$ approaches $ T$, the data $ x_t$ becomes increasingly noisy, with the mean $ \sqrt{1 - \beta_t} \mathbf{x}_{t-1}$ deviating more from the previous data $ x_{t-1}$, and the variance $ \beta_t \mathbf{I}$ growing.
+							</li>
+						</ul>
+						<div>
+							<img class="plain" data-src="assets/forward.png" style="width:800px;" />
+						</div>
+					</section>				
+					<!-- ######################### -->	
+					<section>
+						<h3 class="slide-title">Forward Diffusion Process</h3>
+						<ul>
+							<li>
+								The forward process $ q$ takes the form of a <b class="alert">Markov chain</b>, where the distribution at a particular time step depends only on the sample from the immediately previous time step:
+								\begin{equation}
+									q(\mathbf{x}_t | \mathbf{x}_{t-1}, \mathbf{x}_{t-2}, \dots, \mathbf{x}_0) = q(\mathbf{x}_t | \mathbf{x}_{t-1})
+								\end{equation}
+							</li>
+							<li>
+								Therefore, the joint distribution of the forward process is:
+								\begin{equation}
+									q(\mathbf{x}_{1:T} \mid \mathbf{x}_0) = \prod_{t=1}^T q(\mathbf{x}_t \mid \mathbf{x}_{t-1}),
+								\end{equation}
+								where $ \mathbf{x}_{1:T}$ represents all latent states from $ \mathbf{x}_1$ to $ \mathbf{x}_T$, and $ \mathbf{x}_0$ is the initial state, i.e., the original data.
+							</li>
+						</ul>
+					</section>						
+				</section>	
+				<!-- ################################################################################################################################################### -->
+				<section>
+					<section>
+						<h3 class="slide-title">Generative Backward Process</h3>
+						<ul>
+							<li>
+								The diffusion generative backward process, is the reverse process for generating data out of noise gradually:
+								\begin{equation}
+									\mathbf{x}_T \rightarrow \mathbf{x}_{T-1} \rightarrow \cdots \rightarrow \mathbf{x}_0.
+								\end{equation}
+							</li>
+							<li>
+								Since the forward process uses Gaussian distributions, the backward process does as well. A machine learning model with parameters $\theta$ is used to model the backward process:
+								\begin{equation}
+									p_\theta(\mathbf{x}_{t-1} \mid \mathbf{x}_t) = \mathcal{N}(\mathbf{x}_{t-1}; \mathbf{\mu}_\theta(\mathbf{x}_t; t), \mathbf{\Sigma}_\theta(\mathbf{x}_t; t)),
+								\end{equation}
+								where $\mathbf{\mu}_\theta(\mathbf{x}_t; t) \in \mathbb{R}^d$ and $\mathbf{\Sigma}_\theta(\mathbf{x}_t; t) \in \mathbb{R}^{d \times d}$ represent the mean and covariance at time step  $t$, respectively.
+							</li>
+							<li>
+								The covariance is typically assumed to be isotropic and diagonal:
+								\begin{equation}
+									\mathbf{\Sigma}_\theta(\mathbf{x}_t; t) = \sigma_t^2 \mathbf{I}.
+								\end{equation}
+							</li>
+							<br>
+							$\rightarrow$ 
+							The goal of the diffusion model is to learn the parameters - the <b class="alert">mean</b> and <b class="alert">variance</b> - of this Gaussian distribution.
+						</ul>
+						<div>
+							<img class="plain" data-src="assets/generative.png" style="width:800px;" />
+						</div>
+					</section>
+					<!-- ######################### -->	
+					<section>
+						<h3 class="slide-title">Generative Backward Process</h3>
+						<ul>
+							<li>
+							The generative process is also a Markov chain, satisfying the first Markov property:
+							\begin{equation}
+								q(\mathbf{x}_{t-1} \mid \mathbf{x}_t, \mathbf{x}_{t+1}, \ldots, \mathbf{x}_T) = q(\mathbf{x}_{t-1} \mid \mathbf{x}_t).
+							\end{equation}			
+							</li>
+							<li>
+								The joint distribution of the generative process is:
+								\begin{equation}
+									p_\theta(\mathbf{x}_{0:T}) = p(\mathbf{x}_T) \prod_{t=1}^T p_\theta(\mathbf{x}_{t-1} \mid \mathbf{x}_t),
+								\end{equation}
+								where $\mathbf{x}_{0:T}$ represents all states from $\mathbf{x}_T$ to $\mathbf{x}_0$.
+							</li>
+							<li>
+								Typically, the noise
+								$p(\mathbf{x}_T)$ is modeled as a standard Gaussian:
+								\begin{equation}
+									p(\mathbf{x}_T) = \mathcal{N}(\mathbf{0}, \mathbf{I}).
+								\end{equation}
+							</li>
+						</ul>
+					</section>
+				</section>
+				<!-- ################################################################################################################################################### -->
+				<section>
+					<section>
+						<h3 class="slide-title">Objective function</h3>
+						<ul>
+							<li>
+							VAEs use a latent variable $\mathbf{z}$ to model observed data $\mathbf{x}$. 
+							Similarly, diffusion models use latent variables $\{\mathbf{x}_1, \mathbf{x}_2, \dots, \mathbf{x}_T\}$ for observed data $\mathbf{x}_0$. 
+							The likelihood of data in diffusion models is:
+							\begin{equation}
+							p_\theta(x_0) = \int p_\theta(x_0, x_{1:T}) \, dx_{1:T},
+							\end{equation}
+							respectively.
+							</li>
+							<br>
+							<li class="fragment" data-fragment-index="0">
+								As in variational inference, where the Evidence Lower Bound (ELBO) approximates the likelihood, diffusion models maximize the variational lower bound:
+								\begin{equation}
+								\mathcal{L} := \mathbb{E}_{q(x_{1:T}|x)} \big[ \log p_\theta(x_0|x_{1:T}) \big]
+								- \mathcal{D}_{KL} \big( q(x_{1:T}|x_0) \| p_\theta(x_{1:T}) \big) \leq p_\theta(x_0).
+								\end{equation}
+								where $\mathbf{x}_{0:T}$ represents all states from $\mathbf{x}_T$ to $\mathbf{x}_0$.
+							</li>
+							<br>
+							<li class="fragment" data-fragment-index="1">
+								After mathematical rearrangements, we obtain the variational lower bound for diffusion models (refer to the appendix A of the paper <a href="https://arxiv.org/pdf/2006.11239">"Ho et al."</a>, for the full derivation):
+								\begin{equation}
+								\mathcal{L} =  - \mathcal{D}_{KL} \big( q(x_T|x_0) \| p_\theta(x_T) \big) \quad - \sum_{t=2}^T \mathcal{D}_{KL} \big( q(x_{t-1}|x_t, x_0) \| p_\theta(x_{t-1}|x_t) \big) \quad + \mathbb{E}_{q(x_{1:T}|x_0)} \big[ \log p_\theta(x_0|x_1) \big].
+								\end{equation}
+							</li>
+						</ul>
+					</section>	
+					<!-- ######################### -->				  
+					<section>
+						<h3 class="slide-title">Objective function</h3>
+							\begin{equation}
+								\mathcal{L} =\underbrace{\color{#996699}{\mathbb{E}_{q(x_{1:T}|x_0)} \big[ \log p_\theta(x_0|x_1) \big]} -  \color{#669900}{\mathcal{D}_{KL} \big( q(x_T|x_0) \| p_\theta(x_T) \big)}}_{\text{original  ELBO equation}} -  
+								\color{#FFAA7F}{\sum_{t=2}^T \mathcal{D}_{KL} \big( q(x_{t-1}|x_t, x_0) \| p_\theta(x_{t-1}|x_t) \big)}.
+							\end{equation}
+						<ul>
+							<li>
+								<span style='color:#996699'> Reconstruction:</span> How well we can reconstruct our data point from the least noisy version of our data
+							</li>
+							<br>
+							<li>
+								<span style='color:#669900'>Prior matching:</span> Moving the posterior $q(x_T|x_0)$ closer to the prior $ p_\theta(x_T)$ on the final noisy step 
+							</li>
+							<br>
+							<li>
+								<span style='color: #FFAA7F'>Denoising:</span> Moving the backward distribution $p_\theta(x_{t-1}|x_t)$ to become closer to the ground truth denoising distribution $q(x_{t-1}|x_t, x_0)$ 
+							</li>
+							<br>
+							<br>
+							$ \color{#FFAA7F}{q(x_{t-1} \mid x_t, x_0)}$ is <b class="alert">tractable</b> and can be calculated <b class="alert">exactly</b> without any approximation:
+							
+
+							\begin{equation}
+								q(x_{t-1} \mid x_t, x_0) = \mathcal{N}(x_{t-1}; \mu_t, \Sigma_t \mathbf{I})
+								\end{equation}
+		
+							\begin{equation}
+								\mu_t = \frac{\sqrt{\alpha_t} (1 - \bar{\alpha}_{t-1}) x_t + \sqrt{\bar{\alpha}_{t-1} (1 - \alpha_t)} x_0}{1 - \bar{\alpha}_t},
+								\quad 
+								\Sigma_t = \frac{(1 - \alpha_t) (1 - \bar{\alpha}_{t-1})}{1 - \bar{\alpha}_t}
+								\end{equation}
+						</ul>
+					</section>		
+				</section>
+				<!-- ################################################################################################################################################### -->
+				<section>
+					<h3 class="slide-title"> References </h3>
+					<div class="container">
+							<ul>
+									<span style='color:#996699'>Variational autoencoders: </span>
+									<ul>
+										<li><a href="https://arxiv.org/pdf/2003.05991"> Autoencoders </a></li>
+										<li><a href="https://www.cs.toronto.edu/~bonner/courses/2022s/csc2547/papers/generative/background/vae_tutorial_doersch.pdf"> Tutorial on Variational Autoencoders </a></li>
+										<li><a href="https://arxiv.org/pdf/1312.6114"> Auto-Encoding Variational Bayes</a></li>
+									</ul>
+									<span style='color:#996699'>Generative Adversarial Nets: </span>
+									<ul>
+										<li><a href="https://www.cs.toronto.edu/~bonner/courses/2022s/csc2547/papers/adversarial/background/GANs,-goodfellow,-nips2014.pdf"> Generative Adversarial Nets</a></li>
+										<li><a href="https://arxiv.org/pdf/1701.00160"> NIPS 2016 Tutorial:
+											Generative Adversarial Networks </a></li>
+									</ul>
+									<span style='color:#996699'>Diffusion Probabilistic Models: </span>
+									<ul>
+										<li><a href="https://arxiv.org/abs/2006.11239f">Denoising Diffusion Probabilistic Models</a></li>
+										<li><a href="https://hal.science/hal-04642649/document"> Diffusion Models: Tutorial and Survey </a></li>
+									</ul>
+								
+							</ul>
+					</div>
+				</section>
+				<!-- ################################################################################################################################################### -->
+				<!-- ################################################################################################################################################### -->
+				<!-- ################################################################################################################################################### -->
+				<!-- ################################################################################################################################################### -->
+				<!-- ################################################################################################################################################### -->
+				<!-- ################################################################################################################################################### -->
+				<!-- ################################################################################################################################################### -->
+				<!-- ################################################################################################################################################### -->
+				<!-- ################################################################################################################################################### -->
+			</div>
+		</div>
+
+		<style>
+			
+			.reveal .image-grid {
+				display: grid;
+				grid-template-columns: repeat(3, 1fr);
+				grid-gap: 0px; /* Adjust spacing between images */
+				width: 100%;
+			}
+			
+			.reveal .image-grid img {
+				width: 100%;
+				/* height: auto; */
+    			height: 250px; /* Force same height */
+    			object-fit: cover; /* Crop the images to fit the height */
+
+			}
+
+
+			.reveal .block {
+				background-color: #191919;
+				margin-left: 20px;
+				margin-right: 20px;
+				text-align: left;
+				padding-bottom: 0.1em;
+			}
+	
+			.reveal .block-title {
+				background-color: #cccccc;
+				padding: 8px 35px 8px 14px;
+				color: #336488;
+				font-weight: bold;
+			}
+	
+			.reveal .block-content {
+				background-color: #e6e6e6;
+				padding: 8px 35px 8px 14px;
+			}
+	
+			.reveal .slide-title {
+				border-left: 5px solid black;
+				text-align: left;
+				margin-left: 20px;
+				padding-left: 20px;
+			}
+	
+			.reveal .alert {
+				color: #336488;
+				font-weight: bold;
+			}
+	
+			.reveal .inverted {
+				filter: invert(100%);
+			}
+	
+		</style>	
+		<script src="reveal.js/dist/reveal.js"></script>
+		<script src="reveal.js/plugin/notes/notes.js"></script>
+		<script src="reveal.js/plugin/markdown/markdown.js"></script>
+		<script src="reveal.js/plugin/highlight/highlight.js"></script>
+		<script src="reveal.js/plugin/math/math.js"></script>
+		<script>
+			// More info about initialization & config:
+			// - https://revealjs.com/initialization/
+			// - https://revealjs.com/config/
+			Reveal.initialize({
+				controls: true,
+	
+				//center: false,
+				hash: true,
+	
+				// Visibility rule for backwards navigation arrows; "faded", "hidden"
+				// or "visible"
+				controlsBackArrows: 'hidden',
+	
+				// Display a presentation progress bar
+				progress: true,
+	
+				// Display the page number of the current slide
+				slideNumber: true,
+	
+				transition: 'slide', // none/fade/slide/convex/concave/zoom
+	
+				// The "normal" size of the presentation, aspect ratio will be preserved
+				// when the presentation is scaled to fit different resolutions. Can be
+				// specified using percentage units.
+				width: 1280,
+				height: 720,
+	
+				// Factor of the display size that should remain empty around the content
+				margin: 0.1,
+	
+				// Bounds for smallest/largest possible scale to apply to content
+				minScale: 0.2,
+				maxScale: 1.5,
+	
+				autoPlayMedia: true,
+	
+				// Learn about plugins: https://revealjs.com/plugins/
+				plugins: [RevealMarkdown, RevealHighlight, RevealNotes,  RevealMath],
+				
+				dependencies: [{
+						src: 'reveal.js/plugin/markdown/marked.js'
+					},
+					{
+						src: 'reveal.js/plugin/markdown/markdown.js'
+					},
+					{
+						src: 'reveal.js/plugin/notes/notes.js',
+						async: true
+					},
+					{
+						src: 'reveal.js/plugin/math/math.js',
+						async: true
+					},
+					{
+						src: 'reveal.js/plugin/reveal.js-d3/reveald3.js'
+					},
+					{
+						src: 'reveal.js/plugin/reveal.js-plugins/chart/Chart.min.js'
+					},
+					{
+						src: 'reveal.js/plugin/reveal.js-plugins/chart/csv2chart.js'
+					},
+					{
+						src: 'reveal.js/plugin/highlight/highlight.js',
+						async: true
+					},
+				]
+	
+			});
+		</script>
+	</body>
+</html>
+
+
