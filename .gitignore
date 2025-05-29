@@ -1,1 +1,7 @@
 node_modules/
+
+# OS-specific files
+.DS_Store
+
+# Reveal.js build output
+lecture_cs_2024/reveal.js 
