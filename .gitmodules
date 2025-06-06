@@ -7,3 +7,6 @@
 [submodule "augmented_creativity/reveal.js"]
 	path = augmented_creativity/reveal.js
 	url = https://github.com/denise-lanzieri-csl/reveal.js.git
+[submodule "colours_school/reveal.js"]
+	path = colours_school/reveal.js
+	url = https://github.com/denise-lanzieri-csl/reveal.js.git
