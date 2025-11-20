@@ -10,3 +10,6 @@
 [submodule "colours_school/reveal.js"]
 	path = colours_school/reveal.js
 	url = https://github.com/denise-lanzieri-csl/reveal.js.git
+[submodule "November_21st_25/reveal.js"]
+	path = November_21st_25/reveal.js
+	url = https://github.com/denise-lanzieri-csl/reveal.js.git
