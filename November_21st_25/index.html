@@ -59,15 +59,7 @@
 						</div>
 					</div>
 				</section>
-				<!-- ################################################################################################################################################### -->
-				<section>
-					<h2 style="color:#336488" >Movement Model</h2>
-					<hr>
-					Among the many forms of artistic expression, movement holds a unique place $\Longrightarrow$ it is dynamic, expressive, and deeply human.
-					<div>
-						<img src="assets/AterBalletto_DigoTortelli_.jpg" class="plain" width="800">
-					</div>
-				</section>
+
 				<!-- ################################################################################################################################################### -->
 				<section>
 					<h2 class="slide-title"><p style="color:#336488" > (Large) Movement Model</p></h2>
@@ -116,21 +108,6 @@
 				
 							<li class="fragment grow"> Can we leverage deep learning to develop a movement suggestion system for dancers?</li>
 						</ul>
-				</section>
-				<!-- ################################################################################################################################################### -->
-				<section>
-					<h2 class='slide-title'><p style="color:#336488" >Why Dance ? </h2></p>
-					<h3>
-						Dance movement is a rich, complex data source
-					</h3>
-					<div class="image-grid">
-						<img src="assets/dance1.jpg" alt="Image 1">
-						<img src="assets/dance2.jpg" alt="Image 2">
-						<img src="assets/dance3.jpg" alt="Image 3">
-						<img src="assets/dance4.jpg" alt="Image 4">
-						<img src="assets/dance5.jpg" alt="Image 5">
-						<img src="assets/dance6.jpg" alt="Image 6">
-					</div>
 				</section>
 				<!-- ################################################################################################################################################### -->
 				<section data-background-image="assets/roadmap.png"    data-background-size="1500px" >
@@ -323,32 +300,6 @@
 					<br>
 				</section>
 				<!-- ################################################################################################################################################### -->
-				<section>
-					<h3 class='slide-title'><p style="color:#336488" >sVision: Deep Learning–Based Human Pose Estimation </h3></p>
-						<div class='container'>
-							<div class='col'>
-								<ul>
-									<li>Approaches based on <span style='color:#996699'>deep learning</span> to estimate human pose
-									</li>
-									<br>
-									<li> <span style='color:#669900'>sVision</span>: Designed to identify and track human body poses in real-time. 
-									</li>
-									<br>
-										<ul>
-											<li> It works by detecting key points or landmarks on the human body, such as joints and other anatomical features.
-											</li>
-											<br>
-											<li> These landmarks are then used to estimate the overall body pose, including the positions and orientations of body parts.
-											</li>
-										</ul>
-								</ul>
-							</div>
-							<div  class='col'>
-								<img  data-src="assets/skeletonization_svision.jpg" class='plain' style="height: 530px; width:380px;"  />
-							</div>
-						</div>
-				</section>
-				<!-- ################################################################################################################################################### -->
 				<section data-background-image="assets/roadmap.png"    data-background-size="1200px" >
 					<h3 class='slide-title' style="position:absolute;top:100;"><p style="color:#336488" > Roadmap: </h3></p>
 					<br> <br>
@@ -361,126 +312,12 @@
 					<br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br>  <br> <br> <br> <br> <br>
 				</section>
 				<!-- ################################################################################################################################################### -->
-				<section  class="inverted" data-background="#000" >  
-					<h2> <span style="color:#c99f7d">Part II:</span> Deterministic Dance Generation Model</h2>
-					<hr>
-					<div class="container">
-						<div class="col">
-							<div align="left" style="margin-left: 20px;">
-									<br>
-								<br>
-								<br>
-								$\Longrightarrow$ Selecting an appropriate deep neural network architecture to generate dance movements 
-							</div>
-						</div>
-						<div class="col">
-							<pre class="python" ><code data-trim data-noescape>
-								import tensorflow as tf
-								import keras
-								# Define the loss function for the model 
-								loss = 'mean_squared_error'
-								# Set the batch size 
-								batch_size = 8								
-								# Set the number of epochs
-								epochs = 2000								
-								# Set the learning rate to 0.01
-								lr = 0.01								
-								# Define the number of units (neurons) in each LSTM layer
-								n_units = 1000															
-								# Create a new Sequential model
-								model = Sequential()								
-								# Add the first LSTM layer to the model:
-								model.add(LSTM(units=n_units, input_shape=(predictors_train.shape[1],
-								moves_vocab_size), return_sequences=True, activation=activations.tanh))								
-								# Add the second LSTM layer with similar parameters
-								model.add(LSTM(units=n_units, return_sequences=True, 
-								activation=activations.tanh))							
-								# Add the third LSTM layer which outputs the last sequence
-								model.add(LSTM(n_units, activation=activations.tanh))								
-								# Add a Dense output layer that uses a sigmoid activation function
-								model.add(Dense(moves_vocab_size, activation='sigmoid'))								
-							</code></pre>
-						</div>
-					</div>
-					<br>
-				</section> 
-				<!-- ################################################################################################################################################### -->
-				<section>
-					<h3 class='slide-title'><p style="color:#336488" >Deterministic Baseline </h3></p>
-						<img class="plain" data-src="assets/LSTMTransformer.png" style="width:1200px;"/>
-
-							<div class="r-stack">
-
-									<div class="block">
-										<div class="block-title">
-											In our initial tuning and model-building phase, we adopt LSTM :
-										</div>
-										<div class="block-content">
-											<ul>
-												<li> The LSTM is designed to process:
-													<ul>
-													<br>
-														<li>Each frame’s human position</li>
-														<li>Frame’s acoustic features</li>
-													</ul>
-													<br>
-													$\Longrightarrow$ Outputs: Pose sequences
-												</li>
-												<br>
-												<li> 
-													We will also test other deterministic network, including Transformers, to evaluate performance and accuracy
-												</li>
-											</ul>
-										</div>
-									</div>
-								</div>
-				</section>
-				<!-- ################################################################################################################################################### -->
 				<section >
 					<h3 class='slide-title'><p style="color:#336488" >Posture distribution at time <em>T</em></h3></p>
 					<video>
 						<source data-src="assets/D1_M5_T1_Frontal.mp4"data-background-video-muted; type="video/mp4" />
-					  </video>
+						</video>
 				</section>	
-				<!-- ################################################################################################################################################### -->	
-				<section>
-					<h3 class='slide-title'><p style="color:#336488" >Posture distribution at time <em>T+1</em></h3></p>
-					<div class="container">
-						<div class="col">
-							<video>
-								<source data-src="assets/D6_M14_T1_Frontal_original.mp4" type="video/mp4" style="width:500px;" />
-							</video>
-						</div>
-						<div class="col">
-							<video>
-								<source data-src="assets/predictions_D6_M14_T1_Frontal_epochs_1000_n_units_1000.mp4" type="video/mp4" style="width:500px;"  />
-							</video>
-						</div>
-					</div>
-				</section>
-			<!-- ################################################################################################################################################### -->
-				<section >  
-					<h2> <b class="alert">Part III:</b> Novelties exploration</h2>
-					<hr>
-					<div class="container">
-						<div class="col">
-							<div align="left" style="margin-left: 20px;">
-								<br>
-								<br>
-								$\Longrightarrow$ Model an AI system to <b class="alert"> probabilistically</b> predict the next movement
-								<br>
-								<br>
-								$\Longrightarrow $ A model capable of proposing new and original movements based on the unique style of individual dancers
-							</div>
-						</div>
-						<div class="col">
-							<video muted style="width:450px;" controls>
-								<source data-src="assets/video_som_and_audio.mp4" type="video/mp4" />
-							</video>
-						</div>
-					</div>
-					<br>
-				</section> 
 				<!-- ################################################################################################################################################### -->
 				<section>
 					<h3 class='slide-title'><p style="color:#336488" > Vector Quantization (VQ) with Self-Organizing Maps (SOM):</h3></p>
@@ -512,8 +349,34 @@
 				</section>
 				<!-- ################################################################################################################################################### -->
 				<section>
-					<h3 class='slide-title'><p style="color:#336488" >Vector Quantization with SOM:</h3>
-					<iframe src="http://127.0.0.1:8000/" width="1000px"  height="850px" ></iframe>
+					<h3 class='slide-title'><p style="color:#336488" >AI Baseline </h3></p>
+						<img class="plain" data-src="assets/LSTMTransformer.png" style="width:1200px;"/>
+
+							<div class="r-stack">
+
+									<div class="block">
+										<div class="block-title">
+											In our initial tuning and model-building phase, we adopt LSTM :
+										</div>
+										<div class="block-content">
+											<ul>
+												<li> The LSTM is designed to process:
+													<ul>
+													<br>
+														<li>Each frame’s human position</li>
+														<li>Frame’s acoustic features</li>
+													</ul>
+													<br>
+													$\Longrightarrow$ Outputs: Pose sequences
+												</li>
+												<br>
+												<li> 
+													We will also test other network, including Transformers, to evaluate performance and accuracy
+												</li>
+											</ul>
+										</div>
+									</div>
+								</div>
 				</section>
 				<!-- ################################################################################################################################################### -->
 				<section>
@@ -603,6 +466,134 @@
 				<!-- ################################################################################################################################################### -->
 				<section data-background-image="assets/starts_1.png"    data-background-size="1200px" >
 				</section>
+				<!-- ################################################################################################################################################### -->				
+				<section>
+					<h2 style="color:#336488" >Movement Model</h2>
+					<hr>
+					Among the many forms of artistic expression, movement holds a unique place $\Longrightarrow$ it is dynamic, expressive, and deeply human.
+					<div>
+						<img src="assets/AterBalletto_DigoTortelli_.jpg" class="plain" width="800">
+					</div>
+				</section>
+				<!-- ################################################################################################################################################### -->
+				<section>
+					<h2 class='slide-title'><p style="color:#336488" >Why Dance ? </h2></p>
+					<h3>
+						Dance movement is a rich, complex data source
+					</h3>
+					<div class="image-grid">
+						<img src="assets/dance1.jpg" alt="Image 1">
+						<img src="assets/dance2.jpg" alt="Image 2">
+						<img src="assets/dance3.jpg" alt="Image 3">
+						<img src="assets/dance4.jpg" alt="Image 4">
+						<img src="assets/dance5.jpg" alt="Image 5">
+						<img src="assets/dance6.jpg" alt="Image 6">
+					</div>
+				</section>
+				<!-- ################################################################################################################################################### -->
+				<section>
+					<h3 class='slide-title'><p style="color:#336488" >sVision: Deep Learning–Based Human Pose Estimation </h3></p>
+						<div class='container'>
+							<div class='col'>
+								<ul>
+									<li>Approaches based on <span style='color:#996699'>deep learning</span> to estimate human pose
+									</li>
+									<br>
+									<li> <span style='color:#669900'>sVision</span>: Designed to identify and track human body poses in real-time. 
+									</li>
+									<br>
+										<ul>
+											<li> It works by detecting key points or landmarks on the human body, such as joints and other anatomical features.
+											</li>
+											<br>
+											<li> These landmarks are then used to estimate the overall body pose, including the positions and orientations of body parts.
+											</li>
+										</ul>
+								</ul>
+							</div>
+							<div  class='col'>
+								<img  data-src="assets/skeletonization_svision.jpg" class='plain' style="height: 530px; width:380px;"  />
+							</div>
+						</div>
+				</section>
+				<!-- ################################################################################################################################################### -->
+				<section  class="inverted" data-background="#000" >  
+					<h2> <span style="color:#c99f7d">Part II:</span> Deterministic Dance Generation Model</h2>
+					<hr>
+					<div class="container">
+						<div class="col">
+							<div align="left" style="margin-left: 20px;">
+									<br>
+								<br>
+								<br>
+								$\Longrightarrow$ Selecting an appropriate deep neural network architecture to generate dance movements 
+							</div>
+						</div>
+						<div class="col">
+							<pre class="python" ><code data-trim data-noescape>
+								import tensorflow as tf
+								import keras
+								# Define the loss function for the model 
+								loss = 'mean_squared_error'
+								# Set the batch size 
+								batch_size = 8								
+								# Set the number of epochs
+								epochs = 2000								
+								# Set the learning rate to 0.01
+								lr = 0.01								
+								# Define the number of units (neurons) in each LSTM layer
+								n_units = 1000															
+								# Create a new Sequential model
+								model = Sequential()								
+								# Add the first LSTM layer to the model:
+								model.add(LSTM(units=n_units, input_shape=(predictors_train.shape[1],
+								moves_vocab_size), return_sequences=True, activation=activations.tanh))								
+								# Add the second LSTM layer with similar parameters
+								model.add(LSTM(units=n_units, return_sequences=True, 
+								activation=activations.tanh))							
+								# Add the third LSTM layer which outputs the last sequence
+								model.add(LSTM(n_units, activation=activations.tanh))								
+								# Add a Dense output layer that uses a sigmoid activation function
+								model.add(Dense(moves_vocab_size, activation='sigmoid'))								
+							</code></pre>
+						</div>
+					</div>
+					<br>
+				</section> 
+				<!-- ################################################################################################################################################### -->	
+				<section>
+					<h3 class='slide-title'><p style="color:#336488" >Posture distribution at time <em>T+1</em></h3></p>
+					<div class="container">
+						<div class="col">
+							<video>
+								<source data-src="assets/D6_M14_T1_Frontal_original.mp4" type="video/mp4" style="width:500px;" />
+							</video>
+						</div>
+						<div class="col">
+							<video>
+								<source data-src="assets/predictions_D6_M14_T1_Frontal_epochs_1000_n_units_1000.mp4" type="video/mp4" style="width:500px;"  />
+							</video>
+						</div>
+					</div>
+				</section>
+				<!-- ################################################################################################################################################### -->
+				<section>
+					<h3 class='slide-title'><p style="color:#336488" >Vector Quantization with SOM:</h3>
+					<iframe src="http://127.0.0.1:8000/" width="1000px"  height="850px" ></iframe>
+				</section>
+				<!-- ################################################################################################################################################### -->
+				<section >  
+					<h2>Vector Quantization (VQ) with Self-Organizing Maps (SOM):</h2>
+					<hr>
+					<div class="container">
+						<div class="col">
+							<video muted style="width:450px;" controls>
+								<source data-src="assets/video_som_and_audio.mp4" type="video/mp4" />
+							</video>
+						</div>
+					</div>
+					<br>
+				</section> 
 				<!-- ################################################################################################################################################### -->
 				<section>
 					<h2 class="slide-title" style="color:#336488;">S+T+ARTS Air: The body and the city</h2>
