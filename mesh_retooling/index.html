@@ -4,7 +4,7 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>Template Presentation</title>
+		<title>Building a culture of science for Retooling: Art, Ecology, & Climate Adaptation</title>
 		<meta name="description" content="Retooling: Art, Ecology, & Climate Adaptation">
 		<meta name="author" content="Denise Lanzieri">
 
@@ -182,11 +182,7 @@
 				box-sizing: border-box;
 				padding-right: 2%;
 			}
-			
 
-			.reveal .title-slide .title-slide-right img {
-				filter: grayscale(1) sepia(1) hue-rotate(180deg) saturate(3) brightness(1.05) contrast(1.05);
-			}
 			.reveal .team-slide .team-logo-row {
 				display: flex;
 				flex-direction: column;
@@ -322,17 +318,17 @@
 				font-size: 0.7em;
 				line-height: 1.7;
 			}
-		/*############################################### */
+			/*############################################### */
 			/* Titolo delle slide*/
 			/*############################################### */
 			.reveal .slide-title {
-			border-left: 5px solid white;
-			text-align: left;
-			margin-left: 20px;
-			padding-left: 20px;
-		}
+				border-left: 5px solid white;
+				text-align: left;
+				margin-left: 20px;
+				padding-left: 20px;
+			}
 			/*############################################### */
-			/* Cursore e fraccia bianchi*/
+			/* Cursore e frecce bianchi*/
 			/*############################################### */
 			.reveal .controls {
 				color: #fff;
@@ -523,27 +519,6 @@
 			}
 			.reveal .slides section.art-slide {
 				display: flex !important;
-				height: 100%;
-				top: 0 !important;
-			}
-
-			.reveal .art-slide .container {
-				height: 100%;
-				align-items: stretch;
-			}
-
-			.reveal .art-slide .col {
-				height: 100%;
-				display: flex;
-				flex-direction: column;
-			}
-
-			.reveal .art-slide .fig.split-side {
-				flex: 1;
-				min-height: 0;
-			}
-			.reveal .slides section.art-slide {
-				display: flex !important;
 				flex-direction: column;
 				height: 100%;
 				top: 0 !important;
@@ -557,6 +532,17 @@
 				flex: 1;
 				min-height: 0;
 				align-items: stretch;
+			}
+
+			.reveal .art-slide .col {
+				height: 100%;
+				display: flex;
+				flex-direction: column;
+			}
+
+			.reveal .art-slide .fig.split-side {
+				flex: 1;
+				min-height: 0;
 			}
 			/*############################################### */
 			/* Blocco immagine sovrapposte nei progetti */
@@ -576,8 +562,6 @@
 				width: 100%;
 				height: 100%;
 			}
-
-			
 
 			.reveal .project-detail-content .collage-wrap ul.collage li {
 				position: absolute;
@@ -668,108 +652,106 @@
 				background: #fff;
 				top: 0 !important;
 			}
-		/*############################################### */
-		/* Catalogo stile Netflix */
-		/*############################################### */
-		.reveal .catalog-grid {
-			display: grid;
-			grid-template-columns: repeat(6, 1fr);
-			gap: 1.2em;
-			margin-top: 1em;
-		}
+			/*############################################### */
+			/* Catalogo stile Netflix */
+			/*############################################### */
+			.reveal .catalog-grid {
+				display: grid;
+				grid-template-columns: repeat(6, 1fr);
+				gap: 1.2em;
+				margin-top: 1em;
+			}
 
-		.reveal .catalog-card {
-			position: relative;
-			display: block;
-			border-radius: 8px;
-			overflow: hidden;
-			aspect-ratio: 2 / 3;
-			text-decoration: none;
-			box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
-			transition: transform 0.2s ease, box-shadow 0.2s ease;
-		}
+			.reveal .catalog-card {
+				position: relative;
+				display: block;
+				border-radius: 8px;
+				overflow: hidden;
+				aspect-ratio: 2 / 3;
+				text-decoration: none;
+				box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
+				transition: transform 0.2s ease, box-shadow 0.2s ease;
+			}
 
-		.reveal .catalog-card:hover {
-			transform: scale(1.06);
-			box-shadow: 0 10px 26px rgba(0, 0, 0, 0.6);
-			z-index: 2;
-		}
+			.reveal .catalog-card:hover {
+				transform: scale(1.06);
+				box-shadow: 0 10px 26px rgba(0, 0, 0, 0.6);
+				z-index: 2;
+			}
 
-		.reveal .catalog-card img {
-			width: 100%;
-			height: 100%;
-			object-fit: cover;
-			display: block;
-		}
+			.reveal .catalog-card img {
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+				display: block;
+			}
 
-		.reveal .catalog-card-title {
-			position: absolute;
-			left: 0;
-			right: 0;
-			bottom: 0;
-			padding: 0.6em 0.7em;
-			background: linear-gradient(to top, rgba(0,0,0,0.9), rgba(0,0,0,0));
-			font-size: 0.55em;
-			font-weight: 600;
-			color: #fff;
-		}
+			.reveal .catalog-card-title {
+				position: absolute;
+				left: 0;
+				right: 0;
+				bottom: 0;
+				padding: 0.6em 0.7em;
+				background: linear-gradient(to top, rgba(0,0,0,0.9), rgba(0,0,0,0));
+				font-size: 0.55em;
+				font-weight: 600;
+				color: #fff;
+			}
 
-		.reveal .catalog-card-title.dark-title {
-			color: #060604;
-			background: linear-gradient(to top, rgba(255,255,255,0.9), rgba(255,255,255,0));
-		}
+			.reveal .catalog-card-title.dark-title {
+				color: #060604;
+				background: linear-gradient(to top, rgba(255,255,255,0.9), rgba(255,255,255,0));
+			}
 
-		/* Slide di dettaglio progetto */
-		.reveal .slides section.project-detail {
-			display: flex !important;
-			flex-direction: column;
-			height: 100%;
-			top: 0 !important;
-			text-align: left;
-		}
+			/* Slide di dettaglio progetto */
+			.reveal .slides section.project-detail {
+				display: flex !important;
+				flex-direction: column;
+				height: 100%;
+				top: 0 !important;
+				text-align: left;
+			}
 
-		.reveal .project-detail .back-link {
-			color: #fff;
-			text-decoration: none;
-			font-size: 0.55em;
-			opacity: 0.7;
-			margin-bottom: 0.8em;
-			display: inline-block;
-		}
+			.reveal .project-detail .back-link {
+				color: #fff;
+				text-decoration: none;
+				font-size: 0.55em;
+				opacity: 0.7;
+				margin-bottom: 0.8em;
+				display: inline-block;
+			}
 
-		.reveal .project-detail .back-link:hover {
-			opacity: 1;
-		}
+			.reveal .project-detail .back-link:hover {
+				opacity: 1;
+			}
 
-		.reveal .project-detail-content {
-			flex: 1;
-			display: flex;
-			gap: 2em;
-			align-items: center;
-			min-height: 0;
-		}
+			.reveal .project-detail-content {
+				flex: 1;
+				display: flex;
+				gap: 2em;
+				align-items: center;
+				min-height: 0;
+			}
 
-		.reveal .project-detail-content img {
-			height: 85%;
-			width: 42%;
-			object-fit: cover;
-			border-radius: 8px;
-			flex-shrink: 0;
-		}
+			.reveal .project-detail-content img {
+				height: 85%;
+				width: 42%;
+				object-fit: cover;
+				border-radius: 8px;
+				flex-shrink: 0;
+			}
 
-		.reveal .project-detail-content .project-text {
-			flex: 1;
-			font-size: 0.7em;
-		}
-		/*############################################### */
-		/* regola per avere slide con testo centrato unico */
-		/*############################################### */
-		.reveal .slides section.center-fix {
+			.reveal .project-detail-content .project-text {
+				flex: 1;
+				font-size: 0.7em;
+			}
+			/*############################################### */
+			/* regola per avere slide con testo centrato unico */
+			/*############################################### */
+			.reveal .slides section.center-fix {
 				display: flex !important;
 				top: 0 !important;
 			}
-		/*################################################################################################################################################## */
-		/*################################################################################################################################################## */
 		</style>
 	</head>
 	<body>
@@ -787,8 +769,7 @@
 					</div>
 				</section>
 				<!-- ################################################################################################################################################### -->
-				<section class="team-slide" >
-	
+				<section class="team-slide">
 					<div class="team-content">
 						<div class="top-profiles">
 							<div class="profile">
@@ -820,7 +801,7 @@
 								</div>
 							</div>
 						</div>
-				
+
 						<div class="team-columns">
 							<div class="team-column">
 								<div class="profile">
@@ -847,7 +828,7 @@
 									</ul>
 								</div>
 							</div>
-				
+
 							<div class="team-column">
 								<div class="profile">
 									<img src="assets/team/emanuele.jpg" alt="Emanuele Brugnoli">
@@ -874,7 +855,7 @@
 									</ul>
 								</div>
 							</div>
-				
+
 							<div class="team-column">
 								<div class="profile">
 									<img src="assets/team/alessandro.jpg" alt="Alessandro Londei">
@@ -904,7 +885,7 @@
 				</section>
 				<!-- ################################################################################################################################################### -->
 				<section class="ecosystem-slide" data-background-color="#ffffff">
-					<h1 ><p style="color:#c2185b">Sony CSL - Rome ecosystem</p></h1>
+					<h1><p style="color:#c2185b">Sony CSL - Rome ecosystem</p></h1>
 					<br>
 					<div class="ecosystem-columns">
 						<!-- Column 1: Sony CSL network -->
@@ -922,15 +903,15 @@
 								</ul>
 							</div>
 							<div class="logo-block">
-								<img src="assets/logos/The_University_of_Melbourne_Coat_of_Arms.png" alt="The_University_of_Melbourne_Coat_of_Arms.png" style="max-height: 4.5em;" >
+								<img src="assets/logos/The_University_of_Melbourne_Coat_of_Arms.png" alt="The_University_of_Melbourne_Coat_of_Arms.png" style="max-height: 4.5em;">
 								<p>Dan Hill</p>
 							</div>
 							<div class="logo-block">
-								<img src="assets/logos/romatre.png" alt="Roma Tre" >
+								<img src="assets/logos/romatre.png" alt="Roma Tre">
 								<p>Giovanni Caudo</p>
 							</div>
 						</div>
-				
+
 						<!-- Column 2: Complexity science collaborators -->
 						<div class="ecosystem-column">
 							<div class="logo-block">
@@ -946,20 +927,20 @@
 								</ul>
 							</div>
 							<div class="logo-block">
-								<img src="assets/logos/ETH_Zürich_Logo_black.png" alt="ETH Zürich" style="max-height: 2em;" >
+								<img src="assets/logos/ETH_Zürich_Logo_black.png" alt="ETH Zürich" style="max-height: 2em;">
 							</div>
 							<div class="logo-block">
-								<img src="assets/logos/complexity_hub.png" alt="Complexity Science Hub" " style="max-height: 4.5em;">
-								<p>S. Thurner, 
+								<img src="assets/logos/complexity_hub.png" alt="Complexity Science Hub" style="max-height: 4.5em;">
+								<p>S. Thurner,
 									<br>
 									V.D.P. Servedio</p>
 							</div>
 						</div>
-				
+
 						<!-- Column 3: University / institution collaborators -->
 						<div class="ecosystem-column">
 							<div class="logo-block">
-								<img src="assets/logos/sapienza.png" alt="Sapienza Università di Roma" >
+								<img src="assets/logos/sapienza.png" alt="Sapienza Università di Roma">
 								<ul>
 									<li>M. Avalle</li>
 									<li>L. Rossi Mori</li>
@@ -973,7 +954,7 @@
 								</ul>
 							</div>
 							<div class="logo-block">
-								<img src="assets/logos/city_london.png" alt="City University of London" style="max-height: 4.5em;" >
+								<img src="assets/logos/city_london.png" alt="City University of London" style="max-height: 4.5em;">
 								<p>A. Baronchelli</p>
 							</div>
 							<div class="logo-block">
@@ -981,7 +962,7 @@
 								<p>T. Di Matteo</p>
 							</div>
 						</div>
-				
+
 						<!-- Column 4: Students & further affiliations -->
 						<div class="ecosystem-column">
 							<div class="logo-block">
@@ -996,14 +977,14 @@
 								</ul>
 							</div>
 							<div class="logo-block">
-								<img src="assets/logos/indiana.png" alt="Indiana University" style="max-height: 4em;" >
+								<img src="assets/logos/indiana.png" alt="Indiana University" style="max-height: 4em;">
 							</div>
 							<div class="logo-block">
-								<img src="assets/logos/queen_mary.png" alt="Queen Mary University of London" style="max-height: 3em;" >
+								<img src="assets/logos/queen_mary.png" alt="Queen Mary University of London" style="max-height: 3em;">
 							</div>
 						</div>
 					</div>
-				
+
 					<div class="ecosystem-footer">
 						<span>++ academic institutions</span>
 						<span>++ companies</span>
@@ -1027,8 +1008,9 @@
 					<div class="container">
 						<div class="col">
 							<div align="left" style="margin-left: 0px; margin-top:170px">
-							Transforming scientific research into artistic and experiential forms helps us see patterns more clearly and understand data in new ways.
-							By making complex information more accessible and engaging, we deepen our insight into social phenomena — while maintaining scientific rigor.
+							Bringing scientific research into artistic and experiential forms does not simply translate data for wider public access. <br>
+							It creates a shared space of inquiry in which scientific research, artistic practice and the public can co-produce knowledge together.  <br>  <br>
+							In this process, patterns, evidence and social phenomena are not only explained, but perceived, questioned and reinterpreted through sensory, symbolic and embodied forms, in dialogue with scientific rigor.
 							</div>
 						</div>
 						<div class="col">
@@ -1037,14 +1019,12 @@
 								  <li><img src="assets/filip.jpg"></li>
 								  <li><img src="assets/rib1.png"></li>
 								  <li><img src="assets/rib2.jpeg"></li>
-								  <li><img src="assets/rib3.jpeg" ></li>
+								  <li><img src="assets/rib3.jpeg"></li>
 								</ul>
 							  </figure>
 						</div>
 					</div>
-				
-				</section>  
-				<!-- ################################################################################################################################################### -->
+				</section>
 				<!-- ################################################################################################################################################### -->
 				<section>
 					<section id="catalog">
@@ -1104,19 +1084,19 @@
 					<section id="Kreyon City" class="project-detail">
 						<a class="back-link" href="#/catalog">&larr; Back to projects</a>
 						<div class="project-detail-content">
-							<img src="assets/projects/kreyon_city.jpg" alt="Kreyon City"  style="width: 60%;">
+							<img src="assets/projects/kreyon_city.jpg" alt="Kreyon City" style="width: 60%;">
 							<div class="project-text">
 								<h2>Kreyon City</h2>
-								<p>Kreyon City is a macro-economic planning tool that exploits methods from Statistical Physics and Artificial Intelligence to develop forecasting algorithms for urban indicators.  
+								<p>Kreyon City is a macro-economic planning tool that exploits methods from Statistical Physics and Artificial Intelligence to develop forecasting algorithms for urban indicators.
 
 									With Kreyon City, it is possible to check the evolution of different urban-related dimensions, such as wages, employment, green areas, etc.
-									
-									While the decision-making platform is under construction, Kreyon City has been realised into an installation to study how individuals solve complex urban problems. 
+
+									While the decision-making platform is under construction, Kreyon City has been realised into an installation to study how individuals solve complex urban problems.
 									</p>
 							</div>
 						</div>
 					</section>
-					
+					<!-- ################################################################################################################################################### -->
 					<section id="Random or Arbitrary" class="project-detail">
 						<a class="back-link" href="#/catalog">&larr; Back to projects</a>
 						<div class="project-detail-content">
@@ -1127,11 +1107,11 @@
 							</div>
 						</div>
 					</section>
-					
+					<!-- ################################################################################################################################################### -->
 					<section id="Six degrees of separation" class="project-detail">
 						<a class="back-link" href="#/catalog">&larr; Back to projects</a>
 						<div class="project-detail-content">
-							<img src="assets/projects/separation.png" alt="Six degrees of separation" >
+							<img src="assets/projects/separation.png" alt="Six degrees of separation">
 							<div class="project-text">
 								<h2>Six degrees of separation</h2>
 								<p>This work has been presented at the “Ti con Zero” exhibition in 2022 and it explains how recommendation systems, used by online platforms, work to suggest content to us.
@@ -1139,7 +1119,7 @@
 							</div>
 						</div>
 					</section>
-					
+					<!-- ################################################################################################################################################### -->
 					<section id="TraceWaste" class="project-detail">
 						<a class="back-link" href="#/catalog">&larr; Back to projects</a>
 						<div class="project-detail-content">
@@ -1158,7 +1138,7 @@
 							</div>
 						</div>
 					</section>
-					
+					<!-- ################################################################################################################################################### -->
 					<section id="Cities live like trees" class="project-detail">
 						<a class="back-link" href="#/catalog">&larr; Back to projects</a>
 						<div class="project-detail-content">
@@ -1168,7 +1148,6 @@
 									<li style="width: 60%; height: 38%;"><img src="assets/projects/tree1.jpg" alt="Cities live like trees"></li>
 									<li style="width: 60%; height: 48%;"><img src="assets/projects/tree4.jpg" alt="Cities live like trees"></li>
 									<li style="width: 58%; height: 38%;"><img src="assets/projects/tree3.jpg" alt="Cities live like trees"></li>
-									
 								</ul>
 							</div>
 							<div class="project-text">
@@ -1177,7 +1156,7 @@
 							</div>
 						</div>
 					</section>
-					
+					<!-- ################################################################################################################################################### -->
 					<section id="SAMASANA, Togetherness" class="project-detail">
 						<a class="back-link" href="#/catalog">&larr; Back to projects</a>
 						<div class="project-detail-content">
@@ -1191,16 +1170,16 @@
 							</div>
 							<div class="project-text">
 								<h2>SAMASANA, Togetherness</h2>
-								<p>SAMASANA, Togetherness by Filippo Gregoretti. 
+								<p>SAMASANA, Togetherness by Filippo Gregoretti.
 									Amrita, an artificial intelligence protagonist of this work, processes a series of tweets, characterized by a certain kind of toxicity in their argumentation and turns them into an audio-visual experience. The images and sounds it proposes change according to the higher or lower level of toxicity these contents present. What we write on social, has weight and even when we are not aware of it!</p>
 							</div>
 						</div>
 					</section>
-					
+					<!-- ################################################################################################################################################### -->
 					<section id="The Body and the City" class="project-detail">
 						<a class="back-link" href="#/catalog">&larr; Back to projects</a>
 						<div class="project-detail-content">
-							<div class="collage-wrap"style="width: 60%;">
+							<div class="collage-wrap" style="width: 60%;">
 								<ul class="collage">
 									<li><img src="assets/projects/riba1.jpg" alt="The Body and the City"></li>
 									<li><img src="assets/projects/riba2.jpg" alt="The Body and the City"></li>
@@ -1214,35 +1193,35 @@
 							</div>
 						</div>
 					</section>
-					
+					<!-- ################################################################################################################################################### -->
 					<section id="Sound Dialogues: What Do Cities Tell Us" class="project-detail">
 						<a class="back-link" href="#/catalog">&larr; Back to projects</a>
 						<div class="project-detail-content">
 							<img src="assets/projects/soundialog.jpg" alt="Sound Dialogues: What Do Cities Tell Us">
 							<div class="project-text">
 								<h2>Sound Dialogues: What Do Cities Tell Us</h2>
-								<p>Sound Dialogues: What Do Cities Tell Us?  by Anthony Tandazo is an experimental audiovisual performance that listens to the city as a living system. Developed in collaboration with NCDIA Unifor during a residency in Fortaleza, the work draws a sonic comparison between two cities under ecological and social pressure: Fortaleza (Brazil) and Guayaquil (Ecuador). Using a custom-coded platform that translates urban dynamics into algorithmic musical compositions, Tandazo engages with technology both as a critical and poetic tool.</p>
+								<p>Sound Dialogues: What Do Cities Tell Us? by Anthony Tandazo is an experimental audiovisual performance that listens to the city as a living system. Developed in collaboration with NCDIA Unifor during a residency in Fortaleza, the work draws a sonic comparison between two cities under ecological and social pressure: Fortaleza (Brazil) and Guayaquil (Ecuador). Using a custom-coded platform that translates urban dynamics into algorithmic musical compositions, Tandazo engages with technology both as a critical and poetic tool.</p>
 							</div>
 						</div>
 					</section>
-					
+					<!-- ################################################################################################################################################### -->
 					<section id="Direito à Sombra  " class="project-detail">
 						<a class="back-link" href="#/catalog">&larr; Back to projects</a>
 						<div class="project-detail-content">
 							<img src="assets/projects/maps.jpg" alt="Direito à Sombra  (The Right to Shade)" style="width: 60%;">
 							<div class="project-text">
 								<h2>Direito à Sombra  (The Right to Shade)</h2>
-								<p>Direito à Sombra (The Right to Shade) by Meri Nagem explores the relationship between heat, solar incidence, and urban inequality in Fortaleza, where access to shade is closely tied to social vulnerability. What began as a technical inquiry into designing a custom clay cobogó, a traditional perforated Brazilian brick, evolved into a broader recognition of trees as ancestral technologies of shade and care. This shift from fabrication to observation runs through Nagem’s project, suggesting technology as a relational and ecological practice, and pointing to the possibility that the most sophisticated response to urban heat may already be rooted in the ground beneath our feet.</p>
+								<p>Direito à Sombra (The Right to Shade) by Meri Nagem explores the relationship between heat, solar incidence, and urban inequality in Fortaleza, where access to shade is closely tied to social vulnerability. What began as a technical inquiry into designing a custom clay cobogó, a traditional perforated Brazilian brick, evolved into a broader recognition of trees as ancestral technologies of shade and care. This shift from fabrication to observation runs through Nagem's project, suggesting technology as a relational and ecological practice, and pointing to the possibility that the most sophisticated response to urban heat may already be rooted in the ground beneath our feet.</p>
 							</div>
 						</div>
 					</section>
-					
+					<!-- ################################################################################################################################################### -->
 					<section id="Ulysses's Gates" class="project-detail">
 						<a class="back-link" href="#/catalog">&larr; Back to projects</a>
 						<div class="project-detail-content">
 							<div class="collage-wrap" style="width: 65%;">
 								<ul class="collage">
-									<li><img src="assets/projects/ul1.jpg" alt="Ulysses's Gates" ></li>
+									<li><img src="assets/projects/ul1.jpg" alt="Ulysses's Gates"></li>
 									<li><img src="assets/projects/ul2.jpg" alt="Ulysses's Gates"></li>
 									<li><img src="assets/projects/ul3.jpg" alt="Ulysses's Gates"></li>
 									<li><img src="assets/projects/ul4.png" alt="Ulysses's Gates"></li>
@@ -1254,31 +1233,30 @@
 							</div>
 						</div>
 					</section>
-
+					<!-- ################################################################################################################################################### -->
 					<section id="Duetto" class="project-detail">
 						<a class="back-link" href="#/catalog">&larr; Back to projects</a>
 						<div class="project-detail-content">
 							<img src="assets/projects/duetto.jpg" alt="Duetto" style="width: 60%;">
 							<div class="project-text">
 								<h2>Duetto</h2>
-								<p>“Duetto”  explores body as a form of language. In this perspective, postures become elementary units, while movement unfolds as a complex and expressive sequence, much like meaning emerging through words and sentences. But the project does more than describe motion: it seeks to recognize relations, possibilities and transformations within gesture, opening a space in which AI can not only interpret movement, but also respond to it in creative ways. At the heart of Duetto lies a genuinely human-in-the-loop vision. The human performer does not simply initiate the process but continuously shapes and redirects what the system understands and proposes. Duetto has been presented as an “art&science” performance several times.</p>
+								<p>“Duetto” explores body as a form of language. In this perspective, postures become elementary units, while movement unfolds as a complex and expressive sequence, much like meaning emerging through words and sentences. But the project does more than describe motion: it seeks to recognize relations, possibilities and transformations within gesture, opening a space in which AI can not only interpret movement, but also respond to it in creative ways. At the heart of Duetto lies a genuinely human-in-the-loop vision. The human performer does not simply initiate the process but continuously shapes and redirects what the system understands and proposes. Duetto has been presented as an “art&science” performance several times.</p>
 							</div>
 						</div>
 					</section>
-
+					<!-- ################################################################################################################################################### -->
 					<section id="Dialogues between Literature and Science" class="project-detail">
 						<a class="back-link" href="#/catalog">&larr; Back to projects</a>
 						<div class="project-detail-content">
 							<img src="assets/projects/litt.jpg" alt="Dialogues between Literature and Science" style="width: 40%;">
 							<div class="project-text">
 								<h2>Dialogues between Literature and Science</h2>
-								<p>Literature is the exploration of the space of possibility, where not only the myriad facets of the human soul find space, but also the infinite possible applications of reality and the equally infinite solutions to humanity's various problems.  
+								<p>Literature is the exploration of the space of possibility, where not only the myriad facets of the human soul find space, but also the infinite possible applications of reality and the equally infinite solutions to humanity's various problems.
 									We believe that this gift that literature gave to us is useful for all humanity, especially for science.</p>
 							</div>
 						</div>
 					</section>
 				</section>
-				<!-- ################################################################################################################################################### -->
 				<!-- ################################################################################################################################################### -->
 				<section>
 					<h2>Integrating science and the arts to deglobalise climate change adaptation
@@ -1292,8 +1270,8 @@
 									<br>
 									<em>Nature Commun 15, 2971 (2024)</em>.
 								</div>
-								<a href="https://www.nature.com/articles/s41467-024-47400-7"><img src="https://img.shields.io/badge/DOI-10.1038%2Fs41467--024--47400--7-0b6e4f.svg" class="plain" style="height:25px;" /></a>
-				
+								<a href="https://www.nature.com/articles/s41467-024-47400-7"><img src="https://img.shields.io/badge/DOI-10.1038%2Fs41467--024--47400--7-0b6e4f.svg" class="plain" style="height:25px;"></a>
+
 								<br>
 								<br>
 								<div style="border-left: 3px solid #666; padding-left: 16px; margin-top: 10px;">
@@ -1303,7 +1281,7 @@
 							</div>
 						</div>
 						<div class="col">
-							<img class="plain" data-src="assets/nature_paper.png" style="width:450px;" />
+							<img class="plain" data-src="assets/nature_paper.png" style="width:450px;">
 							<div style="font-size: 0.45em; color: #999; margin-top: 8px;">Illustrations: Josune Urrutia. Credit: Olazabal et al., Nature Communications (2024)</div>
 						</div>
 					</div>
@@ -1318,8 +1296,7 @@
 					</div>
 				</section>
 				<!-- ################################################################################################################################################### -->
-				<!-- ################################################################################################################################################### -->
-				<section data-background-color="#ffffff">>
+				<section data-background-color="#ffffff">
 					<h2 style="text-align: center; margin: 0; margin-top: 6%; color: #222;">Chapter 1</h2>
 				</section>
 				<!-- ################################################################################################################################################### -->
@@ -1354,13 +1331,13 @@
 								<img class="plain fragment" data-fragment-index="1" data-src="assets/cover_nature.png" style="position:absolute; inset:0; width:100%; height:150%; object-fit:contain;">
 							</div>
 							<div class="fragment" data-fragment-index="1" style="margin-top: 12px;">
-								<a href="https://www.nature.com/articles/s44460-026-00135-y"><img src="https://img.shields.io/badge/DOI-10.1038%2Fs44460--026--00135--y-0b6e4f.svg" class="plain" style="height:25px;" /></a>
+								<a href="https://www.nature.com/articles/s44460-026-00135-y"><img src="https://img.shields.io/badge/DOI-10.1038%2Fs44460--026--00135--y-0b6e4f.svg" class="plain" style="height:25px;"></a>
 							</div>
 						</div>
 					</div>
 				</section>
 				<!-- ################################################################################################################################################### -->
-				<section data-background-color="#ffffff">>
+				<section data-background-color="#ffffff">
 					<h2 style="text-align: center; margin: 0; margin-top: 6%; color: #222;">Chapter 2</h2>
 				</section>
 				<!-- ################################################################################################################################################### -->
@@ -1368,13 +1345,12 @@
 					<div class="shade-cover-left">
 						<h2 class="shade-highlight">Direito à Sombra (Right to Shade)</h2>
 						<p class="shade-cover-text">
-							Does shade make cities walkable <span style='color:#e2f24a'> ? </span>
-							How far can you walk before the sun stops you<span style='color:#e2f24a'> ? </span>
-							Buildings vs. trees: who shades the city better<span style='color:#e2f24a'> ? </span>
-							Is shade a privilege of the wealthy <span style='color:#e2f24a'>? </span>
-							Can a few assumptions change who gets protected <span style='color:#e2f24a'>? </span>
-							Can this map be redrawn for any city <span style='color:#e2f24a'>? </span>
-
+							Does shade make cities walkable <span style='color:#e2f24a'>?</span>
+							How far can you walk before the sun stops you<span style='color:#e2f24a'>?</span>
+							Buildings vs. trees: who shades the city better<span style='color:#e2f24a'>?</span>
+							Is shade a privilege of the wealthy <span style='color:#e2f24a'>?</span>
+							Can a few assumptions change who gets protected <span style='color:#e2f24a'>?</span>
+							Can this map be redrawn for any city <span style='color:#e2f24a'>?</span>
 						</p>
 					</div>
 					<div class="shade-cover-right">
@@ -1434,7 +1410,7 @@
 				</section>
 				<!-- ################################################################################################################################################### -->
 				<section>
-					<h2 class='slide-title' >Access to bus stops within 15min at 7 am </h2>
+					<h2 class='slide-title'>Access to bus stops within 15min at 7 am</h2>
 					<img src="assets/map_solar_incidence_fortaleza_15_buildings_sem_titulo.png" alt="Sombras 7bus" style="max-width: 70%; max-height: 70vh; display: block; margin: 0 auto;">
 				</section>
 				<!-- ################################################################################################################################################### -->
@@ -1457,7 +1433,6 @@
 					</div>
 				</section>
 				<!-- ################################################################################################################################################### -->
-				
 			</div>
 		</div>
 
@@ -1470,16 +1445,11 @@
 			// - https://revealjs.com/initialization/
 			// - https://revealjs.com/config/
 
-
-
 			Reveal.initialize({
 				hash: true,
 				controlsLayout: 'edges',
 				width: 1280,
 				height: 720,
-				// Move nav arrows to the screen edges so they don't
-				// collide with the logo in the bottom-right corner
-				controlsLayout: 'edges',
 
 				// Learn about plugins: https://revealjs.com/plugins/
 				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
