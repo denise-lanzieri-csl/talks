@@ -57,7 +57,7 @@
 				flex-direction: column;
 				justify-content: space-between;
 				align-items: flex-start;
-				padding: 8% 6% 23% 6%;
+				padding: 15% 6% 20% 10%;
 				box-sizing: border-box;
 				text-align: left;
 			}
@@ -161,7 +161,7 @@
 			}
 
 			/*############################################### */
-			/* Team / research-lines slide (white background) */
+			/* Team / research-lines slide  */
 			/*############################################### */
 			.reveal .slides section.team-slide {
 				display: flex !important;
@@ -610,6 +610,64 @@
 				top: 42%; left: 45%; width: 58%; height: 58%;
 				transform: rotate(-2deg); z-index: 2;
 			}
+			/*############################################### */
+			/* Cover Direito a Sombra */
+			/*############################################### */
+
+			.reveal .slides section.shade-cover {
+				display: flex !important;
+				height: 100%;
+				background: #fff;
+				color: #111;
+				padding: 0;
+				top: 0 !important;
+			}
+
+			.reveal .shade-cover .shade-cover-left {
+				flex: 0 0 45%;
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				box-sizing: border-box;
+				padding: 5% 6%;
+				text-align: left;
+			}
+
+			.reveal .shade-cover .shade-highlight {
+				display: inline-block;
+				align-self: flex-start;
+				background: #e2f24a;
+				color: #111;
+				padding: 0.15em 0.3em;
+				margin-bottom: 0.6em;
+			}
+
+			.reveal .shade-cover .shade-cover-text {
+				color: #333;
+			}
+
+			.reveal .shade-cover .shade-cover-right {
+				flex: 1;
+				height: 100%;
+				overflow: hidden;
+			}
+
+			.reveal .shade-cover .shade-cover-right img {
+				width: 100%;
+				height: 100%;
+				max-width: none;
+				max-height: none;
+				object-fit: cover;
+				display: block;
+			}
+
+			.reveal .slides section.ecosystem-slide {
+				display: flex !important;
+				flex-direction: column;
+				height: 100%;
+				background: #fff;
+				top: 0 !important;
+			}
 		/*############################################### */
 		/* Catalogo stile Netflix */
 		/*############################################### */
@@ -657,7 +715,7 @@
 		}
 
 		.reveal .catalog-card-title.dark-title {
-			color: #000;
+			color: #060604;
 			background: linear-gradient(to top, rgba(255,255,255,0.9), rgba(255,255,255,0));
 		}
 
@@ -719,20 +777,6 @@
 			<img src="assets/SonyCSL_logowhite.png" alt="Sony CSL Logo" class="slide-logo" id="slide-logo">
 			<div class="slides">
 				<!-- ################################################################################################################################################### -->
-				<section class="title-slide" data-background-color="#000000">
-					<div class="container">
-						<div class="title-slide-left" style="justify-content: space-between;">
-							<div class="title-slide-logo">
-								<img src="assets/SonyCSL_logocolor.png" alt="Sony CSL">
-							</div>
-							<h1>Building a<br>culture of<br>science</h1>
-						</div>
-						<div class="title-slide-right" style="align-self: stretch; aspect-ratio: auto; max-height: none;">
-							<img src="assets/roma2.png" alt="Roma" style="filter: grayscale(1) sepia(1) hue-rotate(180deg) saturate(3) brightness(1.05) contrast(1.05);">
-						</div>
-					</div>
-				</section>
-
 				<section class="roma-full-bg">
 					<div class="roma-full-bg-photo-wrap">
 						<img class="roma-full-bg-photo" src="assets/roma2.png" alt="Roma">
@@ -860,7 +904,8 @@
 				</section>
 				<!-- ################################################################################################################################################### -->
 				<section class="ecosystem-slide" data-background-color="#ffffff">
-					<h2 ><p style="color:#c2185b">Sony CSL - Rome ecosystem</p></h2>
+					<h1 ><p style="color:#c2185b">Sony CSL - Rome ecosystem</p></h1>
+					<br>
 					<div class="ecosystem-columns">
 						<!-- Column 1: Sony CSL network -->
 						<div class="ecosystem-column">
@@ -969,7 +1014,7 @@
 				</section>
 				<!-- ################################################################################################################################################### -->
 				<section class="center-fix" style="display: flex; flex-direction: column; height: 100%;">
-					<h2 style="text-align: center; margin: 0;">Overarching goal</h2>
+					<h2 style="text-align: center; margin: 0; margin-top: 6%;">Overarching goal</h2>
 					<div style="flex: 1; display: flex; align-items: center; justify-content: center; text-align: center;">
 						<h3>Understanding how humans and machine explore the space of possibilities, experiment novelties and conceive new solutions to face pressing planetary and societal challenges.</h3>
 					</div>
@@ -981,7 +1026,7 @@
 						the Public Engagement</h2>
 					<div class="container">
 						<div class="col">
-							<div align="left" style="margin-left: 5px; margin-top:170px">
+							<div align="left" style="margin-left: 0px; margin-top:170px">
 							Transforming scientific research into artistic and experiential forms helps us see patterns more clearly and understand data in new ways.
 							By making complex information more accessible and engaging, we deepen our insight into social phenomena — while maintaining scientific rigor.
 							</div>
@@ -1026,7 +1071,7 @@
 								<div class="catalog-card-title">Cities live like trees</div>
 							</a>
 							<a class="catalog-card" href="#/SAMASANA, Togetherness ">
-								<img src="assets/projects/samasana.jpg" alt="SAMASANA, Togetherness ">
+								<img src="assets/projects/samasana4.jpg" alt="SAMASANA, Togetherness ">
 								<div class="catalog-card-title">SAMASANA, Togetherness </div>
 							</a>
 							<a class="catalog-card" href="#/The Body and the City ">
@@ -1051,7 +1096,7 @@
 							</a>
 							<a class="catalog-card" href="#/Dialogues between Literature and Science">
 								<img src="assets/projects/litt.jpg" alt="Dialogues between Literature and Science">
-								<div class="catalog-card-title">Dialogues between Literature and Science</div>
+								<div class="catalog-card-title dark-title">Dialogues between Literature and Science</div>
 							</a>
 						</div>
 					</section>
@@ -1234,6 +1279,109 @@
 					</section>
 				</section>
 				<!-- ################################################################################################################################################### -->
+				<!-- ################################################################################################################################################### -->
+				<section>
+					<h2>Integrating science and the arts to deglobalise climate change adaptation
+					</h2>
+					<hr>
+					<div class="container">
+						<div class="col">
+							<div align="left" style="margin-left: 20px;">
+								<div>
+									Olazabal, M., Loroño-Leturiondo, M. et al.
+									<br>
+									<em>Nature Commun 15, 2971 (2024)</em>.
+								</div>
+								<a href="https://www.nature.com/articles/s41467-024-47400-7"><img src="https://img.shields.io/badge/DOI-10.1038%2Fs41467--024--47400--7-0b6e4f.svg" class="plain" style="height:25px;" /></a>
+				
+								<br>
+								<br>
+								<div style="border-left: 3px solid #666; padding-left: 16px; margin-top: 10px;">
+									<div style="font-size: 0.55em; text-transform: uppercase; letter-spacing: 0.05em; color: #999; margin-bottom: 6px;">Abstract</div>
+									<em>"Setting goals that are context-specific, relevant, and collectively shared is critical in adaptation. As necessary elements in target setting, imaginaries for adaptation and the language connected to them remain vague. Visuals produced through art-science collaborations can be great allies to (de)construct imaginaries and deglobalise discourses of adaptation."</em>
+								</div>
+							</div>
+						</div>
+						<div class="col">
+							<img class="plain" data-src="assets/nature_paper.png" style="width:450px;" />
+							<div style="font-size: 0.45em; color: #999; margin-top: 8px;">Illustrations: Josune Urrutia. Credit: Olazabal et al., Nature Communications (2024)</div>
+						</div>
+					</div>
+					<br>
+				</section>
+				<!-- ################################################################################################################################################### -->
+				<section class="center-fix" style="display: flex; flex-direction: column; height: 100%; background: #fff; color: #222;">
+					<h2 style="text-align: center; margin: 0; margin-top: 6%; color: #222;">Clime-tides</h2>
+					<div style="flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; gap: 0.6em;">
+						<p style="font-size: 0.65em; text-transform: uppercase; letter-spacing: 0.08em; color: #666; margin: 0;">A new strand of art &amp; science</p>
+						<h3 style="margin:0; max-width: 70%; color: #222;">Using artistic practice to make climate change adaptation tangible, equitable, and imaginable.</h3>
+					</div>
+				</section>
+				<!-- ################################################################################################################################################### -->
+				<!-- ################################################################################################################################################### -->
+				<section data-background-color="#ffffff">>
+					<h2 style="text-align: center; margin: 0; margin-top: 6%; color: #222;">Chapter 1</h2>
+				</section>
+				<!-- ################################################################################################################################################### -->
+				<section>
+					<h2 class="slide-title">Ulysses' Gates</h2>
+					<div class='container'>
+						<div class='col' style="flex: 1.3;">
+							<ul> From an idea by Umberto Vattani
+								<ul>
+									<br>
+									<li>
+										Ulysses' Gates brings together sound and visual composition, performance, complexity theory and environmental data — transforming the phenomena of the Venice lagoon into a sensory experience.
+										<ul>
+											<br>
+											<li>Artists: Filippo Gregoretti, Hiroaki Kitano, Vittorio Loreto</li>
+										</ul>
+									</li>
+									<br>
+									<li class="fragment" data-fragment-index="1">
+										This work led to a published study asking whether environmental sensing systems can become <b>cultural interfaces</b>, not just measurement tools. Starting from Venice's relationship with water and the MOSE system, it argues for a shift from environmental sensing to <b>societal listening</b>.
+										<ul>
+											<br>
+											<li>Researchers: Milena Di Canio, F. Gregoretti, H. Kitano &amp; V. Loreto</li>
+										</ul>
+									</li>
+								</ul>
+							</ul>
+						</div>
+						<div class='col' style="flex: 0.9; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+							<div style="position: relative; width: 100%; max-width: 550px; aspect-ratio: 4/3;">
+								<img class="plain fragment fade-out" data-fragment-index="1" data-src="assets/sensing_nature.jpg" style="position:absolute; inset:0; width:100%; height:100%; object-fit:contain;">
+								<img class="plain fragment" data-fragment-index="1" data-src="assets/cover_nature.png" style="position:absolute; inset:0; width:100%; height:150%; object-fit:contain;">
+							</div>
+							<div class="fragment" data-fragment-index="1" style="margin-top: 12px;">
+								<a href="https://www.nature.com/articles/s44460-026-00135-y"><img src="https://img.shields.io/badge/DOI-10.1038%2Fs44460--026--00135--y-0b6e4f.svg" class="plain" style="height:25px;" /></a>
+							</div>
+						</div>
+					</div>
+				</section>
+				<!-- ################################################################################################################################################### -->
+				<section data-background-color="#ffffff">>
+					<h2 style="text-align: center; margin: 0; margin-top: 6%; color: #222;">Chapter 2</h2>
+				</section>
+				<!-- ################################################################################################################################################### -->
+				<section class="shade-cover" data-background-color="#ffffff">
+					<div class="shade-cover-left">
+						<h2 class="shade-highlight">Direito à Sombra (Right to Shade)</h2>
+						<p class="shade-cover-text">
+							Does shade make cities walkable <span style='color:#e2f24a'> ? </span>
+							How far can you walk before the sun stops you<span style='color:#e2f24a'> ? </span>
+							Buildings vs. trees: who shades the city better<span style='color:#e2f24a'> ? </span>
+							Is shade a privilege of the wealthy <span style='color:#e2f24a'>? </span>
+							Can a few assumptions change who gets protected <span style='color:#e2f24a'>? </span>
+							Can this map be redrawn for any city <span style='color:#e2f24a'>? </span>
+
+						</p>
+					</div>
+					<div class="shade-cover-right">
+						<img src="assets/projects/direito_bus.jpg" alt="Right to Shade">
+					</div>
+				</section>
+				<!-- ################################################################################################################################################### -->
 				<section class="equinox-slide">
 					<h2 class='slide-title'>Shadow of Mercado Central de Fortaleza</h2>
 					<div class="equinox-grid">
@@ -1293,6 +1441,20 @@
 				<section>
 					<h2 class='slide-title'>The problem with the trees</h2>
 					<img src="assets/Sombras Avores Meireles (green).png" alt="Sombras 7bus" style="max-width: 70%; max-height: 70vh; display: block; margin: 0 auto;">
+				</section>
+				<!-- ################################################################################################################################################### -->
+				<section class="title-slide" data-background-color="#000000">
+					<div class="container">
+						<div class="title-slide-left" style="justify-content: space-between;">
+							<div class="title-slide-logo">
+								<img src="assets/SonyCSL_logocolor.png" alt="Sony CSL">
+							</div>
+							<h1>Thank you!</h1>
+						</div>
+						<div class="title-slide-right" style="align-self: stretch; aspect-ratio: auto; max-height: none;">
+							<img src="assets/roma2.png" alt="Roma" style="filter: grayscale(1) sepia(1) hue-rotate(180deg) saturate(3) brightness(1.05) contrast(1.05);">
+						</div>
+					</div>
 				</section>
 				<!-- ################################################################################################################################################### -->
 				
