@@ -5,8 +5,8 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
 		<title>Template Presentation</title>
-		<meta name="description" content="A basic template to start a new talk">
-		<meta name="author" content="YOUR NAME HERE">
+		<meta name="description" content="Retooling: Art, Ecology, & Climate Adaptation">
+		<meta name="author" content="Denise Lanzieri">
 
 		<link rel="stylesheet" href="reveal.js/dist/reset.css">
 		<link rel="stylesheet" href="reveal.js/dist/reveal.css">
@@ -14,12 +14,1288 @@
 
 		<!-- Theme used for syntax highlighted code -->
 		<link rel="stylesheet" href="plugin/highlight/monokai.css" id="highlight-theme">
+
+		<style>
+			/*############################################### */
+			/* Slide titolo*/
+			/*############################################### */
+			.reveal .slide-logo {
+				position: fixed;
+				right: 30px;
+				bottom: 20px;
+				height: 40px;
+				z-index: 100;
+				opacity: 0;
+				pointer-events: none;
+				transition: opacity 0.25s ease;
+			}
+			.reveal .slide-logo.is-visible {
+				opacity: 1;
+			}
+
+			/* Title slide: text + logo on the left, full-bleed photo on the right */
+			.reveal .slides section.title-slide {
+				display: flex !important;
+				align-items: stretch;
+				height: 100%;
+				background: #000;
+				padding: 0;
+				top: 0 !important;
+			}
+
+			/* The theme's generic .container sets align-items:center, which stops
+			   our columns from stretching to full height. Override it here. */
+			.reveal .title-slide .container {
+				height: 100%;
+				width: 100%;
+				align-items: stretch;
+			}
+
+			.reveal .title-slide .title-slide-left {
+				flex: 0 0 30%;
+				display: flex;
+				flex-direction: column;
+				justify-content: space-between;
+				align-items: flex-start;
+				padding: 8% 6% 23% 6%;
+				box-sizing: border-box;
+				text-align: left;
+			}
+
+			.reveal .title-slide .title-slide-logo {
+				display: flex;
+				align-items: center;
+			}
+
+			.reveal .title-slide .title-slide-logo img {
+				height: .9em;
+				width: auto;
+			}
+
+			.reveal .title-slide h1 {
+				font-size: 2.2em;
+				line-height: 1.05;
+				font-weight: 700;
+				color: #f4f1e6;
+				text-transform: none;
+				margin: 0;
+			}
+
+			.reveal .title-slide .title-slide-right {
+				flex: 1;
+				align-self: flex-start;
+				aspect-ratio: 16 / 10;
+				max-height: 100%;
+				position: relative;
+				overflow: hidden;
+			}
+
+			.reveal .title-slide .title-slide-right img {
+				width: 90%;
+				height: 90%;
+				object-fit: contain;
+				display: block;
+			}
+			
+			/*############################################### */
+			/* Slide titolo immagine full screen*/
+			/*############################################### */
+			.reveal .slides section.roma-full-bg {
+				position: relative;
+				height: 100%;
+				overflow: hidden;
+				padding: 0;
+				top: 0 !important;
+			}
+
+			.reveal .roma-full-bg .roma-full-bg-photo-wrap {
+				position: absolute;
+				inset: 0;
+				overflow: hidden;
+				z-index: 0;
+			}
+
+			.reveal .roma-full-bg .roma-full-bg-photo {
+				width: 100%;
+				height: 100%;
+				max-width: none;
+				max-height: none;
+				object-fit: cover;
+				object-position: 65% center;
+				display: block;
+				filter: grayscale(1) sepia(1) hue-rotate(180deg) saturate(3) brightness(1.05) contrast(1.05);
+			}
+
+			.reveal .roma-full-bg::before {
+				content: "";
+				position: absolute;
+				inset: 0;
+				background: linear-gradient(120deg, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.35) 45%, rgba(0,0,0,0) 70%);
+				z-index: 1;
+			}
+
+			.reveal .roma-full-bg .roma-full-bg-content {
+				position: relative;
+				z-index: 2;
+				height: 100%;
+				box-sizing: border-box;
+			}
+
+			.reveal .roma-full-bg h2 {
+				position: absolute;
+				top: 6%;
+				left: 8%;
+				color: #fff;
+				text-align: left;
+				font-size: 2em;
+				line-height: 1.1;
+				margin: 0;
+			}
+
+			.reveal .roma-full-bg .roma-full-bg-logo {
+				position: absolute;
+				top: 6%;
+				right: 8%;
+				height: 1.6em;
+				width: auto;
+			}
+
+			/*############################################### */
+			/* Team / research-lines slide (white background) */
+			/*############################################### */
+			.reveal .slides section.team-slide {
+				display: flex !important;
+				align-items: stretch;
+				height: 100%;
+				width: 100%;
+				text-align: left;
+				box-sizing: border-box;
+				padding: 3% 4%;
+				top: 0 !important;
+			}
+
+			/* Left sidebar: logo, wordmark, "Three research lines" */
+			.reveal .team-slide .team-header {
+				flex: 0 0 16%;
+				display: flex;
+				flex-direction: column;
+				box-sizing: border-box;
+				padding-right: 2%;
+			}
+			
+
+			.reveal .title-slide .title-slide-right img {
+				filter: grayscale(1) sepia(1) hue-rotate(180deg) saturate(3) brightness(1.05) contrast(1.05);
+			}
+			.reveal .team-slide .team-logo-row {
+				display: flex;
+				flex-direction: column;
+				align-items: flex-start;
+				gap: 0.4em;
+			}
+
+			.reveal .team-slide .team-logo-row img {
+				height: 10.6em;
+				width: auto;
+				max-width: 100%;
+				object-fit: contain;
+				display: block;
+			}
+
+			.reveal .team-slide .team-wordmark {
+				font-size: 2.5em;
+				font-weight: 700;
+				color: #444;
+			}
+
+			.reveal .team-slide .team-research-label {
+				margin-top: auto;
+				margin-bottom: 108%;
+				font-size: 1em;
+				color: #222;
+			}
+
+			/* Right side: map as background, profiles + research columns on top */
+			.reveal .team-slide .team-content {
+				position: relative;
+				flex: 1;
+				display: flex;
+				flex-direction: column;
+				min-width: 0;
+			}
+
+			.reveal .team-slide .team-content::before {
+				content: "";
+				position: absolute;
+				top: 0%;
+				left: 5%;
+				right: 5%;
+				bottom: 30%;
+				background-image:
+				linear-gradient(rgba(17, 17, 17, 0.15), rgba(17, 17, 17, 0.15)),
+					url('assets/team_map.png');
+				background-size: 100%;
+				background-position: center;
+				background-repeat: no-repeat;
+				z-index: 0;
+			}
+
+			.reveal .team-slide .top-profiles,
+			.reveal .team-slide .team-columns {
+				position: relative;
+				z-index: 1;
+			}
+
+			.reveal .team-slide .top-profiles {
+				display: flex;
+				justify-content: space-between;
+				gap: 1%;
+				margin-bottom: 0.8em;
+			}
+
+			.reveal .team-slide .profile {
+				display: flex;
+				align-items: center;
+				gap: 0.6em;
+			}
+
+			.reveal .team-slide .profile img {
+				width: 3.2em;
+				height: 3.2em;
+				object-fit: cover;
+				border-radius: 4px;
+				flex-shrink: 0;
+			}
+
+			.reveal .team-slide .profile-info {
+				display: flex;
+				flex-direction: column;
+				font-size: 0.55em;
+				line-height: 1.25;
+			}
+
+			.reveal .team-slide .profile-info strong {
+				font-size: 1.1em;
+				font-weight: 600;
+			}
+
+			.reveal .team-slide .team-columns {
+				flex: 1;
+				display: flex;
+				justify-content: space-between;
+				gap: 1.5%;
+				min-height: 0;
+			}
+
+			.reveal .team-slide .team-column {
+				flex: 1;
+				position: relative;
+				border: 2px dashed #c2185b;
+				border-radius: 24px;
+				padding: 4%;
+				box-sizing: border-box;
+				display: flex;
+				flex-direction: column;
+				gap: 0.1em;
+				min-width: 0;
+			}
+
+			.reveal .team-slide .topic-box {
+				margin-top: auto;
+				background: rgba(255, 255, 255, 0.08);
+				border-radius: 16px;
+				padding: 0.5em 1em;
+				text-align: center;
+			}
+
+			.reveal .team-slide .topic-box h3 {
+				color: #c2185b;
+				font-size: 1em;
+				margin: 0 0 0.5em 0;
+			}
+
+			.reveal .team-slide .topic-box ul {
+				display: block;
+				list-style: none;
+				margin: 0;
+				padding: 0;
+				font-size: 0.7em;
+				line-height: 1.7;
+			}
+		/*############################################### */
+			/* Titolo delle slide*/
+			/*############################################### */
+			.reveal .slide-title {
+			border-left: 5px solid white;
+			text-align: left;
+			margin-left: 20px;
+			padding-left: 20px;
+		}
+			/*############################################### */
+			/* Cursore e fraccia bianchi*/
+			/*############################################### */
+			.reveal .controls {
+				color: #fff;
+			}
+
+			.reveal .progress {
+				color: #fff;
+			}
+			/*############################################### */
+			/* Struttura griglia*/
+			/*############################################### */
+			.reveal .slides section.equinox-slide {
+				display: flex !important;
+				flex-direction: column;
+				height: 100%;
+				top: 0 !important;
+			}
+
+			.reveal .equinox-slide .equinox-grid {
+				flex: 1;
+				min-height: 0;
+				display: grid;
+				grid-template-columns: 1fr 1fr;
+				grid-template-rows: 1fr 1fr;
+				gap: 1.5em 3em;
+				align-items: center;
+				justify-items: center;
+			}
+
+			.reveal .equinox-slide .equinox-item {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				justify-content: center;
+				height: 100%;
+				min-height: 0;
+			}
+
+			.reveal .equinox-slide .equinox-item img {
+				max-width: 100%;
+				max-height: 80%;
+				object-fit: contain;
+			}
+
+			.reveal .equinox-slide .equinox-label {
+				font-style: bold;
+				font-size: 0.6em;
+				margin: 0.3em 0;
+				color: #eee;
+			}
+			/*############################################### */
+			/* Ecosystem slide: 4-column grid of logos + names.
+			   No custom colors/background here — it inherits the theme's
+			   own dark background, text color and font. */
+			/*############################################### */
+
+			.reveal .ecosystem-columns {
+				display: grid;
+				grid-template-columns: repeat(4, 1fr);
+				gap: 3%;
+				text-align: left;
+				font-size: 0.5em;
+				margin-top: 0.5em;
+			}
+
+			.reveal .ecosystem-columns .logo-block {
+				margin-bottom: 1.4em;
+			}
+
+			.reveal .ecosystem-columns .logo-block img {
+				max-height: 2.4em;
+				max-width: 100%;
+				width: auto;
+				display: block;
+				margin-bottom: 0.5em;
+			}
+
+			.reveal .ecosystem-columns .logo-block.with-wordmark {
+				display: flex;
+				align-items: center;
+				gap: 0.5em;
+			}
+
+			.reveal .ecosystem-columns .logo-block.with-wordmark img {
+				margin-bottom: 0;
+			}
+
+			.reveal .ecosystem-columns .logo-block ul {
+				list-style: none;
+				margin: 0;
+				padding: 0;
+				line-height: 1.5;
+			}
+
+			.reveal .ecosystem-columns .logo-block p {
+				margin: 0;
+				line-height: 1.5;
+			}
+
+			.reveal .ecosystem-footer {
+				display: flex;
+				justify-content: space-around;
+				margin-top: 0.5em;
+				font-size: 0.55em;
+				font-style: italic;
+			}
+			.reveal .ecosystem-slide h2,
+			.reveal .ecosystem-slide p,
+			.reveal .ecosystem-slide li,
+			.reveal .ecosystem-slide strong,
+			.reveal .ecosystem-slide span {
+				color: #000;
+			}
+
+			.reveal .ecosystem-columns .logo-block .group-label {
+				font-weight: 700;
+				margin: 0 0 0.4em 0;
+				font-size: 1.05em;
+			}
+						
+			/*############################################### */
+			/* Blocco per immagini sovrapposte */
+			/*############################################### */
+			.reveal .fig.split-side {
+				position: relative;
+				width: 100%;
+				height: 100%;
+			}
+
+			.reveal ul.collage {
+				list-style: none;
+				margin: 0;
+				padding: 0;
+				position: relative;
+				width: 100%;
+				height: 100%;
+			}
+
+			.reveal ul.collage li {
+				position: absolute;
+				margin: 0;
+				box-shadow: 0 8px 20px rgba(0, 0, 0, 0.45);
+				overflow: hidden;
+			}
+
+			.reveal ul.collage li img {
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+				display: block;
+			}
+
+			/* Posizione, dimensione e rotazione di ogni singola foto */
+			.reveal ul.collage li:nth-child(1) {
+				top: 0%;
+				left: 0%;
+				width: 45%;
+				height: 49%;
+				transform: rotate(-3deg);
+				z-index: 2;
+			}
+
+			.reveal ul.collage li:nth-child(2) {
+				top: -2%;
+				left: 36%;
+				width: 64%;
+				height: 42%;
+				transform: rotate(2deg);
+				z-index: 1;
+			}
+
+			.reveal ul.collage li:nth-child(3) {
+				top: 48%;
+				left: 2%;
+				width: 42%;
+				height: 48%;
+				transform: rotate(2deg);
+				z-index: 3;
+			}
+
+			.reveal ul.collage li:nth-child(4) {
+				top: 42%;
+				left: 38%;
+				width: 62%;
+				height: 50%;
+				transform: rotate(-2deg);
+				z-index: 2;
+			}
+			.reveal .slides section.art-slide {
+				display: flex !important;
+				height: 100%;
+				top: 0 !important;
+			}
+
+			.reveal .art-slide .container {
+				height: 100%;
+				align-items: stretch;
+			}
+
+			.reveal .art-slide .col {
+				height: 100%;
+				display: flex;
+				flex-direction: column;
+			}
+
+			.reveal .art-slide .fig.split-side {
+				flex: 1;
+				min-height: 0;
+			}
+			.reveal .slides section.art-slide {
+				display: flex !important;
+				flex-direction: column;
+				height: 100%;
+				top: 0 !important;
+			}
+
+			.reveal .art-slide h2 {
+				flex: 0 0 auto;
+			}
+
+			.reveal .art-slide .container {
+				flex: 1;
+				min-height: 0;
+				align-items: stretch;
+			}
+			/*############################################### */
+			/* Blocco immagine sovrapposte nei progetti */
+			/*############################################### */
+			.reveal .project-detail-content .collage-wrap {
+				position: relative;
+				width: 42%;
+				height: 85%;
+				flex-shrink: 0;
+			}
+
+			.reveal .project-detail-content .collage-wrap ul.collage {
+				list-style: none;
+				margin: 0;
+				padding: 0;
+				position: relative;
+				width: 100%;
+				height: 100%;
+			}
+
+			
+
+			.reveal .project-detail-content .collage-wrap ul.collage li {
+				position: absolute;
+				margin: 0;
+				box-shadow: 0 6px 16px rgba(0, 0, 0, 0.45);
+				overflow: hidden;
+				border-radius: 4px;
+			}
+
+			.reveal .project-detail-content .collage-wrap ul.collage li img {
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+				display: block;
+			}
+
+			.reveal .project-detail-content .collage-wrap ul.collage li:nth-child(1) {
+				top: 0%; left: 0%; width: 55%; height: 55%;
+				transform: rotate(-3deg); z-index: 2;
+			}
+			.reveal .project-detail-content .collage-wrap ul.collage li:nth-child(2) {
+				top: -2%; left: 48%; width: 55%; height: 45%;
+				transform: rotate(2deg); z-index: 1;
+			}
+			.reveal .project-detail-content .collage-wrap ul.collage li:nth-child(3) {
+				top: 48%; left: 2%; width: 50%; height: 52%;
+				transform: rotate(2deg); z-index: 3;
+			}
+			.reveal .project-detail-content .collage-wrap ul.collage li:nth-child(4) {
+				top: 42%; left: 45%; width: 58%; height: 58%;
+				transform: rotate(-2deg); z-index: 2;
+			}
+		/*############################################### */
+		/* Catalogo stile Netflix */
+		/*############################################### */
+		.reveal .catalog-grid {
+			display: grid;
+			grid-template-columns: repeat(6, 1fr);
+			gap: 1.2em;
+			margin-top: 1em;
+		}
+
+		.reveal .catalog-card {
+			position: relative;
+			display: block;
+			border-radius: 8px;
+			overflow: hidden;
+			aspect-ratio: 2 / 3;
+			text-decoration: none;
+			box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
+			transition: transform 0.2s ease, box-shadow 0.2s ease;
+		}
+
+		.reveal .catalog-card:hover {
+			transform: scale(1.06);
+			box-shadow: 0 10px 26px rgba(0, 0, 0, 0.6);
+			z-index: 2;
+		}
+
+		.reveal .catalog-card img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			display: block;
+		}
+
+		.reveal .catalog-card-title {
+			position: absolute;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			padding: 0.6em 0.7em;
+			background: linear-gradient(to top, rgba(0,0,0,0.9), rgba(0,0,0,0));
+			font-size: 0.55em;
+			font-weight: 600;
+			color: #fff;
+		}
+
+		.reveal .catalog-card-title.dark-title {
+			color: #000;
+			background: linear-gradient(to top, rgba(255,255,255,0.9), rgba(255,255,255,0));
+		}
+
+		/* Slide di dettaglio progetto */
+		.reveal .slides section.project-detail {
+			display: flex !important;
+			flex-direction: column;
+			height: 100%;
+			top: 0 !important;
+			text-align: left;
+		}
+
+		.reveal .project-detail .back-link {
+			color: #fff;
+			text-decoration: none;
+			font-size: 0.55em;
+			opacity: 0.7;
+			margin-bottom: 0.8em;
+			display: inline-block;
+		}
+
+		.reveal .project-detail .back-link:hover {
+			opacity: 1;
+		}
+
+		.reveal .project-detail-content {
+			flex: 1;
+			display: flex;
+			gap: 2em;
+			align-items: center;
+			min-height: 0;
+		}
+
+		.reveal .project-detail-content img {
+			height: 85%;
+			width: 42%;
+			object-fit: cover;
+			border-radius: 8px;
+			flex-shrink: 0;
+		}
+
+		.reveal .project-detail-content .project-text {
+			flex: 1;
+			font-size: 0.7em;
+		}
+		/*############################################### */
+		/* regola per avere slide con testo centrato unico */
+		/*############################################### */
+		.reveal .slides section.center-fix {
+				display: flex !important;
+				top: 0 !important;
+			}
+		/*################################################################################################################################################## */
+		/*################################################################################################################################################## */
+		</style>
 	</head>
 	<body>
 		<div class="reveal">
+			<img src="assets/SonyCSL_logowhite.png" alt="Sony CSL Logo" class="slide-logo" id="slide-logo">
 			<div class="slides">
-				<section>Slide 1</section>
-				<section>Slide 2</section>
+				<!-- ################################################################################################################################################### -->
+				<section class="title-slide" data-background-color="#000000">
+					<div class="container">
+						<div class="title-slide-left" style="justify-content: space-between;">
+							<div class="title-slide-logo">
+								<img src="assets/SonyCSL_logocolor.png" alt="Sony CSL">
+							</div>
+							<h1>Building a<br>culture of<br>science</h1>
+						</div>
+						<div class="title-slide-right" style="align-self: stretch; aspect-ratio: auto; max-height: none;">
+							<img src="assets/roma2.png" alt="Roma" style="filter: grayscale(1) sepia(1) hue-rotate(180deg) saturate(3) brightness(1.05) contrast(1.05);">
+						</div>
+					</div>
+				</section>
+
+				<section class="roma-full-bg">
+					<div class="roma-full-bg-photo-wrap">
+						<img class="roma-full-bg-photo" src="assets/roma2.png" alt="Roma">
+					</div>
+					<div class="roma-full-bg-content">
+						<h2>Building a<br>culture of<br>science</h2>
+						<img class="roma-full-bg-logo" src="assets/SonyCSL_logocolor.png" alt="Sony CSL">
+					</div>
+				</section>
+				<!-- ################################################################################################################################################### -->
+				<section class="team-slide" >
+	
+					<div class="team-content">
+						<div class="top-profiles">
+							<div class="profile">
+								<img src="assets/team/milena.jpg" alt="Milena Di Canio">
+								<div class="profile-info">
+									<strong>Milena Di Canio</strong>
+									<span>Communications and Events Manager</span>
+								</div>
+							</div>
+							<div class="profile">
+								<img src="assets/team/vittorio.jpg" alt="Vittorio Loreto">
+								<div class="profile-info">
+									<strong>Vittorio Loreto</strong>
+									<span>Director</span>
+								</div>
+							</div>
+							<div class="profile">
+								<img src="assets/team/cinzia.jpg" alt="Cinzia Di Salvio">
+								<div class="profile-info">
+									<strong>Cinzia Di Salvio</strong>
+									<span>Administrative Assistant</span>
+								</div>
+							</div>
+							<div class="profile">
+								<img src="assets/team/elisabetta.jpg" alt="Elisabetta Falivene">
+								<div class="profile-info">
+									<strong>Elisabetta Falivene</strong>
+									<span>System &amp; Research Engineer</span>
+								</div>
+							</div>
+						</div>
+				
+						<div class="team-columns">
+							<div class="team-column">
+								<div class="profile">
+									<img src="assets/team/matteo.jpg" alt="Matteo Bruno">
+									<div class="profile-info">
+										<strong>Matteo Bruno</strong>
+										<span>Associate Researcher</span>
+									</div>
+								</div>
+								<div class="profile">
+									<img src="assets/team/hygor.jpg" alt="Hygor Melo">
+									<div class="profile-info">
+										<strong>Hygor Melo</strong>
+										<span>Now consultant &amp; professor UniFor</span>
+									</div>
+								</div>
+								<div class="topic-box">
+									<h3>Sustainable cities</h3>
+									<ul>
+										<li>Mobility</li>
+										<li>Accessibility</li>
+										<li>Digital twins</li>
+										<li>CO2 emissions</li>
+									</ul>
+								</div>
+							</div>
+				
+							<div class="team-column">
+								<div class="profile">
+									<img src="assets/team/emanuele.jpg" alt="Emanuele Brugnoli">
+									<div class="profile-info">
+										<strong>Emanuele Brugnoli</strong>
+										<span>Associate Researcher</span>
+									</div>
+								</div>
+								<div class="profile">
+									<img src="assets/team/ruggiero.jpg" alt="Ruggiero Lo Sardo">
+									<div class="profile-info">
+										<strong>Ruggiero Lo Sardo</strong>
+										<span>Associate Researcher</span>
+									</div>
+								</div>
+								<div class="topic-box">
+									<h3>Infosphere</h3>
+									<ul>
+										<li>Social networks</li>
+										<li>Misinformation</li>
+										<li>Echo chambers</li>
+										<li>Infodemics</li>
+										<li>Online dialogue</li>
+									</ul>
+								</div>
+							</div>
+				
+							<div class="team-column">
+								<div class="profile">
+									<img src="assets/team/alessandro.jpg" alt="Alessandro Londei">
+									<div class="profile-info">
+										<strong>Alessandro Londei</strong>
+										<span>Researcher</span>
+									</div>
+								</div>
+								<div class="profile">
+									<img src="assets/team/denise.jpg" alt="Denise Lanzieri">
+									<div class="profile-info">
+										<strong>Denise Lanzieri</strong>
+										<span>Associate Researcher</span>
+									</div>
+								</div>
+								<div class="topic-box">
+									<h3>Augmented creativity</h3>
+									<ul>
+										<li>AI models</li>
+										<li>Arts &amp; science</li>
+										<li>Human-AI interactions</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+				<!-- ################################################################################################################################################### -->
+				<section class="ecosystem-slide" data-background-color="#ffffff">
+					<h2 ><p style="color:#c2185b">Sony CSL - Rome ecosystem</p></h2>
+					<div class="ecosystem-columns">
+						<!-- Column 1: Sony CSL network -->
+						<div class="ecosystem-column">
+							<div class="logo-block with-wordmark">
+								<img src="assets/SonyCSL_logo_color.png" alt="Sony CSL">
+							</div>
+							<div class="logo-block">
+								<ul>
+									<li>P. Gravino (Paris)</li>
+									<li>G. Prevedello (Paris)</li>
+									<li>Yuichiro Takeuchi (Kyoto)</li>
+									<li>Ken Endo (Tokyo)</li>
+									<li>Masatoshi Funabashi (Tokyo)</li>
+								</ul>
+							</div>
+							<div class="logo-block">
+								<img src="assets/logos/The_University_of_Melbourne_Coat_of_Arms.png" alt="The_University_of_Melbourne_Coat_of_Arms.png" style="max-height: 4.5em;" >
+								<p>Dan Hill</p>
+							</div>
+							<div class="logo-block">
+								<img src="assets/logos/romatre.png" alt="Roma Tre" >
+								<p>Giovanni Caudo</p>
+							</div>
+						</div>
+				
+						<!-- Column 2: Complexity science collaborators -->
+						<div class="ecosystem-column">
+							<div class="logo-block">
+								<img src="assets/logos/cref.png" alt="Centro Ricerche Enrico Fermi">
+								<ul>
+									<li><strong>A. Gabrielli</strong></li>
+									<li>F. Saracco</li>
+									<li>A. Tacchella</li>
+									<li>A. Bellina</li>
+									<li>M. Straccamore</li>
+									<li>F. Coccetti</li>
+									<li>P. Villegas</li>
+								</ul>
+							</div>
+							<div class="logo-block">
+								<img src="assets/logos/ETH_Zürich_Logo_black.png" alt="ETH Zürich" style="max-height: 2em;" >
+							</div>
+							<div class="logo-block">
+								<img src="assets/logos/complexity_hub.png" alt="Complexity Science Hub" " style="max-height: 4.5em;">
+								<p>S. Thurner, 
+									<br>
+									V.D.P. Servedio</p>
+							</div>
+						</div>
+				
+						<!-- Column 3: University / institution collaborators -->
+						<div class="ecosystem-column">
+							<div class="logo-block">
+								<img src="assets/logos/sapienza.png" alt="Sapienza Università di Roma" >
+								<ul>
+									<li>M. Avalle</li>
+									<li>L. Rossi Mori</li>
+								</ul>
+							</div>
+							<div class="logo-block">
+								<img src="assets/logos/cnrs.png" alt="CNRS">
+								<ul>
+									<li>F. Gargiulo</li>
+									<li>G. Di Bona</li>
+								</ul>
+							</div>
+							<div class="logo-block">
+								<img src="assets/logos/city_london.png" alt="City University of London" style="max-height: 4.5em;" >
+								<p>A. Baronchelli</p>
+							</div>
+							<div class="logo-block">
+								<img src="assets/logos/kings_college.png" alt="King's College London" style="max-height: 4em;">
+								<p>T. Di Matteo</p>
+							</div>
+						</div>
+				
+						<!-- Column 4: Students & further affiliations -->
+						<div class="ecosystem-column">
+							<div class="logo-block">
+								<p class="group-label"><h2>PhD students</h2></p>
+								<ul>
+									<li>Riccardo Basilone</li>
+									<li>Matteo Benati</li>
+									<li>Federica Fanelli</li>
+									<li>Francesco Marzolla</li>
+									<li>Giovanni Palermo</li>
+									<li>++ undergraduates</li>
+								</ul>
+							</div>
+							<div class="logo-block">
+								<img src="assets/logos/indiana.png" alt="Indiana University" style="max-height: 4em;" >
+							</div>
+							<div class="logo-block">
+								<img src="assets/logos/queen_mary.png" alt="Queen Mary University of London" style="max-height: 3em;" >
+							</div>
+						</div>
+					</div>
+				
+					<div class="ecosystem-footer">
+						<span>++ academic institutions</span>
+						<span>++ companies</span>
+						<span>++ policy makers</span>
+						<span>++ internat. orgs</span>
+						<span>++ arts</span>
+					</div>
+				</section>
+				<!-- ################################################################################################################################################### -->
+				<section class="center-fix" style="display: flex; flex-direction: column; height: 100%;">
+					<h2 style="text-align: center; margin: 0;">Overarching goal</h2>
+					<div style="flex: 1; display: flex; align-items: center; justify-content: center; text-align: center;">
+						<h3>Understanding how humans and machine explore the space of possibilities, experiment novelties and conceive new solutions to face pressing planetary and societal challenges.</h3>
+					</div>
+				</section>
+				<!-- ################################################################################################################################################### -->
+				<section class="art-slide">
+					<h2 class='slide-title'>The Sciences,
+						the Arts,
+						the Public Engagement</h2>
+					<div class="container">
+						<div class="col">
+							<div align="left" style="margin-left: 5px; margin-top:170px">
+							Transforming scientific research into artistic and experiential forms helps us see patterns more clearly and understand data in new ways.
+							By making complex information more accessible and engaging, we deepen our insight into social phenomena — while maintaining scientific rigor.
+							</div>
+						</div>
+						<div class="col">
+							<figure class="fig split-side">
+								<ul class="collage">
+								  <li><img src="/assets/filip.jpg"></li>
+								  <li><img src="/assets/rib1.png"></li>
+								  <li><img src="/assets/rib2.jpeg"></li>
+								  <li><img src="/assets/rib3.jpeg" ></li>
+								</ul>
+							  </figure>
+						</div>
+					</div>
+				
+				</section>  
+				<!-- ################################################################################################################################################### -->
+				<!-- ################################################################################################################################################### -->
+				<section>
+					<section id="catalog">
+						<h2 class='slide-title'>Science and Art</h2>
+						<div class="catalog-grid">
+							<a class="catalog-card" href="#/Kreyon City">
+								<img src="assets/projects/kreyon_city.jpg" alt="Kreyon City">
+								<div class="catalog-card-title"> Kreyon City </div>
+							</a>
+							<a class="catalog-card" href="#/Random or Arbitrary">
+								<img src="assets/projects/random.png" alt="Random or Arbitrary?">
+								<div class="catalog-card-title">Random or Arbitrary?</div>
+							</a>
+							<a class="catalog-card" href="#/Six degrees of separation">
+								<img src="assets/projects/separation.png" alt="Six degrees of separation">
+								<div class="catalog-card-title">Six degrees of separation</div>
+							</a>
+							<a class="catalog-card" href="#/TraceWaste">
+								<img src="assets/projects/tracewaste.jpg" alt="TraceWaste">
+								<div class="catalog-card-title">TraceWaste</div>
+							</a>
+							<a class="catalog-card" href="#/Cities live like trees">
+								<img src="assets/projects/trees1.jpg" alt="Cities live like trees">
+								<div class="catalog-card-title">Cities live like trees</div>
+							</a>
+							<a class="catalog-card" href="#/SAMASANA, Togetherness ">
+								<img src="assets/projects/samasana.jpg" alt="SAMASANA, Togetherness ">
+								<div class="catalog-card-title">SAMASANA, Togetherness </div>
+							</a>
+							<a class="catalog-card" href="#/The Body and the City ">
+								<img src="assets/projects/rib1.png" alt="The Body and the City ">
+								<div class="catalog-card-title">The Body and the City </div>
+							</a>
+							<a class="catalog-card" href="#/Sound Dialogues: What Do Cities Tell Us">
+								<img src="assets/projects/sound.jpg" alt="Sound Dialogues: What Do Cities Tell Us">
+								<div class="catalog-card-title">Sound Dialogues: What Do Cities Tell Us</div>
+							</a>
+							<a class="catalog-card" href="#/Direito à Sombra  ">
+								<img src="assets/projects/direito_bus.jpg" alt="Direito à Sombra  (The Right to Shade)">
+								<div class="catalog-card-title dark-title">Direito à Sombra  (The Right to Shade)</div>
+							</a>
+							<a class="catalog-card" href="#/Ulysses's Gates">
+								<img src="assets/projects/ulysses.png" alt="Ulysses's Gates">
+								<div class="catalog-card-title">Ulysses's Gates</div>
+							</a>
+							<a class="catalog-card" href="#/Duetto">
+								<img src="assets/projects/Duetto_home.jpeg" alt="Duetto">
+								<div class="catalog-card-title">Duetto</div>
+							</a>
+							<a class="catalog-card" href="#/Dialogues between Literature and Science">
+								<img src="assets/projects/litt.jpg" alt="Dialogues between Literature and Science">
+								<div class="catalog-card-title">Dialogues between Literature and Science</div>
+							</a>
+						</div>
+					</section>
+					<!-- ################################################################################################################################################### -->
+					<section id="Kreyon City" class="project-detail">
+						<a class="back-link" href="#/catalog">&larr; Back to projects</a>
+						<div class="project-detail-content">
+							<img src="assets/projects/kreyon_city.jpg" alt="Kreyon City"  style="width: 60%;">
+							<div class="project-text">
+								<h2>Kreyon City</h2>
+								<p>Kreyon City is a macro-economic planning tool that exploits methods from Statistical Physics and Artificial Intelligence to develop forecasting algorithms for urban indicators.  
+
+									With Kreyon City, it is possible to check the evolution of different urban-related dimensions, such as wages, employment, green areas, etc.
+									
+									While the decision-making platform is under construction, Kreyon City has been realised into an installation to study how individuals solve complex urban problems. 
+									</p>
+							</div>
+						</div>
+					</section>
+					
+					<section id="Random or Arbitrary" class="project-detail">
+						<a class="back-link" href="#/catalog">&larr; Back to projects</a>
+						<div class="project-detail-content">
+							<img src="assets/projects/random.png" alt="Random or Arbitrary?" style="width: 60%;">
+							<div class="project-text">
+								<h2>Random or Arbitrary?</h2>
+								<p>his work has been presented at the “Ti con Zero” exhibition in 2022 and it explains how casuality works. People are invited to say into the microphone a random sequence of 0s and 1s (until all the boxes on the display are filled). An algorithm calculates the Shannon entropy of the string and tells whether you succeeded in generating a truly random sequence or whether you were more predictable.</p>
+							</div>
+						</div>
+					</section>
+					
+					<section id="Six degrees of separation" class="project-detail">
+						<a class="back-link" href="#/catalog">&larr; Back to projects</a>
+						<div class="project-detail-content">
+							<img src="assets/projects/separation.png" alt="Six degrees of separation" >
+							<div class="project-text">
+								<h2>Six degrees of separation</h2>
+								<p>This work has been presented at the “Ti con Zero” exhibition in 2022 and it explains how recommendation systems, used by online platforms, work to suggest content to us.
+									Through the installation, people can understand the risk of reinforcing our natural tendency not to depart from our personal comfort zone and instead to conform to prevailing fashions, thus ultimately making us more predictable consumers and less curious people.</p>
+							</div>
+						</div>
+					</section>
+					
+					<section id="TraceWaste" class="project-detail">
+						<a class="back-link" href="#/catalog">&larr; Back to projects</a>
+						<div class="project-detail-content">
+							<div class="collage-wrap" style="width: 60%;">
+								<ul class="collage">
+									<li><img src="assets/projects/trace1.jpg" alt="TraceWaste"></li>
+									<li><img src="assets/projects/trace2.jpg" alt="TraceWaste"></li>
+									<li><img src="assets/projects/trace3.jpg" alt="TraceWaste"></li>
+									<li><img src="assets/projects/trace4.jpg" alt="TraceWaste"></li>
+								</ul>
+							</div>
+							<div class="project-text">
+								<h2>Trace your waste</h2>
+								<p>Trace your waste, the project led by Susi Gutsche, aims to observe and visualise movements of our garbage and explore possible impacts on future urban life within the context of waste. Gaining more knowledge and data in order to understand the usually hidden dynamics can produce a wider discussion and understanding of challenges and problems.
+									How to pave the way to a resilient waste mobility?</p>
+							</div>
+						</div>
+					</section>
+					
+					<section id="Cities live like trees" class="project-detail">
+						<a class="back-link" href="#/catalog">&larr; Back to projects</a>
+						<div class="project-detail-content">
+							<div class="collage-wrap" style="width: 65%;">
+								<ul class="collage">
+									<li style="width: 60%; height: 48%;"><img src="assets/projects/tree2.jpg" alt="Cities live like trees"></li>
+									<li style="width: 60%; height: 38%;"><img src="assets/projects/tree1.jpg" alt="Cities live like trees"></li>
+									<li style="width: 60%; height: 48%;"><img src="assets/projects/tree4.jpg" alt="Cities live like trees"></li>
+									<li style="width: 58%; height: 38%;"><img src="assets/projects/tree3.jpg" alt="Cities live like trees"></li>
+									
+								</ul>
+							</div>
+							<div class="project-text">
+								<h2>Cities live like trees</h2>
+								<p>Cities live like trees, the project led by Olga Kisseleva is based on the idea of mapping human emotions from citizens and link them with tree memories and location, as well to provide new spaces in the cities for citizens to recharge. The idea behind is that using the power of trees inter-connectedness, we can repair city spaces, which are full of emotions of solstalgia and nature-lack-disorders. The artistic exploration is based on the combination of citizen science and data processing algorithms.</p>
+							</div>
+						</div>
+					</section>
+					
+					<section id="SAMASANA, Togetherness" class="project-detail">
+						<a class="back-link" href="#/catalog">&larr; Back to projects</a>
+						<div class="project-detail-content">
+							<div class="collage-wrap" style="width: 60%;">
+								<ul class="collage">
+									<li><img src="assets/projects/samasana1.jpg" alt="SAMASANA, Togetherness"></li>
+									<li><img src="assets/projects/samasana2.jpg" alt="SAMASANA, Togetherness"></li>
+									<li><img src="assets/projects/samasana3.jpg" alt="SAMASANA, Togetherness"></li>
+									<li><img src="assets/projects/samasana4.jpg" alt="SAMASANA, Togetherness"></li>
+								</ul>
+							</div>
+							<div class="project-text">
+								<h2>SAMASANA, Togetherness</h2>
+								<p>SAMASANA, Togetherness by Filippo Gregoretti. 
+									Amrita, an artificial intelligence protagonist of this work, processes a series of tweets, characterized by a certain kind of toxicity in their argumentation and turns them into an audio-visual experience. The images and sounds it proposes change according to the higher or lower level of toxicity these contents present. What we write on social, has weight and even when we are not aware of it!</p>
+							</div>
+						</div>
+					</section>
+					
+					<section id="The Body and the City" class="project-detail">
+						<a class="back-link" href="#/catalog">&larr; Back to projects</a>
+						<div class="project-detail-content">
+							<div class="collage-wrap"style="width: 60%;">
+								<ul class="collage">
+									<li><img src="assets/projects/riba1.jpg" alt="The Body and the City"></li>
+									<li><img src="assets/projects/riba2.jpg" alt="The Body and the City"></li>
+									<li><img src="assets/projects/riba3.jpg" alt="The Body and the City"></li>
+									<li><img src="assets/projects/riba4.jpg" alt="The Body and the City"></li>
+								</ul>
+							</div>
+							<div class="project-text">
+								<h2>The Body and the City</h2>
+								<p>The Body and the City by Michail Ribakov, provides a visualization of “personal space” within cities. Through the observation of bodies moving in urban spaces we understand how often and in what ways this space of our own, enters into relationship with that of others, how often it is invaded or what we are forced to do, in terms of movement to preserve it.</p>
+							</div>
+						</div>
+					</section>
+					
+					<section id="Sound Dialogues: What Do Cities Tell Us" class="project-detail">
+						<a class="back-link" href="#/catalog">&larr; Back to projects</a>
+						<div class="project-detail-content">
+							<img src="assets/projects/soundialog.jpg" alt="Sound Dialogues: What Do Cities Tell Us">
+							<div class="project-text">
+								<h2>Sound Dialogues: What Do Cities Tell Us</h2>
+								<p>Sound Dialogues: What Do Cities Tell Us?  by Anthony Tandazo is an experimental audiovisual performance that listens to the city as a living system. Developed in collaboration with NCDIA Unifor during a residency in Fortaleza, the work draws a sonic comparison between two cities under ecological and social pressure: Fortaleza (Brazil) and Guayaquil (Ecuador). Using a custom-coded platform that translates urban dynamics into algorithmic musical compositions, Tandazo engages with technology both as a critical and poetic tool.</p>
+							</div>
+						</div>
+					</section>
+					
+					<section id="Direito à Sombra  " class="project-detail">
+						<a class="back-link" href="#/catalog">&larr; Back to projects</a>
+						<div class="project-detail-content">
+							<img src="assets/projects/maps.jpg" alt="Direito à Sombra  (The Right to Shade)" style="width: 60%;">
+							<div class="project-text">
+								<h2>Direito à Sombra  (The Right to Shade)</h2>
+								<p>Direito à Sombra (The Right to Shade) by Meri Nagem explores the relationship between heat, solar incidence, and urban inequality in Fortaleza, where access to shade is closely tied to social vulnerability. What began as a technical inquiry into designing a custom clay cobogó, a traditional perforated Brazilian brick, evolved into a broader recognition of trees as ancestral technologies of shade and care. This shift from fabrication to observation runs through Nagem’s project, suggesting technology as a relational and ecological practice, and pointing to the possibility that the most sophisticated response to urban heat may already be rooted in the ground beneath our feet.</p>
+							</div>
+						</div>
+					</section>
+					
+					<section id="Ulysses's Gates" class="project-detail">
+						<a class="back-link" href="#/catalog">&larr; Back to projects</a>
+						<div class="project-detail-content">
+							<div class="collage-wrap" style="width: 65%;">
+								<ul class="collage">
+									<li><img src="assets/projects/ul1.jpg" alt="Ulysses's Gates" ></li>
+									<li><img src="assets/projects/ul2.jpg" alt="Ulysses's Gates"></li>
+									<li><img src="assets/projects/ul3.jpg" alt="Ulysses's Gates"></li>
+									<li><img src="assets/projects/ul4.png" alt="Ulysses's Gates"></li>
+								</ul>
+							</div>
+							<div class="project-text">
+								<h2>Ulysses's Gates</h2>
+								<p>In a dialogue between art, science and generative technologies, Ulysses' Gates brings together sound and visual composition, performance, complexity theory and environmental data to transform the phenomena of the lagoon into a sensory experience. In Venice, a city that symbolises the fragile and millennia-old relationship between civilisation and water, Climate-tides finds its ideal starting point. Here, water is protection, threat, memory and dialogue: a presence to be observed, understood and listened to.</p>
+							</div>
+						</div>
+					</section>
+
+					<section id="Duetto" class="project-detail">
+						<a class="back-link" href="#/catalog">&larr; Back to projects</a>
+						<div class="project-detail-content">
+							<img src="assets/projects/duetto.jpg" alt="Duetto" style="width: 60%;">
+							<div class="project-text">
+								<h2>Duetto</h2>
+								<p>“Duetto”  explores body as a form of language. In this perspective, postures become elementary units, while movement unfolds as a complex and expressive sequence, much like meaning emerging through words and sentences. But the project does more than describe motion: it seeks to recognize relations, possibilities and transformations within gesture, opening a space in which AI can not only interpret movement, but also respond to it in creative ways. At the heart of Duetto lies a genuinely human-in-the-loop vision. The human performer does not simply initiate the process but continuously shapes and redirects what the system understands and proposes. Duetto has been presented as an “art&science” performance several times.</p>
+							</div>
+						</div>
+					</section>
+
+					<section id="Dialogues between Literature and Science" class="project-detail">
+						<a class="back-link" href="#/catalog">&larr; Back to projects</a>
+						<div class="project-detail-content">
+							<img src="assets/projects/litt.jpg" alt="Dialogues between Literature and Science" style="width: 40%;">
+							<div class="project-text">
+								<h2>Dialogues between Literature and Science</h2>
+								<p>Literature is the exploration of the space of possibility, where not only the myriad facets of the human soul find space, but also the infinite possible applications of reality and the equally infinite solutions to humanity's various problems.  
+									We believe that this gift that literature gave to us is useful for all humanity, especially for science.</p>
+							</div>
+						</div>
+					</section>
+				</section>
+				<!-- ################################################################################################################################################### -->
+				<section class="equinox-slide">
+					<h2 class='slide-title'>Shadow of Mercado Central de Fortaleza</h2>
+					<div class="equinox-grid">
+						<div class="equinox-item">
+							<p class="equinox-label">March equinox</p>
+							<img src="assets/mercato1.png" alt="March equinox">
+						</div>
+						<div class="equinox-item">
+							<p class="equinox-label">September equinox</p>
+							<img src="assets/mercato2.png" alt="September equinox">
+						</div>
+						<div class="equinox-item">
+							<img src="assets/mercato3.png" alt="June solstice">
+							<p class="equinox-label">June solstice</p>
+						</div>
+						<div class="equinox-item">
+							<img src="assets/mercato4.png" alt="December solstice">
+							<p class="equinox-label">December solstice</p>
+						</div>
+					</div>
+				</section>
+				<!-- ################################################################################################################################################### -->
+				<section>
+					<h2 class='slide-title'>Map of shadow in Fortaleza</h2>
+					<img src="assets/sombras_predio 7hrs.png" alt="Sombras do prédio às 7h" style="max-width: 70%; max-height: 70vh; display: block; margin: 0 auto;">
+				</section>
+				<!-- ################################################################################################################################################### -->
+				<section>
+					<h2 class='slide-title'>How does it change during the day?</h2>
+					<img src="assets/sombras_7_as_16_WHITE.gif" alt="Sombras 7h-16h" style="max-width: 70%; max-height: 70vh; display: block; margin: 0 auto;">
+				</section>
+				<!-- ################################################################################################################################################### -->
+				<section>
+					<h2 class='slide-title'>Maps of shadow by trees in Fortaleza</h2>
+					<img src="assets/sombras_arvore (verde).png" alt="Sombras do prédio às 7h" style="max-width: 70%; max-height: 70vh; display: block; margin: 0 auto;">
+				</section>
+				<!-- ################################################################################################################################################### -->
+				<section>
+					<h2 class='slide-title'>Sun Map</h2>
+					<div class="container">
+						<div class="col">
+							<p style="text-align: center;">only trees</p>
+							<img src="assets/sun_m arvore.png" alt="Only trees" style="max-width: 100%;">
+						</div>
+						<div class="col">
+							<p style="text-align: center;">only buildings</p>
+							<img src="assets/sun_m predio 13hrs.png" alt="Only buildings" style="max-width: 100%;">
+						</div>
+					</div>
+				</section>
+				<!-- ################################################################################################################################################### -->
+				<section>
+					<h2 class='slide-title' >Access to bus stops within 15min at 7 am </h2>
+					<img src="assets/map_solar_incidence_fortaleza_15_buildings_sem_titulo.png" alt="Sombras 7bus" style="max-width: 70%; max-height: 70vh; display: block; margin: 0 auto;">
+				</section>
+				<!-- ################################################################################################################################################### -->
+				<section>
+					<h2 class='slide-title'>The problem with the trees</h2>
+					<img src="assets/Sombras Avores Meireles (green).png" alt="Sombras 7bus" style="max-width: 70%; max-height: 70vh; display: block; margin: 0 auto;">
+				</section>
+				<!-- ################################################################################################################################################### -->
+				
 			</div>
 		</div>
 
@@ -31,12 +1307,32 @@
 			// More info about initialization & config:
 			// - https://revealjs.com/initialization/
 			// - https://revealjs.com/config/
+
+
+
 			Reveal.initialize({
 				hash: true,
+				controlsLayout: 'edges',
+				width: 1280,
+				height: 720,
+				// Move nav arrows to the screen edges so they don't
+				// collide with the logo in the bottom-right corner
+				controlsLayout: 'edges',
 
 				// Learn about plugins: https://revealjs.com/plugins/
 				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+			}).then(() => {
+				updateLogo(Reveal.getCurrentSlide());
 			});
+
+			Reveal.on('slidechanged', event => {
+				updateLogo(event.currentSlide);
+			});
+
+			function updateLogo(slide) {
+				document.getElementById('slide-logo')
+					.classList.toggle('is-visible', slide.hasAttribute('data-logo'));
+			}
 		</script>
 	</body>
 </html>
