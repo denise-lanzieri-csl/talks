@@ -356,6 +356,35 @@
 					</ul>
 				</section>
 				<!-- ################################################################################################################################################### -->
+				<!-- ################################################################################################################################################### -->
+				<!-- ################################################################################################################################################### -->
+				<!-- ################################################################################################################################################### -->
+				<section>
+					<h2 class='slide-title'><p style="color:#336488">What Is Creativity?</p></h2>
+					<hr>
+					<div style="text-align: center; font-size: 0.8em; color: #666; margin: 12px 0;">
+						Creativity, first, is recombination under rules of coherence — grammar, syntax, structure
+					</div>
+					<div class="container">
+						<div class="col">
+							<img src="assets/chaotic.png" style="width: 90%;">
+						</div>
+						<div class="col">
+							<div align="left" style="margin-left: 20px;">
+								<ul>
+									<li><b class="alert">Type I</b> — generalization within a fixed rule set; the boundary of what is known does not move</li>
+									<br>
+									<li><b class="alert">Type II</b> — changing the rules themselves; same context, new composition rules</li>
+									<br>
+									<li>For us, creativity is the capacity to move between the two — structured enough to stay coherent, unstable enough to genuinely surprise</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</section>
+				<!-- ################################################################################################################################################### -->
+
+				<!-- ################################################################################################################################################### -->
 				<section>
 					<h2 class='slide-title'><p style="color:#336488" >Can we build systems that actively explore the Adjacent Possible? </h2></p>
 					<div class="container">
@@ -643,23 +672,14 @@
 							<div align="left" style="margin-left: 20px;">
 								<br><br>
 								<ul>
-									<li> A CVAE-based generative model: stochastic latent variables mean
-										each sample yields a different, plausible next pose, rather than
-										one fixed prediction
+									<li>  Data-driven generative models of human movement using
+										autoregressive conditional variational autoencoders
 									</li>
 									<br>
-									<li> <b class="alert">Encoder</b>: past ($p_{t-1}$) + current ($p_t$)
-										pose $\rightarrow$ $\mu, \sigma$ $\rightarrow$ sampled $z$.
-										<b class="alert">Decoder</b>: $p_{t-1}$ + $z$ $\rightarrow$
-										reconstructed $\hat{p}_t$
+									<li> The latent variables of the learned autoencoder define the action space for the
+										movement and thereby govern its evolution over time
 									</li>
 									<br>
-									<li> <b class="alert">Training</b>: encoder learns from real pose pairs,
-										regularized toward $\mathcal{N}(0, I)$ $\Longrightarrow$
-										<b class="alert">Inference</b>: encoder dropped, $z$ sampled
-										directly from $\mathcal{N}(0, I)$, driving the live autoregressive
-										rollout
-									</li>
 								</ul>
 							</div>
 						</div>
@@ -671,19 +691,22 @@
 				</section>
 				<!-- ################################################################################################################################################### -->
 				<section>
-					<h3 class='slide-title'><p style="color:#336488" >The Generative Model </h3></p>
-					<br>
+					<h2 class='slide-title'><p style="color:#336488" >The Generative Model </h2></p>
+					
 					<div >
 						<ul>
-							<h3>Critical requirement:  </h3>
-							<li> <b> <span style='color:#6699CC'>Real-time</span></b> — not cached replay, but live production at every step
-							</li>
-							<br>
-							<li> <b> <span style='color:#6699CC'> Human-in-the-loop (HIL)</span></b> training: the model acts, the dancer reacts — the dancer moves, the model adapts → reciprocal dialogue, not one-way generation
-							</li>
-							$\Longrightarrow$ Autoregressive generation, conditioned on history and live performer input
+							Critical requirement:  
+							<ul>
+								<br>
+								<li> <b> <span style='color:#6699CC'>Real-time</span></b>: not cached replay, but live production at every step
+								</li>
+								<li> <b> <span style='color:#6699CC'> Human-in-the-loop (HIL)</span></b> training: the model acts, the dancer reacts, the dancer moves, the model adapts → reciprocal dialogue, not one-way generation
+								</li>
+								$\Longrightarrow$ Autoregressive generation, conditioned on history and live performer input
+							</ul>
 						</ul>
 					</div>
+					<br>
 					<div class='container'>
 						<div class='col'>
 							<div class="block fragment" data-fragment-index="0">
@@ -748,94 +771,341 @@
 						</div>
 					</div>
 				</section>
-			<!-- ################################################################################################################################################### -->
+				<!-- ################################################################################################################################################### -->
 				<section >  
-					<h2> From Imitation to Interaction — A Controlled Experiment</h2>
-					<hr>
-					<div class="container">
-						<div class="col">
-							<div align="left" style="margin-left: 20px;">
-								<br>
-								<br>
-								First public appearance — IntelligentIA event, two performances as a progressive experiment
-								<ul>
-									<li>
-										<b class="alert">Sync</b>:the skeleton mirrors the dancer perfectly. A faithful, precise copy. The system is listening
-									</li>
-									<li>
-										<b class="alert">Full generative mode</b> the skeleton stops following. It begins to propose. Its own trajectories, its own choices — coherent with the dancer, but no longer a reflection of them.
-									</li>
-								</ul>
-							</div>
-						</div>
-						<div class="col">
-							<video muted style="width:450px;" controls>
-								<source data-src="assets/video_som_and_audio.mp4" type="video/mp4" />
-							</video>
-						</div>
+					<h3 class='slide-title'><p style="color:#336488">From Imitation to Interaction</p></h3>
+					<div align="left" style="margin-left: 20px;">
+						<br>
+						First public appearance at IntelligentIA event, two performances as a progressive experiment:
+						<ul>
+							<br>
+							<li class="fragment" data-fragment-index="0">
+								<b class="alert">Sync</b>: the skeleton mirrors the dancer perfectly. A faithful, precise copy. The system is listening
+							</li>
+							<br>
+							<li class="fragment" data-fragment-index="1">
+								<b class="alert">Full generative mode</b> the skeleton stops following. It begins to propose. Its own trajectories, its own choices, coherent with the dancer, but no longer a reflection of them.
+							</li>
+						</ul>
 					</div>
 					<br>
-				</section> 
-				<!-- ################################################################################################################################################### -->
-				<section>
-					<h3 class='slide-title'> <p style="color:#336488" >Integrating Novelties in Deep Learning Systems</h3></p>
-					<b>The idea:</b> Training algorithm inspired by Stuart Kauffman’s concept to explore new data spaces
-					<div class='container'>
-							<div class='col'style=" position: relative;bottom: 60px;">
-							<ul>
-								<li>The Dreaming Learning Algorithm:
-									<br>
-									<br>
-									<ul>
-										<li class="fragment" data-fragment-index="0">Initial training of a probabilistic network with Vector Quantization
-										</li>
-										<br>
-										<li class="fragment" data-fragment-index="1"> <span style="color:#336488" >Dreaming Learning </span> step: the network generates a new synthetic sequence
-										</li>
-										<br>
-										<li class='fragment'data-fragment-index="2"> The network is trained again using the synthetically generated sequences
-										</li>
-									</ul>
-								</li>
-							</ul>
-							</div>
-							<div style="position:relative; width:550px; height:550px; margin:0 auto;">
-								<img data-src="assets/LSTMCellSceneAll_ManimCE.png" style="position:absolute;top:0;left:0;" />
-							</div>
-					</div >
-					<div class="fragment"data-fragment-index="5" style=" position: relative;bottom: 60px;" > $\to$ Enhance human creativity through dynamic human-machine interaction, fostering an evolving artistic partnership during performances.
+					<div style="position: relative; min-height: 320px; text-align: center;">
+						<video class="fragment" data-fragment-index="0" muted style="width:550px; position:absolute; top:0; left:50%; transform: translateX(-50%);" controls>
+							<source data-src="assets/video_sync.mp4" type="video/mp4" />
+						</video>
+						<video class="fragment" data-fragment-index="1" muted style="width:550px; position:absolute; top:0; left:50%; transform: translateX(-50%);" controls>
+							<source data-src="assets/video_full_generative.mp4" type="video/mp4" />
+						</video>
 					</div>
 				</section>
-				<!-- ################################################################################################################################################### -->	
-				<section>
-					<h3 class="slide-title"> <p style="color:#336488" >General Conclusion</h3></p>
-						<br> <br> 
-							<div class="block ">
-								<div class="block-title" >
-								Takeaway message: Create an AI model that enhances the creative process.
-								</div>
-								<div class="block-content">
-									<ul>
-										<li class="fragment">Innovative Dataset Creation through customized Workshop
-										</li>
-										<br>
-										<li class="fragment"> <span style="color:#336488" > Dance Large Movement Model (LMM) </span> development: 
-											<ul>
-												<li> Model an AI system on spatial position data and  temporal features of music capable of probabilistically predicting the next movement
-												</li>
-												<li>
-													A model that can propose <span style='color:#996699'>new and original movements</span> and adapt them to individual dancers based on their unique style
-												</li>
-											</ul>
-										</li>
-										<br>
-										<li  class="fragment"> Enable the system to enter into a symbiotic relationship with the performer, acting as an <span style='color:#669900'>intelligent digital mirror</span>
-										</li>  
-									</ul>
-								</div>
+				<!-- ################################################################################################################################################### -->
+<!-- 				<section>
+					<h2 class='slide-title'><p style="color:#336488">Beyond the Mirror</p></h2>
+					<div align="left" style="margin-left: 20px; margin-top: 30px;">
+						<p style="font-size: 0.85em;">
+							A system that observes how you move — your habits, your asymmetries, your patterns. Adapting session after session to your progress and your plateaus.
+						</p>
+					</div>
+					<br>
+					<div align="left" style="margin-left: 20px; display: flex; flex-direction: column; gap: 40px;">
+						<div style="display: flex; align-items: flex-start;">
+							<div style="width: 220px; flex-shrink: 0;">
+								<b style="color:#336488; font-size: 1em;">The risk</b>
 							</div>
-						<br>
-				</section>	
+							<div style="font-size: 0.8em;">
+								Learn only from you, and the system becomes a mirror — model collapse at personal scale. Not loss of diversity across a population, but loss of the capacity to surprise you.
+							</div>
+						</div>
+						<div style="display: flex; align-items: flex-start;">
+							<div style="width: 220px; flex-shrink: 0;">
+								<b style="color:#336488; font-size: 1em;">The answer</b>
+							</div>
+							<div style="font-size: 0.8em;">
+								Type II — the mechanism that lets the system specialise on you without closing itself inside you. To know you deeply, and from that knowledge, offer something you did not expect.
+							</div>
+						</div>
+						<div style="display: flex; align-items: flex-start;">
+							<div style="width: 220px; flex-shrink: 0;">
+								<b style="color:#336488; font-size: 1em;">In practice</b>
+							</div>
+							<div style="font-size: 0.8em;">
+								A movement you have never tried. A trajectory you would not have found on your own. A personal trainer that, the more it knows you, the more it can genuinely surprise you.
+							</div>
+						</div>
+					</div>
+				</section>
+ -->
+				<!-- ################################################################################################################################################### -->
+				<section class="art-slide">
+					<h2 class='slide-title'><p style="color:#336488">The Sciences,
+						the Arts,
+						the Public Engagement</p></h2>
+					<div class="container">
+						<div class="col">
+							<div align="left" style="margin-left: 0px; margin-top:170px">
+							Bringing scientific research into artistic and experiential forms does not simply translate data for wider public access. <br>
+							It creates a shared space of inquiry in which scientific research, artistic practice and the public can co-produce knowledge together.  <br>  <br>
+							In this process, patterns, evidence and social phenomena are not only explained, but perceived, questioned and reinterpreted through sensory, symbolic and embodied forms, in dialogue with scientific rigor.
+							</div>
+						</div>
+						<div class="col">
+							<figure class="fig split-side">
+								<ul class="collage">
+								  <li><img src="assets/filip.jpg"></li>
+								  <li><img src="assets/rib1.png"></li>
+								  <li><img src="assets/rib2.jpeg"></li>
+								  <li><img src="assets/rib3.jpeg"></li>
+								</ul>
+							  </figure>
+						</div>
+					</div>
+				</section>
+				<!-- ################################################################################################################################################### -->
+				<section>
+					<section id="catalog">
+						<h2 class='slide-title'><p style="color:#336488">Science and Art</p></h2>
+						<div class="catalog-grid">
+							<a class="catalog-card" href="#/Kreyon City">
+								<img src="assets/projects/kreyon_city.jpg" alt="Kreyon City">
+								<div class="catalog-card-title"> Kreyon City </div>
+							</a>
+							<a class="catalog-card" href="#/Random or Arbitrary">
+								<img src="assets/projects/random.png" alt="Random or Arbitrary?">
+								<div class="catalog-card-title">Random or Arbitrary?</div>
+							</a>
+							<a class="catalog-card" href="#/Six degrees of separation">
+								<img src="assets/projects/separation.png" alt="Six degrees of separation">
+								<div class="catalog-card-title">Six degrees of separation</div>
+							</a>
+							<a class="catalog-card" href="#/TraceWaste">
+								<img src="assets/projects/tracewaste.jpg" alt="TraceWaste">
+								<div class="catalog-card-title">TraceWaste</div>
+							</a>
+							<a class="catalog-card" href="#/Cities live like trees">
+								<img src="assets/projects/trees1.jpg" alt="Cities live like trees">
+								<div class="catalog-card-title">Cities live like trees</div>
+							</a>
+							<a class="catalog-card" href="#/SAMASANA, Togetherness ">
+								<img src="assets/projects/samasana4.jpg" alt="SAMASANA, Togetherness ">
+								<div class="catalog-card-title">SAMASANA, Togetherness </div>
+							</a>
+							<a class="catalog-card" href="#/The Body and the City ">
+								<img src="assets/projects/rib1.png" alt="The Body and the City ">
+								<div class="catalog-card-title">The Body and the City </div>
+							</a>
+							<a class="catalog-card" href="#/Sound Dialogues: What Do Cities Tell Us">
+								<img src="assets/projects/sound.jpg" alt="Sound Dialogues: What Do Cities Tell Us">
+								<div class="catalog-card-title">Sound Dialogues: What Do Cities Tell Us</div>
+							</a>
+							<a class="catalog-card" href="#/Direito à Sombra  ">
+								<img src="assets/projects/direito_bus.jpg" alt="Direito à Sombra  (The Right to Shade)">
+								<div class="catalog-card-title dark-title">Direito à Sombra  (The Right to Shade)</div>
+							</a>
+							<a class="catalog-card" href="#/Ulysses's Gates">
+								<img src="assets/projects/ulysses.png" alt="Ulysses's Gates">
+								<div class="catalog-card-title">Ulysses's Gates</div>
+							</a>
+							<a class="catalog-card" href="#/Duetto">
+								<img src="assets/projects/Duetto_home.jpeg" alt="Duetto">
+								<div class="catalog-card-title">Duetto</div>
+							</a>
+							<a class="catalog-card" href="#/Dialogues between Literature and Science">
+								<img src="assets/projects/litt.jpg" alt="Dialogues between Literature and Science">
+								<div class="catalog-card-title dark-title">Dialogues between Literature and Science</div>
+							</a>
+						</div>
+					</section>
+					<!-- ################################################################################################################################################### -->
+					<section id="Kreyon City" class="project-detail">
+						<a class="back-link" href="#/catalog">&larr; Back to projects</a>
+						<div class="project-detail-content">
+							<img src="assets/projects/kreyon_city.jpg" alt="Kreyon City" style="width: 60%;">
+							<div class="project-text">
+								<h2>Kreyon City</h2>
+								<p>Kreyon City is a macro-economic planning tool that exploits methods from Statistical Physics and Artificial Intelligence to develop forecasting algorithms for urban indicators.
+
+									With Kreyon City, it is possible to check the evolution of different urban-related dimensions, such as wages, employment, green areas, etc.
+
+									While the decision-making platform is under construction, Kreyon City has been realised into an installation to study how individuals solve complex urban problems.
+									</p>
+							</div>
+						</div>
+					</section>
+					<!-- ################################################################################################################################################### -->
+					<section id="Random or Arbitrary" class="project-detail">
+						<a class="back-link" href="#/catalog">&larr; Back to projects</a>
+						<div class="project-detail-content">
+							<img src="assets/projects/random.png" alt="Random or Arbitrary?" style="width: 60%;">
+							<div class="project-text">
+								<h2>Random or Arbitrary?</h2>
+								<p>his work has been presented at the “Ti con Zero” exhibition in 2022 and it explains how casuality works. People are invited to say into the microphone a random sequence of 0s and 1s (until all the boxes on the display are filled). An algorithm calculates the Shannon entropy of the string and tells whether you succeeded in generating a truly random sequence or whether you were more predictable.</p>
+							</div>
+						</div>
+					</section>
+					<!-- ################################################################################################################################################### -->
+					<section id="Six degrees of separation" class="project-detail">
+						<a class="back-link" href="#/catalog">&larr; Back to projects</a>
+						<div class="project-detail-content">
+							<img src="assets/projects/separation.png" alt="Six degrees of separation">
+							<div class="project-text">
+								<h2>Six degrees of separation</h2>
+								<p>This work has been presented at the “Ti con Zero” exhibition in 2022 and it explains how recommendation systems, used by online platforms, work to suggest content to us.
+									Through the installation, people can understand the risk of reinforcing our natural tendency not to depart from our personal comfort zone and instead to conform to prevailing fashions, thus ultimately making us more predictable consumers and less curious people.</p>
+							</div>
+						</div>
+					</section>
+					<!-- ################################################################################################################################################### -->
+					<section id="TraceWaste" class="project-detail">
+						<a class="back-link" href="#/catalog">&larr; Back to projects</a>
+						<div class="project-detail-content">
+							<div class="collage-wrap" style="width: 60%;">
+								<ul class="collage">
+									<li><img src="assets/projects/trace1.jpg" alt="TraceWaste"></li>
+									<li><img src="assets/projects/trace2.jpg" alt="TraceWaste"></li>
+									<li><img src="assets/projects/trace3.jpg" alt="TraceWaste"></li>
+									<li><img src="assets/projects/trace4.jpg" alt="TraceWaste"></li>
+								</ul>
+							</div>
+							<div class="project-text">
+								<h2>Trace your waste</h2>
+								<p>Trace your waste, the project led by Susi Gutsche, aims to observe and visualise movements of our garbage and explore possible impacts on future urban life within the context of waste. Gaining more knowledge and data in order to understand the usually hidden dynamics can produce a wider discussion and understanding of challenges and problems.
+									How to pave the way to a resilient waste mobility?</p>
+							</div>
+						</div>
+					</section>
+					<!-- ################################################################################################################################################### -->
+					<section id="Cities live like trees" class="project-detail">
+						<a class="back-link" href="#/catalog">&larr; Back to projects</a>
+						<div class="project-detail-content">
+							<div class="collage-wrap" style="width: 65%;">
+								<ul class="collage">
+									<li style="width: 60%; height: 48%;"><img src="assets/projects/tree2.jpg" alt="Cities live like trees"></li>
+									<li style="width: 60%; height: 38%;"><img src="assets/projects/tree1.jpg" alt="Cities live like trees"></li>
+									<li style="width: 60%; height: 48%;"><img src="assets/projects/tree4.jpg" alt="Cities live like trees"></li>
+									<li style="width: 58%; height: 38%;"><img src="assets/projects/tree3.jpg" alt="Cities live like trees"></li>
+								</ul>
+							</div>
+							<div class="project-text">
+								<h2>Cities live like trees</h2>
+								<p>Cities live like trees, the project led by Olga Kisseleva is based on the idea of mapping human emotions from citizens and link them with tree memories and location, as well to provide new spaces in the cities for citizens to recharge. The idea behind is that using the power of trees inter-connectedness, we can repair city spaces, which are full of emotions of solstalgia and nature-lack-disorders. The artistic exploration is based on the combination of citizen science and data processing algorithms.</p>
+							</div>
+						</div>
+					</section>
+					<!-- ################################################################################################################################################### -->
+					<section id="SAMASANA, Togetherness" class="project-detail">
+						<a class="back-link" href="#/catalog">&larr; Back to projects</a>
+						<div class="project-detail-content">
+							<div class="collage-wrap" style="width: 60%;">
+								<ul class="collage">
+									<li><img src="assets/projects/samasana1.jpg" alt="SAMASANA, Togetherness"></li>
+									<li><img src="assets/projects/samasana2.jpg" alt="SAMASANA, Togetherness"></li>
+									<li><img src="assets/projects/samasana3.jpg" alt="SAMASANA, Togetherness"></li>
+									<li><img src="assets/projects/samasana4.jpg" alt="SAMASANA, Togetherness"></li>
+								</ul>
+							</div>
+							<div class="project-text">
+								<h2>SAMASANA, Togetherness</h2>
+								<p>SAMASANA, Togetherness by Filippo Gregoretti.
+									Amrita, an artificial intelligence protagonist of this work, processes a series of tweets, characterized by a certain kind of toxicity in their argumentation and turns them into an audio-visual experience. The images and sounds it proposes change according to the higher or lower level of toxicity these contents present. What we write on social, has weight and even when we are not aware of it!</p>
+							</div>
+						</div>
+					</section>
+					<!-- ################################################################################################################################################### -->
+					<section id="The Body and the City" class="project-detail">
+						<a class="back-link" href="#/catalog">&larr; Back to projects</a>
+						<div class="project-detail-content">
+							<div class="collage-wrap" style="width: 60%;">
+								<ul class="collage">
+									<li><img src="assets/projects/riba1.jpg" alt="The Body and the City"></li>
+									<li><img src="assets/projects/riba2.jpg" alt="The Body and the City"></li>
+									<li><img src="assets/projects/riba3.jpg" alt="The Body and the City"></li>
+									<li><img src="assets/projects/riba4.jpg" alt="The Body and the City"></li>
+								</ul>
+							</div>
+							<div class="project-text">
+								<h2>The Body and the City</h2>
+								<p>The Body and the City by Michail Ribakov, provides a visualization of “personal space” within cities. Through the observation of bodies moving in urban spaces we understand how often and in what ways this space of our own, enters into relationship with that of others, how often it is invaded or what we are forced to do, in terms of movement to preserve it.</p>
+							</div>
+						</div>
+					</section>
+					<!-- ################################################################################################################################################### -->
+					<section id="Sound Dialogues: What Do Cities Tell Us" class="project-detail">
+						<a class="back-link" href="#/catalog">&larr; Back to projects</a>
+						<div class="project-detail-content">
+							<img src="assets/projects/soundialog.jpg" alt="Sound Dialogues: What Do Cities Tell Us">
+							<div class="project-text">
+								<h2>Sound Dialogues: What Do Cities Tell Us</h2>
+								<p>Sound Dialogues: What Do Cities Tell Us? by Anthony Tandazo is an experimental audiovisual performance that listens to the city as a living system. Developed in collaboration with NCDIA Unifor during a residency in Fortaleza, the work draws a sonic comparison between two cities under ecological and social pressure: Fortaleza (Brazil) and Guayaquil (Ecuador). Using a custom-coded platform that translates urban dynamics into algorithmic musical compositions, Tandazo engages with technology both as a critical and poetic tool.</p>
+							</div>
+						</div>
+					</section>
+					<!-- ################################################################################################################################################### -->
+					<section id="Direito à Sombra  " class="project-detail">
+						<a class="back-link" href="#/catalog">&larr; Back to projects</a>
+						<div class="project-detail-content">
+							<img src="assets/projects/maps.jpg" alt="Direito à Sombra  (The Right to Shade)" style="width: 60%;">
+							<div class="project-text">
+								<h2>Direito à Sombra  (The Right to Shade)</h2>
+								<p>Direito à Sombra (The Right to Shade) by Meri Nagem explores the relationship between heat, solar incidence, and urban inequality in Fortaleza, where access to shade is closely tied to social vulnerability. What began as a technical inquiry into designing a custom clay cobogó, a traditional perforated Brazilian brick, evolved into a broader recognition of trees as ancestral technologies of shade and care. This shift from fabrication to observation runs through Nagem's project, suggesting technology as a relational and ecological practice, and pointing to the possibility that the most sophisticated response to urban heat may already be rooted in the ground beneath our feet.</p>
+							</div>
+						</div>
+					</section>
+					<!-- ################################################################################################################################################### -->
+					<section id="Ulysses's Gates" class="project-detail">
+						<a class="back-link" href="#/catalog">&larr; Back to projects</a>
+						<div class="project-detail-content">
+							<div class="collage-wrap" style="width: 65%;">
+								<ul class="collage">
+									<li><img src="assets/projects/ul1.jpg" alt="Ulysses's Gates"></li>
+									<li><img src="assets/projects/ul2.jpg" alt="Ulysses's Gates"></li>
+									<li><img src="assets/projects/ul3.jpg" alt="Ulysses's Gates"></li>
+									<li><img src="assets/projects/ul4.png" alt="Ulysses's Gates"></li>
+								</ul>
+							</div>
+							<div class="project-text">
+								<h2>Ulysses's Gates</h2>
+								<p>In a dialogue between art, science and generative technologies, Ulysses' Gates brings together sound and visual composition, performance, complexity theory and environmental data to transform the phenomena of the lagoon into a sensory experience. In Venice, a city that symbolises the fragile and millennia-old relationship between civilisation and water, Climate-tides finds its ideal starting point. Here, water is protection, threat, memory and dialogue: a presence to be observed, understood and listened to.</p>
+							</div>
+						</div>
+					</section>
+					<!-- ################################################################################################################################################### -->
+					<section id="Duetto" class="project-detail">
+						<a class="back-link" href="#/catalog">&larr; Back to projects</a>
+						<div class="project-detail-content">
+							<img src="assets/projects/duetto.jpg" alt="Duetto" style="width: 60%;">
+							<div class="project-text">
+								<h2>Duetto</h2>
+								<p>“Duetto” explores body as a form of language. In this perspective, postures become elementary units, while movement unfolds as a complex and expressive sequence, much like meaning emerging through words and sentences. But the project does more than describe motion: it seeks to recognize relations, possibilities and transformations within gesture, opening a space in which AI can not only interpret movement, but also respond to it in creative ways. At the heart of Duetto lies a genuinely human-in-the-loop vision. The human performer does not simply initiate the process but continuously shapes and redirects what the system understands and proposes. Duetto has been presented as an “art&science” performance several times.</p>
+							</div>
+						</div>
+					</section>
+					<!-- ################################################################################################################################################### -->
+					<section id="Dialogues between Literature and Science" class="project-detail">
+						<a class="back-link" href="#/catalog">&larr; Back to projects</a>
+						<div class="project-detail-content">
+							<img src="assets/projects/litt.jpg" alt="Dialogues between Literature and Science" style="width: 40%;">
+							<div class="project-text">
+								<h2>Dialogues between Literature and Science</h2>
+								<p>Literature is the exploration of the space of possibility, where not only the myriad facets of the human soul find space, but also the infinite possible applications of reality and the equally infinite solutions to humanity's various problems.
+									We believe that this gift that literature gave to us is useful for all humanity, especially for science.</p>
+							</div>
+						</div>
+					</section>
+				</section>
+				<!-- ################################################################################################################################################### -->
+				<section class="title-slide">
+					<div class="container">
+						<div class="title-slide-left" style="justify-content: space-between;">
+							<div class="title-slide-logo">
+								<img src="assets/SonyCSL_logo_color.png" alt="Sony CSL">
+							</div>
+							<h1>Thank you!</h1>
+						</div>
+						<div class="title-slide-right" style="align-self: stretch; aspect-ratio: auto; max-height: none;">
+							<img src="assets/roma2.png" alt="Roma" >
+						</div>
+					</div>
+				</section>
 				<!-- ################################################################################################################################################### -->
 				<!-- ################################################################################################################################################### -->
 				<!-- ################################################################################################################################################### -->
@@ -992,7 +1262,7 @@
 			.reveal .inverted {
 				filter: invert(100%);
 			}
-						/*############################################### */
+			/*############################################### */
 			/* Team / research-lines slide  */
 			/*############################################### */
 			.reveal .slides section.team-slide {
@@ -1060,7 +1330,7 @@
 				right: 5%;
 				bottom: 30%;
 				background-image:
-				linear-gradient(rgba(17, 17, 17, 0.15), rgba(17, 17, 17, 0.15)),
+				linear-gradient(rgba(255, 255, 255, 0.15), rgba(226, 220, 220, 0.15)),
 					url('assets/team_map.png');
 				background-size: 100%;
 				background-position: center;
@@ -1130,7 +1400,7 @@
 
 			.reveal .team-slide .topic-box {
 				margin-top: auto;
-				background: rgba(255, 255, 255, 0.08);
+				background: rgba(145, 128, 128, 0.08);
 				border-radius: 16px;
 				padding: 0.5em 1em;
 				text-align: center;
@@ -1280,6 +1550,326 @@
 				margin: 0 0 0.4em 0;
 				font-size: 1.05em;
 			}
+			/*############################################### */
+			/* Catalogo stile Netflix */
+			/*############################################### */
+			.reveal .catalog-grid {
+				display: grid;
+				grid-template-columns: repeat(6, 1fr);
+				gap: 1.2em;
+				margin-top: 1em;
+			}
+
+			.reveal .catalog-card {
+				position: relative;
+				display: block;
+				border-radius: 8px;
+				overflow: hidden;
+				aspect-ratio: 2 / 3;
+				text-decoration: none;
+				box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
+				transition: transform 0.2s ease, box-shadow 0.2s ease;
+			}
+
+			.reveal .catalog-card:hover {
+				transform: scale(1.06);
+				box-shadow: 0 10px 26px rgba(0, 0, 0, 0.6);
+				z-index: 2;
+			}
+
+			.reveal .catalog-card img {
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+				display: block;
+			}
+
+			.reveal .catalog-card-title {
+				position: absolute;
+				left: 0;
+				right: 0;
+				bottom: 0;
+				padding: 0.6em 0.7em;
+				background: linear-gradient(to top, rgba(0,0,0,0.9), rgba(0,0,0,0));
+				font-size: 0.55em;
+				font-weight: 600;
+				color: #fff;
+			}
+
+			.reveal .catalog-card-title.dark-title {
+				color: #060604;
+				background: linear-gradient(to top, rgba(255,255,255,0.9), rgba(255,255,255,0));
+			}
+
+			/* Slide di dettaglio progetto */
+			.reveal .slides section.project-detail {
+				display: flex !important;
+				flex-direction: column;
+				height: 100%;
+				top: 0 !important;
+				text-align: left;
+			}
+
+			.reveal .project-detail .back-link {
+				color: #fff;
+				text-decoration: none;
+				font-size: 0.55em;
+				opacity: 0.7;
+				margin-bottom: 0.8em;
+				display: inline-block;
+			}
+
+			.reveal .project-detail .back-link:hover {
+				opacity: 1;
+			}
+
+			.reveal .project-detail-content {
+				flex: 1;
+				display: flex;
+				gap: 2em;
+				align-items: center;
+				min-height: 0;
+			}
+
+			.reveal .project-detail-content img {
+				height: 85%;
+				width: 42%;
+				object-fit: cover;
+				border-radius: 8px;
+				flex-shrink: 0;
+			}
+
+			.reveal .project-detail-content .project-text {
+				flex: 1;
+				font-size: 0.7em;
+			}
+			/*############################################### */
+			/* Blocco immagine sovrapposte nei progetti */
+			/*############################################### */
+			.reveal .project-detail-content .collage-wrap {
+				position: relative;
+				width: 42%;
+				height: 85%;
+				flex-shrink: 0;
+			}
+
+			.reveal .project-detail-content .collage-wrap ul.collage {
+				list-style: none;
+				margin: 0;
+				padding: 0;
+				position: relative;
+				width: 100%;
+				height: 100%;
+			}
+
+			.reveal .project-detail-content .collage-wrap ul.collage li {
+				position: absolute;
+				margin: 0;
+				box-shadow: 0 6px 16px rgba(0, 0, 0, 0.45);
+				overflow: hidden;
+				border-radius: 4px;
+			}
+
+			.reveal .project-detail-content .collage-wrap ul.collage li img {
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+				display: block;
+			}
+
+			.reveal .project-detail-content .collage-wrap ul.collage li:nth-child(1) {
+				top: 0%; left: 0%; width: 55%; height: 55%;
+				transform: rotate(-3deg); z-index: 2;
+			}
+			.reveal .project-detail-content .collage-wrap ul.collage li:nth-child(2) {
+				top: -2%; left: 48%; width: 55%; height: 45%;
+				transform: rotate(2deg); z-index: 1;
+			}
+			.reveal .project-detail-content .collage-wrap ul.collage li:nth-child(3) {
+				top: 48%; left: 2%; width: 50%; height: 52%;
+				transform: rotate(2deg); z-index: 3;
+			}
+			.reveal .project-detail-content .collage-wrap ul.collage li:nth-child(4) {
+				top: 42%; left: 45%; width: 58%; height: 58%;
+				transform: rotate(-2deg); z-index: 2;
+			}
+									
+			/*############################################### */
+			/* Blocco per immagini sovrapposte */
+			/*############################################### */
+			.reveal .fig.split-side {
+				position: relative;
+				width: 100%;
+				height: 100%;
+			}
+
+			.reveal ul.collage {
+				list-style: none;
+				margin: 0;
+				padding: 0;
+				position: relative;
+				width: 100%;
+				height: 100%;
+			}
+
+			.reveal ul.collage li {
+				position: absolute;
+				margin: 0;
+				box-shadow: 0 8px 20px rgba(0, 0, 0, 0.45);
+				overflow: hidden;
+			}
+
+			.reveal ul.collage li img {
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+				display: block;
+			}
+
+			/* Posizione, dimensione e rotazione di ogni singola foto */
+			.reveal ul.collage li:nth-child(1) {
+				top: 0%;
+				left: 0%;
+				width: 45%;
+				height: 49%;
+				transform: rotate(-3deg);
+				z-index: 2;
+			}
+
+			.reveal ul.collage li:nth-child(2) {
+				top: -2%;
+				left: 36%;
+				width: 64%;
+				height: 42%;
+				transform: rotate(2deg);
+				z-index: 1;
+			}
+
+			.reveal ul.collage li:nth-child(3) {
+				top: 48%;
+				left: 2%;
+				width: 42%;
+				height: 48%;
+				transform: rotate(2deg);
+				z-index: 3;
+			}
+
+			.reveal ul.collage li:nth-child(4) {
+				top: 42%;
+				left: 38%;
+				width: 62%;
+				height: 50%;
+				transform: rotate(-2deg);
+				z-index: 2;
+			}
+			.reveal .slides section.art-slide {
+				display: flex !important;
+				flex-direction: column;
+				height: 100%;
+				top: 0 !important;
+			}
+
+			.reveal .art-slide h2 {
+				flex: 0 0 auto;
+			}
+
+			.reveal .art-slide .container {
+				flex: 1;
+				min-height: 0;
+				align-items: stretch;
+			}
+
+			.reveal .art-slide .col {
+				height: 100%;
+				display: flex;
+				flex-direction: column;
+			}
+
+			.reveal .art-slide .fig.split-side {
+				flex: 1;
+				min-height: 0;
+			}
+						/*############################################### */
+			/* Slide titolo*/
+			/*############################################### */
+			.reveal .slide-logo {
+				position: fixed;
+				right: 30px;
+				bottom: 20px;
+				height: 40px;
+				z-index: 100;
+				opacity: 0;
+				pointer-events: none;
+				transition: opacity 0.25s ease;
+			}
+			.reveal .slide-logo.is-visible {
+				opacity: 1;
+			}
+
+			/* Title slide: text + logo on the left, full-bleed photo on the right */
+			.reveal .slides section.title-slide {
+				display: flex !important;
+				align-items: stretch;
+				height: 100%;
+				background: #fff;
+				padding: 0;
+				top: 0 !important;
+			}
+
+			/* The theme's generic .container sets align-items:center, which stops
+			   our columns from stretching to full height. Override it here. */
+			.reveal .title-slide .container {
+				height: 100%;
+				width: 100%;
+				align-items: stretch;
+			}
+
+			.reveal .title-slide .title-slide-left {
+				flex: 0 0 30%;
+				display: flex;
+				flex-direction: column;
+				justify-content: space-between;
+				align-items: flex-start;
+				padding: 15% 6% 20% 10%;
+				box-sizing: border-box;
+				text-align: left;
+			}
+
+			.reveal .title-slide .title-slide-logo {
+				display: flex;
+				align-items: center;
+			}
+
+			.reveal .title-slide .title-slide-logo img {
+				height: .9em;
+				width: auto;
+			}
+
+			.reveal .title-slide h1 {
+				font-size: 2.2em;
+				line-height: 1.05;
+				font-weight: 700;
+				color: #000000;
+				text-transform: none;
+				margin: 0;
+			}
+
+			.reveal .title-slide .title-slide-right {
+				flex: 1;
+				align-self: flex-start;
+				aspect-ratio: 16 / 10;
+				max-height: 100%;
+				position: relative;
+				overflow: hidden;
+			}
+
+			.reveal .title-slide .title-slide-right img {
+				width: 100%;
+				height: 100%;
+				object-fit: contain;
+				display: block;
+			}
+			
 	
 		</style>	
 		<script src="reveal.js/dist/reveal.js"></script>
