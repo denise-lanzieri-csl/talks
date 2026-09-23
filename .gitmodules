@@ -19,3 +19,6 @@
 [submodule "mesh_retooling/reveal.js"]
 	path = mesh_retooling/reveal.js
 	url = https://github.com/denise-lanzieri-csl/reveal.js.git
+[submodule "Parsons_seminar/reveal.js"]
+	path = Parsons_seminar/reveal.js
+	url = https://github.com/denise-lanzieri-csl/reveal.js.git
